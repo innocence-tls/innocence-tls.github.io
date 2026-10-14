@@ -1,0 +1,296 @@
+---
+import { Image } from 'astro:assets';
+import type { Release } from '../lib/releases';
+import { year } from '../lib/releases';
+import { icons, brands, postMeta } from '../lib/icons';
+
+const { r } = Astro.props as { r: Release };
+const href = `${import.meta.env.BASE_URL}r/${r.slug}/`;
+const img = r.banner ?? r.cover;
+const meta = [r.original, year(r), r.length].filter(Boolean).join(' · ');
+const posts = Object.entries(r.posts).filter(([, u]) => u) as [string, string][];
+const search = [r.title, r.subtitle, r.original, r.info?.alttitle, ...r.tags].filter(Boolean).join(' ').toLowerCase();
+---
+
+<article
+  class="card"
+  style={`--accent:${r.accent}`}
+  data-search={search}
+  data-tags={r.tags.join('|')}
+  data-platforms={r.platforms.join('|')}
+  data-date={r.date?.getTime() ?? 0}
+  data-title={r.title}
+>
+  <div class="media">
+    {img && <Image src={img} alt={r.title} widths={[480, 800]} sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 400px" loading="lazy" />}
+    {r.favorite && <span class="fav" title="Любимое"><Fragment set:html={icons.star} /></span>}
+    {r.desc && <div class="desc"><p>{r.desc}</p></div>}
+  </div>
+  <div class="body">
+    <div class="top">
+      <h3><a class="main" href={href}>{r.title}</a>{r.subtitle && <span>{r.subtitle}</span>}</h3>
+      <div class="plat">
+        {r.platforms.includes('pc') && <span title="ПК"><Fragment set:html={icons.pc} /></span>}
+        {r.platforms.includes('android') && <span title="Android"><Fragment set:html={brands.android.svg} /></span>}
+      </div>
+    </div>
+    <p class="meta">{meta}</p>
+    {r.desc && (
+      <div class="excerpt">
+        <p>{r.desc}</p>
+        <button type="button" class="more" aria-expanded="false">Читать дальше</button>
+      </div>
+    )}
+    <div class="foot">
+      <div class="tags">{r.tags.slice(0, 3).map((t) => <span>{t}</span>)}</div>
+      {posts.length > 0 && (
+        <div class="posts">
+          {posts.map(([k, u]) => (
+            <a href={u} target="_blank" rel="noopener" title={postMeta[k].label} aria-label={postMeta[k].label} style={`--c:${postMeta[k].color}`}>
+              <Fragment set:html={postMeta[k].svg} />
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</article>
+
+<script>
+  // На телефоне описание раскрывается прямо в карточке; кнопка нужна, только если текст обрезан
+  document.querySelectorAll<HTMLButtonElement>('.card .more').forEach((b) => {
+    const p = b.previousElementSibling as HTMLElement;
+    if (p.offsetHeight && p.scrollHeight <= p.offsetHeight + 2) b.hidden = true;
+    b.addEventListener('click', () => {
+      const open = b.parentElement!.classList.toggle('open');
+      b.setAttribute('aria-expanded', String(open));
+      b.textContent = open ? 'Свернуть' : 'Читать дальше';
+    });
+  });
+</script>
+
+<style>
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius);
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s, border-color 0.35s;
+    isolation: isolate;
+  }
+  /* Вся карточка кликабельна через растянутую ссылку, а иконки постов лежат поверх неё */
+  .main::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: var(--radius);
+  }
+  .main:focus-visible {
+    outline: none;
+  }
+  .card:has(.main:focus-visible) {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+  .card:hover,
+  .card:focus-within {
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--accent) 60%, transparent);
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--accent) 35%, transparent),
+      0 18px 50px -12px color-mix(in srgb, var(--accent) 55%, transparent);
+  }
+  .media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0 0;
+    background: var(--bg-3);
+  }
+  .media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.4s;
+  }
+  .card:hover .media img {
+    transform: scale(1.04);
+    filter: saturate(1.1);
+  }
+  .desc {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+    background: linear-gradient(rgb(0 0 0 / 0.25), rgb(0 0 0 / 0.82) 55%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  /* Обрезка на внутреннем p без паддингов, иначе следующая строка вылезает в отступ */
+  .desc p {
+    margin: 0;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: #fff;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transform: translateY(10px);
+    transition: transform 0.35s;
+  }
+  .card:hover .desc p {
+    transform: none;
+  }
+  .card:hover .desc {
+    opacity: 1;
+  }
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .plat {
+    display: flex;
+    gap: 4px;
+  }
+  .plat span {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    font-size: 15px;
+    color: var(--muted);
+    background: rgb(255 255 255 / 0.05);
+  }
+  .fav {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
+    background: rgb(8 8 12 / 0.7);
+    backdrop-filter: blur(6px);
+    font-size: 16px;
+    border: 1px solid var(--line-2);
+  }
+  .fav {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #ffd166;
+  }
+  .fav :global(svg) {
+    fill: currentColor;
+  }
+  .body {
+    padding: 14px 16px 16px;
+    border-top: 2px solid color-mix(in srgb, var(--accent) 70%, transparent);
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  h3 span {
+    display: block;
+    margin-top: 3px;
+    font: 600 13px var(--body);
+    color: var(--accent);
+  }
+  .meta {
+    margin: 6px 0 10px;
+    font-size: 13px;
+    color: var(--dim);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .posts {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 4px;
+  }
+  .posts a {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 15px;
+    color: var(--c);
+    background: color-mix(in srgb, var(--c) 14%, transparent);
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+  }
+  .posts a:hover {
+    background: var(--c);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+  .tags {
+    display: flex;
+    min-width: 0;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .tags span {
+    font-size: 12px;
+    color: var(--muted);
+    padding: 2px 9px;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.05);
+  }
+  .excerpt {
+    display: none;
+    margin: -2px 0 12px;
+  }
+  .excerpt p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.55;
+    color: #c9c7d4;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .excerpt.open p {
+    -webkit-line-clamp: unset;
+    display: block;
+  }
+  .more {
+    position: relative;
+    z-index: 2;
+    margin-top: 4px;
+    padding: 6px 0;
+    border: 0;
+    background: none;
+    color: var(--accent);
+    font: 700 13.5px var(--body);
+    cursor: pointer;
+  }
+  /* Телефоны и планшеты: навестись нельзя, поэтому описание прямо в карточке */
+  @media (hover: none) {
+    .desc {
+      display: none;
+    }
+    .excerpt {
+      display: block;
+    }
+    .card:hover {
+      transform: none;
+    }
+  }
+</style>

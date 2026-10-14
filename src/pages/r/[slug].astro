@@ -1,0 +1,407 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Downloads from '../../components/Downloads.astro';
+import { getReleases, year, censorshipLabel, type Release } from '../../lib/releases';
+import { icons, brands, postMeta } from '../../lib/icons';
+
+export async function getStaticPaths() {
+  return (await getReleases()).filter((r) => r.status === 'released').map((r) => ({ params: { slug: r.slug }, props: { r } }));
+}
+
+const { r } = Astro.props as { r: Release };
+const base = import.meta.env.BASE_URL;
+const og = r.imageFile ? `${base}og/${r.slug}.jpg` : undefined;
+const info = r.info;
+// Описание для превью ссылки: до ~200 символов, обрезка по слову
+const short = r.desc && (r.desc.length > 200 ? r.desc.slice(0, 200).replace(/[\s,.;:!?-]+\S*$/, '') + '...' : r.desc);
+
+const facts = [
+  r.length && { k: 'Длительность', v: r.length },
+  r.platforms.length && { k: 'Платформы', v: r.platforms.map((p) => (p === 'pc' ? 'ПК' : 'Android')).join(', ') },
+  r.censorship && { k: 'Взрослые сцены', v: censorshipLabel[r.censorship] },
+  info?.developers?.length && { k: 'Разработчик', v: info.developers.join(', ') },
+  year(r) && { k: 'Год выхода', v: year(r) },
+  info?.rating && { k: 'Рейтинг VNDB', v: `${(info.rating / 10).toFixed(1)} из 10`, hint: `${info.votes} голосов` },
+  r.date && { k: 'Наш релиз', v: r.date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' }) },
+].filter(Boolean) as { k: string; v: string; hint?: string }[];
+
+// Ссылки внутри заметки делаем кликабельными
+const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+const note = r.note && esc(r.note).replace(/https?:\/\/\S+/g, (u) => `<a href="${u}" target="_blank" rel="noopener">${u.replace(/^https?:\/\//, '')}</a>`).replace(/\n/g, '<br>');
+---
+
+<Base title={r.title} description={short} image={og} accent={r.accent}>
+  <section class="hero">
+    {r.banner && <Image class="bg" src={r.banner} alt="" width={800} aria-hidden="true" />}
+    <div class="wrap">
+      <a class="back" href={base}><Fragment set:html={icons.back} /> Все переводы</a>
+      <div class="head">
+        <div class="art">
+          {r.banner && <Image src={r.banner} alt={r.title} widths={[800, 1280, 1920]} sizes="(max-width: 1000px) 100vw, 760px" loading="eager" />}
+        </div>
+        <div class="title">
+          <h1>{r.title}</h1>
+          {r.subtitle && <p class="sub">{r.subtitle}</p>}
+          <p class="orig">{r.original}{info?.alttitle && <span> · {info.alttitle}</span>}</p>
+          <div class="badges">
+            {r.platforms.includes('pc') && <span class="pill"><Fragment set:html={icons.pc} /> ПК</span>}
+            {r.platforms.includes('android') && <span class="pill"><Fragment set:html={brands.android.svg} /> Android</span>}
+            {r.favorite && <span class="pill fav"><Fragment set:html={icons.star} /> Любимое</span>}
+          </div>
+          <div class="cta">
+            <a class="btn btn-accent" href="#download"><Fragment set:html={icons.download} /> Скачать</a>
+            {(Object.entries(r.posts).filter(([, u]) => u) as [string, string][]).map(([k, u]) => (
+              <a class="btn post" href={u} target="_blank" rel="noopener" title={postMeta[k].label} aria-label={postMeta[k].label} style={`--c:${postMeta[k].color}`}>
+                <Fragment set:html={postMeta[k].svg} />
+              </a>
+            ))}
+            {r.vndb && <a class="btn" href={`https://vndb.org/${r.vndb}`} target="_blank" rel="noopener">VNDB <Fragment set:html={icons.external} /></a>}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap cols">
+    <div class="main">
+      {r.desc && (
+        <section>
+          <h2 class="h">Описание</h2>
+          <p class="desc">{r.desc}</p>
+          <div class="tags">{r.tags.map((t) => <span class="tag">{t}</span>)}</div>
+        </section>
+      )}
+      {note && <div class="note"><Fragment set:html={icons.info} /><p set:html={note} /></div>}
+
+      <section>
+        <h2 class="h">Скачать</h2>
+        <Downloads r={r} />
+      </section>
+
+      {r.shots.length > 0 && (
+        <section>
+          <h2 class="h">Скриншоты</h2>
+          <div class="shots">
+            {r.shots.map((s) => (
+              <a href={s.src} class="shot" data-full={s.src}>
+                <Image src={s} alt="Скриншот перевода" width={640} loading="lazy" />
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
+
+    <aside class="side">
+      <dl class="facts">
+        {facts.map((f) => (
+          <div>
+            <dt>{f.k}</dt>
+            <dd>{f.v}{f.hint && <small>{f.hint}</small>}</dd>
+          </div>
+        ))}
+      </dl>
+    </aside>
+  </div>
+
+  <dialog id="lb"><img alt="" /></dialog>
+</Base>
+
+<script>
+  const lb = document.getElementById('lb') as HTMLDialogElement;
+  const img = lb.querySelector('img')!;
+  document.querySelectorAll<HTMLAnchorElement>('.shot').forEach((a) =>
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      img.src = a.dataset.full!;
+      lb.showModal();
+    }),
+  );
+  lb.addEventListener('click', () => lb.close());
+</script>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 24px 0 40px;
+  }
+  .bg {
+    position: absolute;
+    inset: -40px;
+    width: calc(100% + 80px);
+    height: calc(100% + 80px);
+    max-width: none;
+    object-fit: cover;
+    filter: blur(50px) saturate(1.3) brightness(0.32);
+    z-index: -1;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(transparent 40%, var(--bg));
+  }
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  .back:hover {
+    color: var(--text);
+  }
+  .head {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 36px;
+    align-items: end;
+  }
+  .art {
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent);
+    box-shadow: 0 30px 90px -20px color-mix(in srgb, var(--accent) 65%, transparent);
+  }
+  h1 {
+    font-size: clamp(28px, 4vw, 42px);
+  }
+  .sub {
+    margin: 6px 0 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .orig {
+    margin: 10px 0 0;
+    color: var(--muted);
+  }
+  .orig span {
+    color: var(--dim);
+  }
+  .badges {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .pill.fav {
+    color: #ffd166;
+  }
+  .post {
+    padding-inline: 13px;
+  }
+  .post :global(svg) {
+    font-size: 18px;
+    color: var(--c);
+  }
+  .post:hover {
+    border-color: var(--c);
+    background: color-mix(in srgb, var(--c) 16%, transparent);
+  }
+  .cta {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 22px;
+  }
+  @media (max-width: 1000px) {
+    .head {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+  }
+
+  .cols {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 40px;
+    align-items: start;
+  }
+  @media (max-width: 1000px) {
+    .cols {
+      grid-template-columns: 1fr;
+    }
+    .side {
+      order: -1;
+    }
+  }
+  .main {
+    display: grid;
+    gap: 36px;
+    min-width: 0;
+  }
+  .h {
+    font-size: 18px;
+    margin-bottom: 14px;
+  }
+  .desc {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.75;
+    color: #dcdae4;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 16px;
+  }
+  .note {
+    display: flex;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: var(--radius);
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .note > :global(svg) {
+    font-size: 18px;
+    margin-top: 2px;
+    color: var(--accent);
+  }
+  .note p {
+    margin: 0;
+  }
+  .note :global(a) {
+    color: var(--accent);
+  }
+  .shots {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+    gap: 12px;
+  }
+  .shot {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .shot:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .shot img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+  .side {
+    position: sticky;
+    top: 82px;
+  }
+  .facts {
+    margin: 0;
+    padding: 6px 18px;
+    border-radius: var(--radius);
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+  }
+  .facts div {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .facts div:last-child {
+    border: 0;
+  }
+  @media (max-width: 1000px) {
+    .side {
+      position: static;
+    }
+    .facts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 18px;
+    }
+    .facts div {
+      border-bottom: 1px solid var(--line) !important;
+    }
+  }
+  /* Телефон: кнопки ровной сеткой, факты плотнее, скриншоты лентой со свайпом */
+  @media (max-width: 700px) {
+    .hero {
+      padding: 16px 0 24px;
+    }
+    .back {
+      margin-bottom: 14px;
+    }
+    .cta {
+      gap: 8px;
+    }
+    .cta .btn {
+      flex: 1;
+      padding-inline: 10px;
+    }
+    .cta .btn-accent {
+      flex-basis: 100%;
+    }
+    .facts {
+      padding: 2px 16px;
+    }
+    .facts div {
+      padding: 10px 0;
+    }
+    dd {
+      font-size: 15px;
+    }
+    .shots {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      margin-inline: -16px;
+      padding: 0 16px 4px;
+      scroll-padding-inline: 16px;
+      scrollbar-width: none;
+    }
+    .shots::-webkit-scrollbar {
+      display: none;
+    }
+    .shot {
+      flex: 0 0 86%;
+      scroll-snap-align: start;
+    }
+  }
+  dt {
+    font-size: 12px;
+    color: var(--dim);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+  }
+  dd {
+    margin: 3px 0 0;
+    font-weight: 600;
+  }
+  dd small {
+    display: block;
+    font-weight: 400;
+    color: var(--dim);
+    font-size: 12.5px;
+  }
+  dialog {
+    padding: 0;
+    border: 0;
+    background: none;
+    max-width: 94vw;
+    max-height: 94vh;
+  }
+  dialog::backdrop {
+    background: rgb(0 0 0 / 0.85);
+    backdrop-filter: blur(6px);
+  }
+  dialog img {
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: 10px;
+  }
+</style>

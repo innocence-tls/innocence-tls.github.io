@@ -1,0 +1,116 @@
+{
+ "v1141": {
+  "title": "Ore-tachi ni Tsubasa wa Nai",
+  "alttitle": "俺たちに翼はない",
+  "released": "2009-01-30",
+  "rating": 86.4,
+  "votes": 657,
+  "minutes": 3628,
+  "developers": [
+   "Navel"
+  ],
+  "image": {
+   "sexual": 0,
+   "url": "https://t.vndb.org/cv/72/79672.jpg",
+   "violence": 0
+  }
+ },
+ "v1152": {
+  "title": "Memories Off",
+  "alttitle": "メモリーズオフ",
+  "released": "1999-09-30",
+  "rating": 73.1,
+  "votes": 219,
+  "minutes": 1500,
+  "developers": [
+   "KID",
+   "MAGES.",
+   "SDR Project"
+  ],
+  "image": {
+   "sexual": 0,
+   "url": "https://t.vndb.org/cv/82/75882.jpg",
+   "violence": 0
+  }
+ },
+ "v5834": {
+  "title": "Irotoridori no Sekai",
+  "alttitle": "いろとりどりのセカイ",
+  "released": "2011-07-29",
+  "rating": 80.9,
+  "votes": 1443,
+  "minutes": 2748,
+  "developers": [
+   "FAVORITE"
+  ],
+  "image": {
+   "sexual": 0,
+   "url": "https://t.vndb.org/cv/77/88277.jpg",
+   "violence": 0
+  }
+ },
+ "v14922": {
+  "title": "Dasaku",
+  "alttitle": "駄作",
+  "released": "2014-11-28",
+  "rating": 63.4,
+  "votes": 335,
+  "minutes": 738,
+  "developers": [
+   "CYCLET"
+  ],
+  "image": {
+   "sexual": 2,
+   "url": "https://t.vndb.org/cv/32/142432.jpg",
+   "violence": 0
+  }
+ },
+ "v26721": {
+  "title": "SaDistic BlooD",
+  "alttitle": null,
+  "released": "2019-12-20",
+  "rating": 61,
+  "votes": 1135,
+  "minutes": 262,
+  "developers": [
+   "Black Cyc"
+  ],
+  "image": {
+   "sexual": 2,
+   "url": "https://t.vndb.org/cv/19/75719.jpg",
+   "violence": 0.87
+  }
+ },
+ "v30012": {
+  "title": "Fuyukara, Kururu.",
+  "alttitle": "ふゆから、くるる。",
+  "released": "2021-09-24",
+  "rating": 73.9,
+  "votes": 310,
+  "minutes": 1161,
+  "developers": [
+   "SILKY'S PLUS"
+  ],
+  "image": {
+   "sexual": 0.47,
+   "url": "https://t.vndb.org/cv/46/89046.jpg",
+   "violence": 0
+  }
+ },
+ "v47547": {
+  "title": "Unravel trigger",
+  "alttitle": "アンラベル・トリガー",
+  "released": "2024-03-29",
+  "rating": 79.6,
+  "votes": 249,
+  "minutes": 2460,
+  "developers": [
+   "Archive"
+  ],
+  "image": {
+   "sexual": 0.07,
+   "url": "https://t.vndb.org/cv/89/89689.jpg",
+   "violence": 0
+  }
+ }
+}

@@ -1,0 +1,26 @@
+title: Дасаку
+original: Dasaku
+vndb: v14922
+status: released
+date: 2026-10-13
+length: 10 часов
+platforms: [pc, android]
+censorship: pixel
+tags: [триллер, ужасы, гуро, жестокость, уцуге, ГГ парень]
+desc: >
+  Главный герой каждый день тусуется со своими друзьями на крыше школы.
+  Внезапно их чудесные дни прерываются из-за загадочного исчезновения их подруги.
+  После чего главный герой случайно узнаёт страшный секрет и понимает,
+  что теперь ему нужно убить их всех...
+note: |
+  Первая часть дилогии. Вторая, Dasoku, уже переведена: https://t.me/innocence_translations/200
+posts:
+  tg: https://t.me/innocence_translations/509
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1hWhKkD-recbnI5kg_NRdQVCxCl_S6fd4/view?usp=sharing" }
+  android:
+    - { host: tg, url: "https://t.me/innocence_files/67" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1vyqI1AzBS4Zxqq4eIKcqMYmgs3p_DSS7/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/68" }

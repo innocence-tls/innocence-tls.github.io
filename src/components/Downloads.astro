@@ -1,0 +1,115 @@
+---
+import type { Release } from '../lib/releases';
+import { kindMeta, hostMeta } from '../lib/icons';
+
+const { r } = Astro.props as { r: Release };
+const kinds = (['game', 'android', 'patch'] as const).filter((k) => r.downloads[k]?.length);
+---
+
+{
+  kinds.length > 0 && (
+    <div class="dl" id="download">
+      {kinds.map((k, i) => (
+        <div class:list={['row', { main: i === 0 }]}>
+          <div class="kind">
+            <span class="ico">
+              <Fragment set:html={kindMeta[k].svg} />
+            </span>
+            <div>
+              <b>{kindMeta[k].label}</b>
+              <small>{kindMeta[k].hint}</small>
+            </div>
+          </div>
+          <div class="hosts">
+            {r.downloads[k]!.map((l) => (
+              <a class="host" href={l.url} target="_blank" rel="noopener" style={`--c:${hostMeta[l.host].color}`}>
+                <Fragment set:html={hostMeta[l.host].svg} />
+                {l.label ?? hostMeta[l.host].label}
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+<style>
+  .dl {
+    display: grid;
+    gap: 10px;
+  }
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 14px 16px;
+    border-radius: var(--radius);
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+  }
+  .row.main {
+    border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+    background: linear-gradient(100deg, color-mix(in srgb, var(--accent) 14%, var(--bg-2)), var(--bg-2) 60%);
+  }
+  .kind {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .kind b {
+    display: block;
+    font-size: 15px;
+  }
+  .kind small {
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .ico {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    font-size: 20px;
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+  }
+  .hosts {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .host {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 11px;
+    font-weight: 700;
+    font-size: 14px;
+    border: 1px solid var(--line-2);
+    background: rgb(255 255 255 / 0.04);
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+  }
+  .host :global(svg) {
+    font-size: 18px;
+    color: var(--c);
+  }
+  .host:hover {
+    border-color: var(--c);
+    background: color-mix(in srgb, var(--c) 14%, transparent);
+    transform: translateY(-1px);
+  }
+  @media (max-width: 560px) {
+    .hosts,
+    .host {
+      width: 100%;
+    }
+    .host {
+      justify-content: center;
+    }
+  }
+</style>

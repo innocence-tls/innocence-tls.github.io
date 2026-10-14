@@ -1,0 +1,25 @@
+title: Садистская кровь
+original: SaDistic BlooD
+vndb: v26721
+status: released
+date: 2026-09-16
+length: 5 часов
+platforms: [pc]
+censorship: none
+tags: [гуро, ужасы, жестокость, юри, уцуге, ГГ девушка]
+desc: >
+  Две вампирши надеялись спрятаться в небольшом городке, но попали прямиком в капкан охотников.
+  Из-за полнолуния их мучает жажда крови, но вокруг лишь мутанты и безжалостные каратели.
+  Теперь загнанным в угол героиням придётся пробиваться силой, иначе их ждёт позорный плен
+  и участь куда страшнее смерти...
+note: |
+  Новелла от создателей Extravaganza.
+  На Proton/Winlator/Gamehub не тестировалось, может работать, может не работать.
+posts:
+  tg: https://t.me/innocence_translations/436
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1r0vOqHx9PvEcCOrxd89v5-FHxOEhhknh/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1yg-mNQ6PAc_mZ_fmxWNU3SZ_UobPfPLM/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/54" }

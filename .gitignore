@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.astro/
+
+# локальные заметки и инструменты, не для репо
+docs/dev.md
+scripts/shoot.mjs

@@ -1,0 +1,511 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Card from '../components/Card.astro';
+import { getReleases, year, site } from '../lib/releases';
+import { icons, brands } from '../lib/icons';
+
+const all = await getReleases();
+const released = all.filter((r) => r.status === 'released');
+const upcoming = all.filter((r) => r.status !== 'released').sort((a, b) => (a.status === 'wip' ? -1 : 1) - (b.status === 'wip' ? -1 : 1));
+const latest = released[0];
+const base = import.meta.env.BASE_URL;
+
+// Теги для фильтра: самые частые сверху
+const tagCount = new Map<string, number>();
+released.forEach((r) => r.tags.forEach((t) => tagCount.set(t, (tagCount.get(t) ?? 0) + 1)));
+const topTags = [...tagCount].sort((a, b) => b[1] - a[1]).slice(0, 14).map(([t]) => t);
+---
+
+<Base>
+  {
+    latest && (
+      <section class="hero" style={`--accent:${latest.accent}`}>
+        {latest.banner && <Image class="hero-bg" src={latest.banner} alt="" width={800} aria-hidden="true" />}
+        <div class="wrap hero-in">
+          <a class="hero-art" href={`${base}r/${latest.slug}/`}>
+            {latest.banner && <Image src={latest.banner} alt={latest.title} widths={[800, 1280]} sizes="(max-width: 900px) 100vw, 720px" loading="eager" />}
+          </a>
+          <div class="hero-text">
+            <span class="kicker">
+              <Fragment set:html={icons.sparkles} /> Новый релиз
+            </span>
+            <h1>{latest.title}</h1>
+            {latest.subtitle && <p class="hero-sub">{latest.subtitle}</p>}
+            <p class="hero-meta">{[latest.original, year(latest), latest.length].filter(Boolean).join(' · ')}</p>
+            {latest.desc && <p class="hero-desc">{latest.desc}</p>}
+            <div class="hero-btns">
+              <a class="btn btn-accent" href={`${base}r/${latest.slug}/#download`}>
+                <Fragment set:html={icons.download} /> Скачать
+              </a>
+              <a class="btn" href={`${base}r/${latest.slug}/`}>
+                Подробнее <Fragment set:html={icons.arrow} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <div class="wrap">
+    <div class="intro">
+      <div>
+        <h2>Все переводы <span class="count">{released.length}</span></h2>
+        <p>Переводы визуальных новелл на русский. Жмите на карточку для получения подробной информации и ссылок на скачивание.</p>
+      </div>
+    </div>
+
+    <div class="filters" id="catalog">
+      <label class="search">
+        <Fragment set:html={icons.search} />
+        <span class="sr-only">Поиск</span>
+        <input id="q" type="search" placeholder="Название на любом языке или тег" autocomplete="off" />
+      </label>
+      <div class="seg" role="group" aria-label="Платформа">
+        <button data-plat="" class="on">Все</button>
+        <button data-plat="pc"><Fragment set:html={icons.pc} /> ПК</button>
+        <button data-plat="android"><Fragment set:html={brands.android.svg} /> Android</button>
+      </div>
+      <select id="sort" aria-label="Сортировка">
+        <option value="date">Сначала новые</option>
+        <option value="title">По алфавиту</option>
+      </select>
+    </div>
+    <div class="chips-wrap">
+      <div class="chips" role="group" aria-label="Теги">
+        {topTags.map((t) => <button data-tag={t}>{t}</button>)}
+      </div>
+    </div>
+
+    <div class="grid" id="grid">
+      {released.map((r) => <Card r={r} />)}
+    </div>
+    <p class="empty" id="empty" hidden>Ничего не нашлось. Попробуйте другое название или сбросьте фильтры.</p>
+
+    {
+      upcoming.length > 0 && (
+        <>
+          <h2 class="section-title">
+            В работе и в планах <small>{upcoming.length}</small>
+          </h2>
+          <div class="up">
+            {upcoming.map((r) => (
+              <a class="up-card" href={r.vndb ? `https://vndb.org/${r.vndb}` : undefined} target="_blank" rel="noopener" style={`--accent:${r.accent}`}>
+                <div class="up-img">
+                  {(r.cover ?? r.banner) && <Image src={(r.cover ?? r.banner)!} alt={r.title} width={300} />}
+                  <span class:list={['up-st', r.status]}>{r.status === 'wip' ? 'Переводится' : 'В планах'}</span>
+                </div>
+                <b>{r.title}</b>
+                <small>{r.original}</small>
+                {r.progress != null && (
+                  <div class="bar" title={`${r.progress}%`}>
+                    <i style={`width:${r.progress}%`} />
+                  </div>
+                )}
+              </a>
+            ))}
+          </div>
+        </>
+      )
+    }
+  </div>
+</Base>
+
+<script>
+  const grid = document.getElementById('grid')!;
+  const cards = [...grid.querySelectorAll<HTMLElement>('.card')];
+  const q = document.getElementById('q') as HTMLInputElement;
+  const sort = document.getElementById('sort') as HTMLSelectElement;
+  const empty = document.getElementById('empty')!;
+  let plat = '';
+  const tags = new Set<string>();
+
+  function apply() {
+    const s = q.value.trim().toLowerCase();
+    let shown = 0;
+    for (const c of cards) {
+      const ok =
+        (!s || c.dataset.search!.includes(s)) &&
+        (!plat || c.dataset.platforms!.split('|').includes(plat)) &&
+        [...tags].every((t) => c.dataset.tags!.split('|').includes(t));
+      c.hidden = !ok;
+      if (ok) shown++;
+    }
+    empty.hidden = shown > 0;
+  }
+
+  q.addEventListener('input', apply);
+  document.querySelectorAll<HTMLButtonElement>('[data-plat]').forEach((b) =>
+    b.addEventListener('click', () => {
+      document.querySelectorAll('[data-plat]').forEach((x) => x.classList.toggle('on', x === b));
+      plat = b.dataset.plat!;
+      apply();
+    }),
+  );
+  document.querySelectorAll<HTMLButtonElement>('[data-tag]').forEach((b) =>
+    b.addEventListener('click', () => {
+      const t = b.dataset.tag!;
+      tags.has(t) ? tags.delete(t) : tags.add(t);
+      b.classList.toggle('on', tags.has(t));
+      apply();
+    }),
+  );
+  sort.addEventListener('change', () => {
+    const by = sort.value;
+    cards
+      .sort((a, b) => (by === 'title' ? a.dataset.title!.localeCompare(b.dataset.title!, 'ru') : +b.dataset.date! - +a.dataset.date!))
+      .forEach((c) => grid.appendChild(c));
+  });
+</script>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 48px 0 56px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-bg {
+    position: absolute;
+    inset: -40px;
+    width: calc(100% + 80px);
+    height: calc(100% + 80px);
+    max-width: none;
+    object-fit: cover;
+    filter: blur(48px) saturate(1.3) brightness(0.35);
+    z-index: -1;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(transparent 50%, var(--bg));
+  }
+  .hero-in {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    gap: 40px;
+    align-items: center;
+  }
+  .hero-art {
+    display: block;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent);
+    box-shadow: 0 30px 80px -20px color-mix(in srgb, var(--accent) 60%, transparent);
+    transition: transform 0.4s;
+  }
+  .hero-art:hover {
+    transform: scale(1.01);
+  }
+  .kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font: 700 12px var(--body);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .hero h1 {
+    font-size: clamp(28px, 4vw, 44px);
+    margin-top: 12px;
+  }
+  .hero-sub {
+    margin: 6px 0 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .hero-meta {
+    color: var(--muted);
+    margin: 10px 0 0;
+    font-size: 14px;
+  }
+  .hero-desc {
+    margin: 16px 0 0;
+    color: #d5d3de;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .hero-btns {
+    display: flex;
+    gap: 10px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 900px) {
+    .hero {
+      padding: 20px 0 36px;
+    }
+    .hero-in {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+  }
+
+  .intro {
+    margin: 44px 0 18px;
+  }
+  .intro h2 {
+    font-size: 24px;
+  }
+  .count {
+    display: inline-grid;
+    place-items: center;
+    min-width: 34px;
+    height: 28px;
+    padding: 0 8px;
+    margin-left: 6px;
+    border-radius: 9px;
+    font-size: 15px;
+    vertical-align: middle;
+    color: #0b0b10;
+    background: var(--brand);
+  }
+  #catalog {
+    scroll-margin-top: 80px;
+  }
+  .intro p {
+    margin: 6px 0 0;
+    color: var(--muted);
+  }
+
+  .filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .search {
+    flex: 1 1 280px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 14px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    color: var(--dim);
+    font-size: 18px;
+  }
+  .search:focus-within {
+    border-color: var(--line-2);
+  }
+  .search input {
+    flex: 1;
+    background: none;
+    border: 0;
+    outline: 0;
+    color: var(--text);
+    font: inherit;
+    font-size: 15px;
+    min-width: 0;
+  }
+  .seg {
+    display: flex;
+    padding: 4px;
+    gap: 2px;
+    border-radius: 12px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+  }
+  .seg button,
+  .chips button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font: 600 14px var(--body);
+    padding: 7px 12px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .seg button.on {
+    background: rgb(255 255 255 / 0.1);
+    color: var(--text);
+  }
+  select {
+    height: 44px;
+    padding: 0 12px;
+    border-radius: 12px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    color: var(--text);
+    font: 600 14px var(--body);
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 12px 0 24px;
+  }
+  .chips button {
+    font-size: 13px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+  }
+  .chips button:hover {
+    color: var(--text);
+  }
+  .chips button.on {
+    color: #0b0b10;
+    background: var(--brand);
+    border-color: transparent;
+  }
+
+  /* Телефон: поиск на всю ширину, платформа и сортировка в одну строку, теги лентой со свайпом */
+  @media (max-width: 700px) {
+    .intro {
+      margin-top: 32px;
+    }
+    .intro h2 {
+      font-size: 21px;
+    }
+    .intro p {
+      font-size: 14.5px;
+    }
+    .search {
+      flex-basis: 100%;
+    }
+    .seg {
+      flex: 1;
+    }
+    .seg button {
+      flex: 1;
+      justify-content: center;
+      padding-inline: 6px;
+    }
+    select {
+      flex: 0 0 auto;
+      max-width: 42%;
+    }
+    .chips-wrap {
+      position: relative;
+      margin: 12px -16px 20px;
+    }
+    .chips-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 32px;
+      pointer-events: none;
+      background: linear-gradient(90deg, transparent, var(--bg));
+    }
+    .chips {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      margin: 0;
+      padding: 0 16px;
+      scrollbar-width: none;
+    }
+    .chips::-webkit-scrollbar {
+      display: none;
+    }
+    .chips button {
+      flex: none;
+      padding: 7px 14px;
+    }
+    .grid {
+      gap: 16px;
+    }
+    .hero-desc {
+      -webkit-line-clamp: 3;
+    }
+    .hero-btns .btn {
+      flex: 1;
+      justify-content: center;
+    }
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+    gap: 22px;
+  }
+  .grid > :global([hidden]) {
+    display: none;
+  }
+  .empty {
+    color: var(--muted);
+    text-align: center;
+    padding: 40px 0;
+  }
+
+  .up {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 18px;
+  }
+  .up-card {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 14px;
+  }
+  .up-card small {
+    color: var(--dim);
+    font-size: 12.5px;
+  }
+  .up-img {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 8px;
+    background: var(--bg-3);
+    border: 1px solid var(--line);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .up-card:hover .up-img {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+  }
+  .up-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.85);
+  }
+  .up-st {
+    position: absolute;
+    left: 8px;
+    bottom: 8px;
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: rgb(8 8 12 / 0.8);
+    backdrop-filter: blur(6px);
+    border: 1px solid var(--line-2);
+  }
+  .up-st.wip {
+    color: #7cf0a8;
+  }
+  .up-st.planned {
+    color: var(--muted);
+  }
+  .bar {
+    height: 4px;
+    margin-top: 6px;
+    border-radius: 99px;
+    background: rgb(255 255 255 / 0.08);
+    overflow: hidden;
+  }
+  .bar i {
+    display: block;
+    height: 100%;
+    background: var(--accent);
+  }
+</style>
