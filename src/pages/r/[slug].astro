@@ -2,8 +2,13 @@
 import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import Downloads from '../../components/Downloads.astro';
-import { getReleases, year, censorshipLabel, type Release } from '../../lib/releases';
-import { icons, brands, postMeta } from '../../lib/icons';
+import Backdrop from '../../components/Backdrop.astro';
+import Facts from '../../components/Facts.astro';
+import Rating from '../../components/Rating.astro';
+import Platforms from '../../components/Platforms.astro';
+import Posts from '../../components/Posts.astro';
+import { getReleases, censorshipLabel, type Release } from '../../lib/releases';
+import { icons } from '../../lib/icons';
 
 export async function getStaticPaths() {
   return (await getReleases()).filter((r) => r.status === 'released').map((r) => ({ params: { slug: r.slug }, props: { r } }));
@@ -16,15 +21,11 @@ const info = r.info;
 // Описание для превью ссылки: до ~200 символов, обрезка по слову
 const short = r.desc && (r.desc.length > 200 ? r.desc.slice(0, 200).replace(/[\s,.;:!?-]+\S*$/, '') + '...' : r.desc);
 
-const facts = [
-  r.length && { k: 'Длительность', v: r.length },
-  r.platforms.length && { k: 'Платформы', v: r.platforms.map((p) => (p === 'pc' ? 'ПК' : 'Android')).join(', ') },
-  r.censorship && { k: 'Взрослые сцены', v: censorshipLabel[r.censorship] },
-  info?.developers?.length && { k: 'Разработчик', v: info.developers.join(', ') },
-  year(r) && { k: 'Год выхода', v: year(r) },
-  info?.rating && { k: 'Рейтинг VNDB', v: `${(info.rating / 10).toFixed(1)} из 10`, hint: `${info.votes} голосов` },
-  r.date && { k: 'Наш релиз', v: r.date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' }) },
-].filter(Boolean) as { k: string; v: string; hint?: string }[];
+const img = r.poster ?? r.cover ?? r.banner;
+const extra = [
+  r.censorship && ['Взрослые сцены', censorshipLabel[r.censorship]],
+  r.date && ['Наш релиз', r.date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' }).replace(' г.', '')],
+].filter(Boolean) as [string, string][];
 
 // Ссылки внутри заметки делаем кликабельными
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
@@ -33,29 +34,28 @@ const note = r.note && esc(r.note).replace(/https?:\/\/\S+/g, (u) => `<a href="$
 
 <Base title={r.title} description={short} image={og} accent={r.accent}>
   <section class="hero">
-    {r.banner && <Image class="bg" src={r.banner} alt="" width={800} aria-hidden="true" />}
+    <Backdrop src={img} width={480} />
     <div class="wrap">
       <a class="back" href={base}><Fragment set:html={icons.back} /> Все переводы</a>
       <div class="head">
         <div class="art">
-          {r.banner && <Image src={r.banner} alt={r.title} widths={[800, 1280, 1920]} sizes="(max-width: 1000px) 100vw, 760px" loading="eager" />}
+          {img && <Image src={img} alt={r.title} widths={[360, 720]} sizes="(max-width: 700px) 140px, 330px" loading="eager" />}
+          {r.favorite && <span class="fav" title="Любимое"><Fragment set:html={icons.star} /></span>}
         </div>
         <div class="title">
-          <h1>{r.title}</h1>
-          {r.subtitle && <p class="sub">{r.subtitle}</p>}
+          <Platforms r={r} />
+          <h1>{r.title}{r.subtitle && <span>: {r.subtitle}</span>}</h1>
           <p class="orig">{r.original}{info?.alttitle && <span> · {info.alttitle}</span>}</p>
-          <div class="badges">
-            {r.platforms.includes('pc') && <span class="pill"><Fragment set:html={icons.pc} /> ПК</span>}
-            {r.platforms.includes('android') && <span class="pill"><Fragment set:html={brands.android.svg} /> Android</span>}
-            {r.favorite && <span class="pill fav"><Fragment set:html={icons.star} /> Любимое</span>}
+        </div>
+        <div class="info">
+          <div class="mid">
+            <Facts r={r} extra={extra} />
+            <Rating r={r} big />
           </div>
+          {r.tags.length > 0 && <div class="tags">{r.tags.map((t) => <span>{t}</span>)}</div>}
           <div class="cta">
             <a class="btn btn-accent" href="#download"><Fragment set:html={icons.download} /> Скачать</a>
-            {(Object.entries(r.posts).filter(([, u]) => u) as [string, string][]).map(([k, u]) => (
-              <a class="btn post" href={u} target="_blank" rel="noopener" title={postMeta[k].label} aria-label={postMeta[k].label} style={`--c:${postMeta[k].color}`}>
-                <Fragment set:html={postMeta[k].svg} />
-              </a>
-            ))}
+            <Posts r={r} big />
             {r.vndb && <a class="btn" href={`https://vndb.org/${r.vndb}`} target="_blank" rel="noopener">VNDB <Fragment set:html={icons.external} /></a>}
           </div>
         </div>
@@ -63,46 +63,32 @@ const note = r.note && esc(r.note).replace(/https?:\/\/\S+/g, (u) => `<a href="$
     </div>
   </section>
 
-  <div class="wrap cols">
-    <div class="main">
-      {r.desc && (
-        <section>
-          <h2 class="h">Описание</h2>
-          <p class="desc">{r.desc}</p>
-          <div class="tags">{r.tags.map((t) => <span class="tag">{t}</span>)}</div>
-        </section>
-      )}
-      {note && <div class="note"><Fragment set:html={icons.info} /><p set:html={note} /></div>}
-
+  <div class="wrap main">
+    {r.desc && (
       <section>
-        <h2 class="h">Скачать</h2>
-        <Downloads r={r} />
+        <h2 class="h">Описание</h2>
+        <p class="desc">{r.desc}</p>
       </section>
+    )}
+    {note && <div class="note"><Fragment set:html={icons.info} /><p set:html={note} /></div>}
 
-      {r.shots.length > 0 && (
-        <section>
-          <h2 class="h">Скриншоты</h2>
-          <div class="shots">
-            {r.shots.map((s) => (
-              <a href={s.src} class="shot" data-full={s.src}>
-                <Image src={s} alt="Скриншот перевода" width={640} loading="lazy" />
-              </a>
-            ))}
-          </div>
-        </section>
-      )}
-    </div>
+    <section>
+      <h2 class="h">Скачать</h2>
+      <Downloads r={r} />
+    </section>
 
-    <aside class="side">
-      <dl class="facts">
-        {facts.map((f) => (
-          <div>
-            <dt>{f.k}</dt>
-            <dd>{f.v}{f.hint && <small>{f.hint}</small>}</dd>
-          </div>
-        ))}
-      </dl>
-    </aside>
+    {r.shots.length > 0 && (
+      <section>
+        <h2 class="h">Скриншоты</h2>
+        <div class="shots">
+          {r.shots.map((s) => (
+            <a href={s.src} class="shot" data-full={s.src}>
+              <Image src={s} alt="Скриншот перевода" width={640} loading="lazy" />
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
   </div>
 
   <dialog id="lb"><img alt="" /></dialog>
@@ -124,25 +110,20 @@ const note = r.note && esc(r.note).replace(/https?:\/\/\S+/g, (u) => `<a href="$
 <style>
   .hero {
     position: relative;
+    isolation: isolate;
     overflow: hidden;
-    padding: 24px 0 40px;
-  }
-  .bg {
-    position: absolute;
-    inset: -40px;
-    width: calc(100% + 80px);
-    height: calc(100% + 80px);
-    max-width: none;
-    object-fit: cover;
-    filter: blur(50px) saturate(1.3) brightness(0.32);
-    z-index: -1;
+    padding: 26px 0 56px;
+    --blur: 36px;
+    --bright: 0.85;
+    --shade: linear-gradient(90deg, rgb(8 8 12 / 0.2), rgb(8 8 12 / 0.55) 40%, rgb(8 8 12 / 0.7));
   }
   .hero::after {
     content: '';
     position: absolute;
-    inset: 0;
+    inset: auto 0 0;
+    height: 40%;
     z-index: -1;
-    background: linear-gradient(transparent 40%, var(--bg));
+    background: linear-gradient(transparent, var(--bg));
   }
   .back {
     display: inline-flex;
@@ -151,111 +132,141 @@ const note = r.note && esc(r.note).replace(/https?:\/\/\S+/g, (u) => `<a href="$
     color: var(--muted);
     font-weight: 600;
     font-size: 14px;
-    margin-bottom: 20px;
+    margin-bottom: 26px;
   }
   .back:hover {
     color: var(--text);
   }
   .head {
     display: grid;
-    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-    gap: 36px;
-    align-items: end;
+    grid-template-columns: 330px minmax(0, 1fr);
+    grid-template-areas:
+      'art title'
+      'art info';
+    grid-template-rows: auto 1fr;
+    column-gap: 52px;
+    align-items: start;
   }
   .art {
-    border-radius: 18px;
-    overflow: hidden;
-    border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent);
-    box-shadow: 0 30px 90px -20px color-mix(in srgb, var(--accent) 65%, transparent);
+    grid-area: art;
+    position: relative;
+    padding: 7px;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 30px 70px -20px rgb(0 0 0 / 0.8), 0 0 90px -20px color-mix(in srgb, var(--accent) 60%, transparent);
+    transform: rotate(-2deg);
+  }
+  .art img {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 14px;
+  }
+  .fav {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    font-size: 18px;
+    color: #ffd166;
+    background: rgb(8 8 12 / 0.75);
+    backdrop-filter: blur(6px);
+  }
+  .fav :global(svg) {
+    fill: currentColor;
+  }
+  .title {
+    grid-area: title;
+    padding-top: 8px;
+  }
+  .info {
+    grid-area: info;
   }
   h1 {
-    font-size: clamp(28px, 4vw, 42px);
+    font-size: clamp(30px, 4.2vw, 50px);
+    letter-spacing: -0.03em;
+    text-wrap: balance;
   }
-  .sub {
-    margin: 6px 0 0;
-    font-size: 18px;
-    font-weight: 600;
+  h1 span {
     color: var(--accent);
   }
   .orig {
     margin: 10px 0 0;
+    font-size: 17px;
+    font-weight: 600;
     color: var(--muted);
   }
   .orig span {
     color: var(--dim);
   }
-  .badges {
+  .mid {
     display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    margin-top: 16px;
-  }
-  .pill.fav {
-    color: #ffd166;
-  }
-  .post {
-    padding-inline: 13px;
-  }
-  .post :global(svg) {
-    font-size: 18px;
-    color: var(--c);
-  }
-  .post:hover {
-    border-color: var(--c);
-    background: color-mix(in srgb, var(--c) 16%, transparent);
-  }
-  .cta {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 22px;
-  }
-  @media (max-width: 1000px) {
-    .head {
-      grid-template-columns: 1fr;
-      gap: 22px;
-    }
-  }
-
-  .cols {
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 300px;
-    gap: 40px;
-    align-items: start;
-  }
-  @media (max-width: 1000px) {
-    .cols {
-      grid-template-columns: 1fr;
-    }
-    .side {
-      order: -1;
-    }
-  }
-  .main {
-    display: grid;
-    gap: 36px;
-    min-width: 0;
-  }
-  .h {
-    font-size: 18px;
-    margin-bottom: 14px;
-  }
-  .desc {
-    margin: 0;
+    align-items: center;
+    gap: 28px;
+    margin-top: 26px;
     font-size: 16px;
-    line-height: 1.75;
-    color: #dcdae4;
+  }
+  .mid :global(.rating) {
+    padding-left: 28px;
+    border-left: 1px solid var(--line-2);
   }
   .tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 16px;
+    gap: 8px;
+    margin-top: 22px;
+  }
+  .tags span {
+    font-size: 13.5px;
+    font-weight: 700;
+    padding: 4px 13px;
+    border-radius: 999px;
+    color: #eeedf3;
+    background: rgb(10 10 16 / 0.55);
+    border: 1px solid rgb(255 255 255 / 0.14);
+  }
+  .cta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+  }
+  .title :global(.plats) {
+    margin-bottom: 16px;
+  }
+  @media (max-width: 1000px) {
+    .head {
+      grid-template-columns: 240px minmax(0, 1fr);
+      column-gap: 32px;
+    }
+  }
+
+  .main {
+    display: grid;
+    gap: 40px;
+    margin-top: 8px;
+  }
+  .h {
+    font-size: 20px;
+    margin-bottom: 14px;
+  }
+  .desc {
+    max-width: 780px;
+    margin: 0;
+    font-size: 16.5px;
+    line-height: 1.75;
+    color: #dcdae4;
   }
   .note {
     display: flex;
     gap: 12px;
+    max-width: 780px;
     padding: 14px 16px;
     border-radius: var(--radius);
     background: var(--bg-2);
@@ -277,7 +288,7 @@ const note = r.note && esc(r.note).replace(/https?:\/\/\S+/g, (u) => `<a href="$
   }
   .shots {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
     gap: 12px;
   }
   .shot {
@@ -295,63 +306,87 @@ const note = r.note && esc(r.note).replace(/https?:\/\/\S+/g, (u) => `<a href="$
     aspect-ratio: 16 / 9;
     object-fit: cover;
   }
-  .side {
-    position: sticky;
-    top: 82px;
-  }
-  .facts {
-    margin: 0;
-    padding: 6px 18px;
-    border-radius: var(--radius);
-    background: var(--bg-2);
-    border: 1px solid var(--line);
-  }
-  .facts div {
-    padding: 12px 0;
-    border-bottom: 1px solid var(--line);
-  }
-  .facts div:last-child {
-    border: 0;
-  }
-  @media (max-width: 1000px) {
-    .side {
-      position: static;
-    }
-    .facts {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      column-gap: 18px;
-    }
-    .facts div {
-      border-bottom: 1px solid var(--line) !important;
-    }
-  }
-  /* Телефон: кнопки ровной сеткой, факты плотнее, скриншоты лентой со свайпом */
+
+  /* Телефон: постер с названием рядом, факты и кнопки ниже, скриншоты лентой со свайпом */
   @media (max-width: 700px) {
     .hero {
-      padding: 16px 0 24px;
+      padding: 16px 0 32px;
     }
     .back {
-      margin-bottom: 14px;
+      margin-bottom: 16px;
+    }
+    .head {
+      grid-template-columns: 136px minmax(0, 1fr);
+      grid-template-areas:
+        'art title'
+        'info info';
+      column-gap: 16px;
+      align-items: center;
+    }
+    .art {
+      padding: 4px;
+      border-radius: 13px;
+    }
+    .art img {
+      border-radius: 9px;
+    }
+    .fav {
+      top: 9px;
+      left: 9px;
+      width: 26px;
+      height: 26px;
+      font-size: 14px;
+    }
+    .title {
+      padding: 0;
+    }
+    .title :global(.plats) {
+      margin-bottom: 10px;
+    }
+    .title :global(.plat) {
+      height: 26px;
+      padding: 0 8px;
+      font-size: 12px;
+    }
+    h1 {
+      font-size: 23px;
+    }
+    .orig {
+      font-size: 13.5px;
+      margin-top: 6px;
+    }
+    .mid {
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 22px;
+      font-size: 14px;
+    }
+    .mid :global(.rating) {
+      padding-left: 16px;
+    }
+    .mid :global(.rating b) {
+      font-size: 34px;
+    }
+    .tags {
+      gap: 6px;
+      margin-top: 16px;
+    }
+    .tags span {
+      font-size: 12.5px;
+      padding: 3px 11px;
     }
     .cta {
       gap: 8px;
-    }
-    .cta .btn {
-      flex: 1;
-      padding-inline: 10px;
+      margin-top: 20px;
     }
     .cta .btn-accent {
       flex-basis: 100%;
     }
-    .facts {
-      padding: 2px 16px;
+    .cta .btn {
+      flex-grow: 1;
     }
-    .facts div {
-      padding: 10px 0;
-    }
-    dd {
-      font-size: 15px;
+    .desc {
+      font-size: 15.5px;
     }
     .shots {
       display: flex;
@@ -370,23 +405,6 @@ const note = r.note && esc(r.note).replace(/https?:\/\/\S+/g, (u) => `<a href="$
       flex: 0 0 86%;
       scroll-snap-align: start;
     }
-  }
-  dt {
-    font-size: 12px;
-    color: var(--dim);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-weight: 700;
-  }
-  dd {
-    margin: 3px 0 0;
-    font-weight: 600;
-  }
-  dd small {
-    display: block;
-    font-weight: 400;
-    color: var(--dim);
-    font-size: 12.5px;
   }
   dialog {
     padding: 0;

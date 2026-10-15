@@ -2,6 +2,11 @@
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Card from '../components/Card.astro';
+import Backdrop from '../components/Backdrop.astro';
+import Facts from '../components/Facts.astro';
+import Rating from '../components/Rating.astro';
+import Platforms from '../components/Platforms.astro';
+import Posts from '../components/Posts.astro';
 import { getReleases, year, site } from '../lib/releases';
 import { icons, brands } from '../lib/icons';
 
@@ -9,6 +14,7 @@ const all = await getReleases();
 const released = all.filter((r) => r.status === 'released');
 const upcoming = all.filter((r) => r.status !== 'released').sort((a, b) => (a.status === 'wip' ? -1 : 1) - (b.status === 'wip' ? -1 : 1));
 const latest = released[0];
+const latestImg = latest && (latest.poster ?? latest.cover ?? latest.banner);
 const base = import.meta.env.BASE_URL;
 
 // Теги для фильтра: самые частые сверху
@@ -21,18 +27,29 @@ const topTags = [...tagCount].sort((a, b) => b[1] - a[1]).slice(0, 14).map(([t])
   {
     latest && (
       <section class="hero" style={`--accent:${latest.accent}`}>
-        {latest.banner && <Image class="hero-bg" src={latest.banner} alt="" width={800} aria-hidden="true" />}
+        <Backdrop src={latestImg} width={480} />
         <div class="wrap hero-in">
-          <a class="hero-art" href={`${base}r/${latest.slug}/`}>
-            {latest.banner && <Image src={latest.banner} alt={latest.title} widths={[800, 1280]} sizes="(max-width: 900px) 100vw, 720px" loading="eager" />}
+          <a class="hero-art" href={`${base}r/${latest.slug}/`} tabindex="-1">
+            {latestImg && <Image src={latestImg} alt={latest.title} widths={[320, 640]} sizes="(max-width: 700px) 132px, 300px" loading="eager" />}
           </a>
-          <div class="hero-text">
-            <span class="kicker">
-              <Fragment set:html={icons.sparkles} /> Новый релиз
-            </span>
-            <h1>{latest.title}</h1>
-            {latest.subtitle && <p class="hero-sub">{latest.subtitle}</p>}
-            <p class="hero-meta">{[latest.original, year(latest), latest.length].filter(Boolean).join(' · ')}</p>
+          <div class="hero-head">
+            <div class="badges">
+              <span class="kicker">
+                <Fragment set:html={icons.sparkles} /> Новый релиз
+              </span>
+              <Platforms r={latest} />
+            </div>
+            <h1>
+              <a href={`${base}r/${latest.slug}/`}>{latest.title}{latest.subtitle && <span>: {latest.subtitle}</span>}</a>
+            </h1>
+            <p class="hero-orig">{latest.original}</p>
+          </div>
+          <div class="hero-body">
+            <div class="hero-mid">
+              <Facts r={latest} />
+              <Rating r={latest} big />
+            </div>
+            {latest.tags.length > 0 && <div class="hero-tags">{latest.tags.slice(0, 6).map((t) => <span>{t}</span>)}</div>}
             {latest.desc && <p class="hero-desc">{latest.desc}</p>}
             <div class="hero-btns">
               <a class="btn btn-accent" href={`${base}r/${latest.slug}/#download`}>
@@ -41,6 +58,7 @@ const topTags = [...tagCount].sort((a, b) => b[1] - a[1]).slice(0, 14).map(([t])
               <a class="btn" href={`${base}r/${latest.slug}/`}>
                 Подробнее <Fragment set:html={icons.arrow} />
               </a>
+              <Posts r={latest} big />
             </div>
           </div>
         </div>
@@ -49,14 +67,14 @@ const topTags = [...tagCount].sort((a, b) => b[1] - a[1]).slice(0, 14).map(([t])
   }
 
   <div class="wrap">
-    <div class="intro">
+    <div class="intro" id="catalog">
       <div>
         <h2>Все переводы <span class="count">{released.length}</span></h2>
         <p>Переводы визуальных новелл на русский. Жмите на карточку для получения подробной информации и ссылок на скачивание.</p>
       </div>
     </div>
 
-    <div class="filters" id="catalog">
+    <div class="filters">
       <label class="search">
         <Fragment set:html={icons.search} />
         <span class="sr-only">Поиск</span>
@@ -78,22 +96,23 @@ const topTags = [...tagCount].sort((a, b) => b[1] - a[1]).slice(0, 14).map(([t])
       </div>
     </div>
 
-    <div class="grid" id="grid">
+    <div class="grid" id="grid" data-per="10">
       {released.map((r) => <Card r={r} />)}
     </div>
     <p class="empty" id="empty" hidden>Ничего не нашлось. Попробуйте другое название или сбросьте фильтры.</p>
+    <nav class="pager" id="pager" aria-label="Страницы" hidden></nav>
 
     {
       upcoming.length > 0 && (
         <>
-          <h2 class="section-title">
+          <h2 class="section-title" id="upcoming">
             В работе и в планах <small>{upcoming.length}</small>
           </h2>
           <div class="up">
             {upcoming.map((r) => (
               <a class="up-card" href={r.vndb ? `https://vndb.org/${r.vndb}` : undefined} target="_blank" rel="noopener" style={`--accent:${r.accent}`}>
                 <div class="up-img">
-                  {(r.cover ?? r.banner) && <Image src={(r.cover ?? r.banner)!} alt={r.title} width={300} />}
+                  {(r.poster ?? r.banner) && <Image src={(r.poster ?? r.banner)!} alt={r.title} width={300} />}
                   <span class:list={['up-st', r.status]}>{r.status === 'wip' ? 'Переводится' : 'В планах'}</span>
                 </div>
                 <b>{r.title}</b>
@@ -118,24 +137,61 @@ const topTags = [...tagCount].sort((a, b) => b[1] - a[1]).slice(0, 14).map(([t])
   const q = document.getElementById('q') as HTMLInputElement;
   const sort = document.getElementById('sort') as HTMLSelectElement;
   const empty = document.getElementById('empty')!;
+  const pager = document.getElementById('pager')!;
   let plat = '';
+  let page = 1;
   const tags = new Set<string>();
 
-  function apply() {
+  // Фильтры, потом страница: на странице не больше data-per карточек
+  function apply(keepPage = false) {
+    const per = +grid.dataset.per! || 10;
     const s = q.value.trim().toLowerCase();
-    let shown = 0;
-    for (const c of cards) {
-      const ok =
+    const found = [...grid.querySelectorAll<HTMLElement>('.card')].filter(
+      (c) =>
         (!s || c.dataset.search!.includes(s)) &&
         (!plat || c.dataset.platforms!.split('|').includes(plat)) &&
-        [...tags].every((t) => c.dataset.tags!.split('|').includes(t));
-      c.hidden = !ok;
-      if (ok) shown++;
-    }
-    empty.hidden = shown > 0;
+        [...tags].every((t) => c.dataset.tags!.split('|').includes(t)),
+    );
+    const pages = Math.max(1, Math.ceil(found.length / per));
+    if (!keepPage) page = 1;
+    page = Math.min(page, pages);
+    const from = (page - 1) * per;
+    const visible = new Set(found.slice(from, from + per));
+    for (const c of cards) c.hidden = !visible.has(c);
+    empty.hidden = found.length > 0;
+    renderPager(pages);
   }
 
-  q.addEventListener('input', apply);
+  // Номера страниц: первая, последняя и соседи текущей, между ними многоточие
+  function renderPager(pages: number) {
+    pager.hidden = pages < 2;
+    pager.innerHTML = '';
+    if (pages < 2) return;
+    const btn = (label: string, to: number, cls = '', disabled = false) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = label;
+      b.className = cls;
+      b.disabled = disabled;
+      b.addEventListener('click', () => {
+        page = to;
+        apply(true);
+        document.getElementById('catalog')!.scrollIntoView({ behavior: 'smooth' });
+      });
+      pager.appendChild(b);
+    };
+    btn('←', page - 1, 'arrow', page === 1);
+    let prev = 0;
+    for (let n = 1; n <= pages; n++) {
+      if (n !== 1 && n !== pages && Math.abs(n - page) > 1) continue;
+      if (n - prev > 1) pager.appendChild(Object.assign(document.createElement('span'), { textContent: '...' }));
+      btn(String(n), n, n === page ? 'on' : '');
+      prev = n;
+    }
+    btn('→', page + 1, 'arrow', page === pages);
+  }
+
+  q.addEventListener('input', () => apply());
   document.querySelectorAll<HTMLButtonElement>('[data-plat]').forEach((b) =>
     b.addEventListener('click', () => {
       document.querySelectorAll('[data-plat]').forEach((x) => x.classList.toggle('on', x === b));
@@ -156,95 +212,223 @@ const topTags = [...tagCount].sort((a, b) => b[1] - a[1]).slice(0, 14).map(([t])
     cards
       .sort((a, b) => (by === 'title' ? a.dataset.title!.localeCompare(b.dataset.title!, 'ru') : +b.dataset.date! - +a.dataset.date!))
       .forEach((c) => grid.appendChild(c));
+    apply();
   });
+  apply();
 </script>
 
 <style>
   .hero {
     position: relative;
+    isolation: isolate;
     overflow: hidden;
-    padding: 48px 0 56px;
-    border-bottom: 1px solid var(--line);
-  }
-  .hero-bg {
-    position: absolute;
-    inset: -40px;
-    width: calc(100% + 80px);
-    height: calc(100% + 80px);
-    max-width: none;
-    object-fit: cover;
-    filter: blur(48px) saturate(1.3) brightness(0.35);
-    z-index: -1;
+    padding: 52px 0 60px;
+    --blur: 36px;
+    --bright: 0.85;
+    --shade: linear-gradient(90deg, rgb(8 8 12 / 0.2), rgb(8 8 12 / 0.55) 40%, rgb(8 8 12 / 0.7));
   }
   .hero::after {
     content: '';
     position: absolute;
-    inset: 0;
+    inset: auto 0 0;
+    height: 45%;
     z-index: -1;
-    background: linear-gradient(transparent 50%, var(--bg));
+    background: linear-gradient(transparent, var(--bg));
   }
   .hero-in {
     display: grid;
-    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-    gap: 40px;
-    align-items: center;
+    grid-template-columns: 300px minmax(0, 1fr);
+    grid-template-areas:
+      'art head'
+      'art body';
+    grid-template-rows: auto 1fr;
+    column-gap: 52px;
+    align-items: start;
   }
   .hero-art {
+    grid-area: art;
     display: block;
-    border-radius: 18px;
-    overflow: hidden;
-    border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent);
-    box-shadow: 0 30px 80px -20px color-mix(in srgb, var(--accent) 60%, transparent);
-    transition: transform 0.4s;
+    padding: 7px;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 30px 70px -20px rgb(0 0 0 / 0.8), 0 0 80px -20px color-mix(in srgb, var(--accent) 60%, transparent);
+    transform: rotate(-2deg);
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
   .hero-art:hover {
-    transform: scale(1.01);
+    transform: rotate(0) scale(1.02);
+  }
+  .hero-art img {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 14px;
+  }
+  .hero-head {
+    grid-area: head;
+    padding-top: 6px;
+  }
+  .hero-body {
+    grid-area: body;
   }
   .kicker {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font: 700 12px var(--body);
+    padding: 5px 12px;
+    border-radius: 999px;
+    font: 800 12px var(--body);
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 14%, rgb(10 10 16 / 0.5));
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
   }
   .hero h1 {
-    font-size: clamp(28px, 4vw, 44px);
-    margin-top: 12px;
+    font-size: clamp(30px, 4.2vw, 50px);
+    margin-top: 16px;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
   }
-  .hero-sub {
-    margin: 6px 0 0;
-    font-size: 18px;
-    font-weight: 600;
+  .hero h1 span {
     color: var(--accent);
   }
-  .hero-meta {
+  .hero-orig {
+    margin: 8px 0 0;
+    font-size: 17px;
+    font-weight: 600;
     color: var(--muted);
-    margin: 10px 0 0;
-    font-size: 14px;
+  }
+  .hero-mid {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin-top: 24px;
+    font-size: 16px;
+  }
+  .hero-mid :global(.rating) {
+    padding-left: 28px;
+    border-left: 1px solid var(--line-2);
+  }
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  .hero-tags span {
+    font-size: 13.5px;
+    font-weight: 700;
+    padding: 4px 13px;
+    border-radius: 999px;
+    color: #eeedf3;
+    background: rgb(10 10 16 / 0.55);
+    border: 1px solid rgb(255 255 255 / 0.14);
   }
   .hero-desc {
-    margin: 16px 0 0;
-    color: #d5d3de;
+    max-width: 640px;
+    margin: 20px 0 0;
+    color: #d8d6e0;
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
   .hero-btns {
     display: flex;
+    align-items: center;
     gap: 10px;
-    margin-top: 24px;
+    margin-top: 26px;
     flex-wrap: wrap;
   }
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
   @media (max-width: 900px) {
+    .hero-in {
+      grid-template-columns: 220px minmax(0, 1fr);
+      column-gap: 32px;
+    }
+  }
+  /* Телефон: постер с названием рядом, остальное ниже на всю ширину */
+  @media (max-width: 700px) {
     .hero {
-      padding: 20px 0 36px;
+      padding: 22px 0 34px;
     }
     .hero-in {
-      grid-template-columns: 1fr;
-      gap: 22px;
+      grid-template-columns: 132px minmax(0, 1fr);
+      grid-template-areas:
+        'art head'
+        'body body';
+      column-gap: 16px;
+      align-items: center;
+    }
+    .hero-art {
+      padding: 4px;
+      border-radius: 13px;
+    }
+    .hero-art img {
+      border-radius: 9px;
+    }
+    .kicker {
+      font-size: 10.5px;
+      padding: 4px 10px;
+    }
+    .badges {
+      gap: 6px;
+    }
+    .badges :global(.lbl) {
+      display: none;
+    }
+    .badges :global(.plat) {
+      height: 26px;
+      padding: 0 7px;
+    }
+    .hero h1 {
+      font-size: 22px;
+      margin-top: 10px;
+    }
+    .hero-orig {
+      font-size: 13.5px;
+      margin-top: 6px;
+    }
+    .hero-mid {
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+    .hero-mid :global(.rating) {
+      padding-left: 16px;
+    }
+    .hero-mid :global(.rating b) {
+      font-size: 34px;
+    }
+    .hero-tags {
+      gap: 6px;
+      margin-top: 16px;
+    }
+    .hero-tags span {
+      font-size: 12.5px;
+      padding: 3px 11px;
+    }
+    .hero-desc {
+      font-size: 14.5px;
+      margin-top: 16px;
+    }
+    .hero-btns {
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .hero-btns .btn-accent {
+      flex-basis: 100%;
+    }
+    .hero-btns .btn {
+      flex-grow: 1;
     }
   }
 
@@ -267,8 +451,15 @@ const topTags = [...tagCount].sort((a, b) => b[1] - a[1]).slice(0, 14).map(([t])
     color: #0b0b10;
     background: var(--brand);
   }
-  #catalog {
-    scroll-margin-top: 80px;
+  #catalog,
+  #upcoming {
+    scroll-margin-top: 84px;
+  }
+  @media (max-width: 900px) {
+    #catalog,
+    #upcoming {
+      scroll-margin-top: 112px;
+    }
   }
   .intro p {
     margin: 6px 0 0;
@@ -420,22 +611,55 @@ const topTags = [...tagCount].sort((a, b) => b[1] - a[1]).slice(0, 14).map(([t])
     .grid {
       gap: 16px;
     }
-    .hero-desc {
-      -webkit-line-clamp: 3;
-    }
-    .hero-btns .btn {
-      flex: 1;
-      justify-content: center;
-    }
   }
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 540px), 1fr));
     gap: 22px;
   }
   .grid > :global([hidden]) {
     display: none;
+  }
+  .pager {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 28px;
+  }
+  .pager[hidden] {
+    display: none;
+  }
+  .pager :global(button) {
+    min-width: 42px;
+    height: 42px;
+    padding: 0 12px;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: var(--bg-2);
+    color: var(--muted);
+    font: 700 15px var(--body);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .pager :global(button:hover:not(:disabled)) {
+    color: var(--text);
+    border-color: var(--line-2);
+  }
+  .pager :global(button.on) {
+    color: #0b0b10;
+    background: var(--brand);
+    border-color: transparent;
+  }
+  .pager :global(button:disabled) {
+    opacity: 0.35;
+    cursor: default;
+  }
+  .pager :global(span) {
+    color: var(--dim);
+    padding: 0 4px;
   }
   .empty {
     color: var(--muted);

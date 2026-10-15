@@ -1,0 +1,52 @@
+---
+// Платформы цветными плашками: ПК синий, Android зелёный
+import type { Release } from '../lib/releases';
+import { icons, brands } from '../lib/icons';
+
+const { r } = Astro.props as { r: Release };
+const list = [
+  r.platforms.includes('pc') && { k: 'pc', label: 'ПК', svg: icons.pc },
+  r.platforms.includes('android') && { k: 'android', label: 'Android', svg: brands.android.svg },
+].filter(Boolean) as { k: string; label: string; svg: string }[];
+---
+
+{
+  list.length > 0 && (
+    <div class="plats">
+      {list.map((p) => (
+        <span class:list={['plat', p.k]} title={p.label}>
+          <Fragment set:html={p.svg} />
+          <span class="lbl">{p.label}</span>
+        </span>
+      ))}
+    </div>
+  )
+}
+
+<style>
+  .plats {
+    display: flex;
+    gap: 6px;
+  }
+  .plat {
+    --c: #7aa7ff;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 30px;
+    padding: 0 11px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--c);
+    background: color-mix(in srgb, var(--c) 13%, rgb(10 10 16 / 0.5));
+    border: 1px solid color-mix(in srgb, var(--c) 32%, transparent);
+    white-space: nowrap;
+  }
+  .plat :global(svg) {
+    font-size: 15px;
+  }
+  .android {
+    --c: #3ddc84;
+  }
+</style>

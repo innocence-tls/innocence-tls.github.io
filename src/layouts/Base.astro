@@ -12,6 +12,12 @@ interface Props {
 const { title, description = site.tagline, image, accent } = Astro.props;
 const fullTitle = title ? `${title} | ${site.name}` : `${site.name} | ${site.tagline}`;
 const base = import.meta.env.BASE_URL;
+const path = Astro.url.pathname;
+const nav = [
+  { href: `${base}#catalog`, label: 'Все переводы' },
+  { href: `${base}#upcoming`, label: 'В работе', more: ' и в планах' },
+  { href: `${base}requests/`, label: 'Стол заказов', on: path.startsWith(`${base}requests`) },
+];
 const ogImage = image ? new URL(image, Astro.site).href : new URL(`${base}avatar.jpg`, Astro.site).href;
 ---
 
@@ -42,6 +48,14 @@ const ogImage = image ? new URL(image, Astro.site).href : new URL(`${base}avatar
           <img src={`${base}avatar.jpg`} alt="" width="36" height="36" />
           <span>Innocence<b> translations</b></span>
         </a>
+        <nav class="nav" aria-label="Разделы">
+          {nav.map((n) => (
+            <a href={n.href} class:list={{ on: n.on }} aria-current={n.on ? 'page' : undefined}>
+              {n.label}
+              {n.more && <span>{n.more}</span>}
+            </a>
+          ))}
+        </nav>
         <Socials compact />
       </div>
     </header>
@@ -106,6 +120,58 @@ const ogImage = image ? new URL(image, Astro.site).href : new URL(`${base}avatar
     justify-content: space-between;
     height: 62px;
     gap: 12px;
+  }
+  .nav {
+    display: flex;
+    gap: 4px;
+    margin-right: auto;
+    margin-left: 28px;
+  }
+  .nav a {
+    padding: 8px 13px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--muted);
+    white-space: nowrap;
+    transition: color 0.2s, background 0.2s;
+  }
+  .nav a:hover {
+    color: var(--text);
+    background: rgb(255 255 255 / 0.06);
+  }
+  .nav a.on {
+    color: var(--text);
+    background: rgb(255 255 255 / 0.09);
+  }
+  /* Узко: разделы второй строкой шапки */
+  @media (max-width: 900px) {
+    .top-in {
+      flex-wrap: wrap;
+      height: auto;
+      padding: 8px 0 0;
+      row-gap: 4px;
+    }
+    .nav {
+      order: 3;
+      flex-basis: 100%;
+      margin: 0 -8px;
+      padding-bottom: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .nav::-webkit-scrollbar {
+      display: none;
+    }
+    .nav a {
+      padding: 7px 10px;
+      font-size: 13.5px;
+    }
+  }
+  @media (max-width: 520px) {
+    .nav span {
+      display: none;
+    }
   }
   .logo {
     display: flex;

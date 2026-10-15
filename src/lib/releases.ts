@@ -56,6 +56,7 @@ export type Release = z.infer<typeof schema> & {
   slug: string;
   banner?: ImageMetadata;
   cover?: ImageMetadata;
+  poster?: ImageMetadata; // вертикальный постер для сайта: poster.* > cover.* > постер с VNDB
   shots: ImageMetadata[];
   accent: string;
   imageFile?: string; // путь на диске к баннеру/обложке, для генерации превью
@@ -64,8 +65,9 @@ export type Release = z.infer<typeof schema> & {
 };
 
 const yamls = import.meta.glob('/releases/*/release.yaml', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
-// poster.* нужен только для превью ссылок, на сайт его не тащим
-const images = import.meta.glob(['/releases/*/**/*.{jpg,jpeg,png,webp}', '!/releases/*/poster.*'], { import: 'default', eager: true }) as Record<string, ImageMetadata>;
+const images = import.meta.glob('/releases/*/**/*.{jpg,jpeg,png,webp}', { import: 'default', eager: true }) as Record<string, ImageMetadata>;
+// Постеры с VNDB (качает scripts/vndb.mjs, в репо не лежат)
+const vndbPosters = import.meta.glob('/src/data/posters/*.jpg', { import: 'default', eager: true }) as Record<string, ImageMetadata>;
 
 // Постер для превью: свой poster.* > обложка > постер с VNDB (качает scripts/vndb.mjs, только без откровенного)
 function posterOf(slug: string, coverFile?: string) {
@@ -79,7 +81,7 @@ function posterOf(slug: string, coverFile?: string) {
 
 const slugOf = (p: string) => p.split('/')[2];
 
-// Акцент карточки: самый 'громкий' насыщенный оттенок баннера, приведённый к яркому и читаемому.
+// Акцент карточки: самый 'громкий' насыщенный оттенок постера (или баннера), приведённый к яркому и читаемому.
 async function accentOf(file: string): Promise<string> {
   const { data } = await sharp(file).resize(48, 27, { fit: 'fill' }).removeAlpha().raw().toBuffer({ resolveWithObject: true });
   const bins = new Array(36).fill(0).map(() => ({ w: 0, h: 0 }));
@@ -122,9 +124,11 @@ export async function getReleases(): Promise<Release[]> {
     const imageFile = srcFile ? path.join(__ROOT__, srcFile) : undefined;
     const coverSrc = own.find(([k]) => /\/cover\.\w+$/.test(k))?.[0];
     const posterFile = posterOf(slug, coverSrc && path.join(__ROOT__, coverSrc));
-    const accent = parsed.data.accent ?? (imageFile ? await accentOf(imageFile) : 'hsl(345 85% 62%)');
+    const poster = pick('poster') ?? cover ?? vndbPosters[`/src/data/posters/${slug}.jpg`];
+    const accentSrc = posterFile ?? imageFile;
+    const accent = parsed.data.accent ?? (accentSrc ? await accentOf(accentSrc) : 'hsl(345 85% 62%)');
     const info = parsed.data.vndb ? (vndbData as Record<string, VndbInfo>)[parsed.data.vndb] : undefined;
-    cache.set(slug, { ...parsed.data, slug, banner, cover, shots, accent, imageFile, posterFile, info });
+    cache.set(slug, { ...parsed.data, slug, banner, cover, poster, shots, accent, imageFile, posterFile, info });
   }
   return [...cache.values()].sort(byDate);
 }
@@ -135,6 +139,7 @@ export const site = YAML.parse(fs.readFileSync(path.join(__ROOT__, 'site.yaml'),
   url: string;
   contact?: string;
   socials: Record<string, string>;
+  requests?: { tg?: string; vk?: string; boosty?: string };
 };
 
 export const censorshipLabel: Record<string, string> = {
@@ -145,3 +150,13 @@ export const censorshipLabel: Record<string, string> = {
 };
 
 export const year = (r: Release) => r.info?.released?.slice(0, 4);
+
+// Основные факты для карточки, героя и страницы релиза
+export const facts = (r: Release) =>
+  [
+    ['Дата выхода', year(r)],
+    ['Разработчик', r.info?.developers?.join(', ')],
+    ['Продолжительность', r.length],
+  ].filter(([, v]) => v) as [string, string][];
+
+export const fullTitle = (r: Release) => (r.subtitle ? `${r.title}: ${r.subtitle}` : r.title);

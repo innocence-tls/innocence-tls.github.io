@@ -1,5 +1,3 @@
-@import '@fontsource/unbounded/500.css';
-@import '@fontsource/unbounded/700.css';
 @import '@fontsource-variable/manrope';
 
 :root {
@@ -14,7 +12,7 @@
   --brand: hsl(345 85% 62%);
   --accent: var(--brand);
   --radius: 14px;
-  --head: 'Unbounded', system-ui, sans-serif;
+  --head: 'Manrope Variable', system-ui, sans-serif;
   --body: 'Manrope Variable', system-ui, sans-serif;
   --wrap: 1240px;
   color-scheme: dark;
@@ -66,10 +64,10 @@ h1,
 h2,
 h3 {
   font-family: var(--head);
-  font-weight: 700;
-  line-height: 1.15;
+  font-weight: 800;
+  line-height: 1.12;
   margin: 0;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 svg {

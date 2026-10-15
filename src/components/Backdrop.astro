@@ -1,0 +1,40 @@
+---
+// Размытый постер на фоне блока (как в превью ссылок). Родителю нужны position: relative и overflow: hidden.
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+const { src, width = 320 } = Astro.props as { src?: ImageMetadata; width?: number };
+---
+
+{
+  src && (
+    <div class="backdrop" aria-hidden="true">
+      <Image src={src} alt="" width={width} loading="lazy" />
+    </div>
+  )
+}
+
+<style>
+  .backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .backdrop img {
+    position: absolute;
+    inset: -15%;
+    width: 130%;
+    height: 130%;
+    max-width: none;
+    object-fit: cover;
+    filter: blur(var(--blur, 28px)) saturate(1.35) brightness(var(--bright, 0.5));
+  }
+  .backdrop::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--shade, linear-gradient(90deg, rgb(11 11 18 / 0.15), rgb(11 11 18 / 0.6) 40%, rgb(11 11 18 / 0.8)));
+  }
+</style>

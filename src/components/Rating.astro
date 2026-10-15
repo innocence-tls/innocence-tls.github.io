@@ -1,0 +1,64 @@
+---
+// Рейтинг VNDB: подпись, число и звезда
+import type { Release } from '../lib/releases';
+import { icons } from '../lib/icons';
+
+const { r, big = false } = Astro.props as { r: Release; big?: boolean };
+const info = r.info;
+---
+
+{
+  info?.rating && (
+    <a class:list={['rating', { big }]} href={`https://vndb.org/${r.vndb}`} target="_blank" rel="noopener" title={`Рейтинг VNDB, ${info.votes} голосов`}>
+      <small>VNDB</small>
+      <span>
+        <b>{(info.rating / 10).toFixed(1)}</b>
+        <Fragment set:html={icons.star} />
+      </span>
+    </a>
+  )
+}
+
+<style>
+  .rating {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+  small {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+  span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 4px;
+  }
+  b {
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+  span :global(svg) {
+    font-size: 20px;
+    color: #b9a2ff;
+    fill: currentColor;
+  }
+  .rating:hover b {
+    color: #b9a2ff;
+  }
+  .big small {
+    font-size: 12px;
+  }
+  .big b {
+    font-size: 44px;
+  }
+  .big span :global(svg) {
+    font-size: 28px;
+  }
+</style>

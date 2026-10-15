@@ -1,0 +1,43 @@
+---
+// Основные факты строками 'Ключ: значение'
+import type { Release } from '../lib/releases';
+import { facts } from '../lib/releases';
+
+const { r, extra = [] } = Astro.props as { r: Release; extra?: [string, string][] };
+const list = [...facts(r), ...extra];
+---
+
+<dl class="facts">
+  {
+    list.map(([k, v]) => (
+      <div>
+        <dt>{k}:</dt>
+        <dd>{v}</dd>
+      </div>
+    ))
+  }
+</dl>
+
+<style>
+  .facts {
+    margin: 0;
+    display: grid;
+    gap: 3px;
+    min-width: 0;
+  }
+  .facts div {
+    display: flex;
+    gap: 6px;
+    min-width: 0;
+  }
+  dt {
+    font-weight: 800;
+    flex: none;
+  }
+  dd {
+    margin: 0;
+    color: var(--muted);
+    font-weight: 600;
+    min-width: 0;
+  }
+</style>
