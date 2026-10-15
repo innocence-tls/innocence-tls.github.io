@@ -1,0 +1,25 @@
+
+title: Мёртвые Дни
+original: DEAD DAYS
+vndb: v25007
+status: released
+date: 2026-06-23
+length: 15-20 часов
+platforms: [pc]
+censorship: none
+tags: [триллер, драма, жестокость, мистика, сюжет, ужасы, экшен, гуро, антигерой, умныйГГ, ГГ парень, ГГ манипулятор]
+desc: >
+  Новелла от создателей Euphoria.
+
+  Группа незнакомцев возвращается с того света по воле таинственной организации. Чтобы жить
+  дальше, они обязаны истреблять невидимую нечисть - спектров. Однако у воскрешения
+  оказались побочные эффекты - постоянный страх новой битвы, утекающее время и аномально
+  сильное либидо...
+posts:
+  tg: https://t.me/innocence_translations/232
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1QyoQkVGhdiQzs84KtRENkMxfA6HbgRVO/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1E8YMZ1PUaK7HV0vXvkjBUQMS9AyqelQr/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/20" }

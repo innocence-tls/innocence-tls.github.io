@@ -1,0 +1,24 @@
+
+title: Похотливые жуки
+original: Konchuu Kansatsu
+vndb: v10294
+status: released
+date: 2026-07-28
+length: 5 часов
+platforms: [pc]
+censorship: pixel
+tags: [драма, триллер, жестокость, уцуге, ужасы, ГГ девушка]
+desc: >
+  Учитель биологии тайно выводит гигантских насекомых в стенах академии. Его секрет
+  раскрывает внучка директора академии. Опасаясь разоблачения, безумный ученый решает
+  использовать своих подопытных жуков, чтобы заставить главную героиню замолчать навсегда...
+note: |
+  На Proton/Winlator не тестировалось, может работать, может не работать.
+posts:
+  tg: https://t.me/innocence_translations/292
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1K6VQJOZG4hv0xbZ_eaZXygNdfaEAbDbX/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1Aprdi0LOQZpzzWcUxBHWq1IA5IDX8m-O/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/30" }

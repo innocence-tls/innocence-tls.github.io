@@ -1,0 +1,24 @@
+
+title: Город Чёрных Овец
+original: BLACK SHEEP TOWN
+vndb: v21069
+status: released
+date: 2026-08-22
+length: 40-50 часов
+platforms: [pc]
+tags: [триллер, экшен, детектив, сюжет, криминал, жестокость, гуро, драма, мистика, ГГ парень, ГГ девушка, несколькоГГ, умныйГГ, антигерой]
+desc: >
+  В полуразрушенном городе, возникшем у таинственной аномалии, царят бандиты и мутанты. Пока
+  преступные синдикаты ведут войну за власть из-за смерти криминального босса, улицы
+  начинает терроризировать неуловимый маньяк. Двое сыщиков-изгоев берутся за расследование,
+  скрывающее страшную тайну...
+note: |
+  На Proton/Winlator/Gamehub не тестировалось, может работать, может не работать.
+posts:
+  tg: https://t.me/innocence_translations/357
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1W3anpVKaioV_6L2hVTIDJ7KVJc3JrvJr/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1mmCKaPyOW9vQC2fcUssFmIXA2XwqNyXC/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/40" }

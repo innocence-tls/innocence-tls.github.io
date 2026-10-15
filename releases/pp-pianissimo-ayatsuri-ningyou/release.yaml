@@ -1,0 +1,27 @@
+
+title: ПП -Пианиссимо- Рондо марионетки
+original: PP -Pianissimo- Ayatsuri Ningyou no Rinbu
+vndb: v564
+status: released
+date: 2026-04-06
+length: 15-20 часов
+platforms: [pc]
+censorship: pixel
+tags: [взрослыйГГ, умныйГГ, драма, триллер, детектив, жестокость, сюжет, криминал, силакрови]
+desc: >
+  Новелла от создателей Kara no Shoujo ( Девушка в скорлупе ).
+
+  Токио, 1936 год. Главный герой - талантливый пианист, работающий в джаз-баре. Однажды
+  ночью на него нападает безумная куртизанка, а на следующий день ее находят мертвой.
+  Оказавшись главным подозреваемым и лишившись работы, он решает сам найти убийцу, чтобы
+  очистить свое имя...
+note: |
+  На Proton/Winlator не тестировалось, может работать, может не работать.
+posts:
+  tg: https://t.me/innocence_translations/117
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/11OWfOoZfFrr91KipX-cMFBhZ9wYwLt3J/view?usp=sharing" }
+    - { host: other, url: "https://rutracker.org/forum/viewtopic.php?t=6909601" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1ViFnfvjcWuy2qsbMGHz5AynEnUr4SzJk/view?usp=sharing" }

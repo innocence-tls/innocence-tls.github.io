@@ -1,0 +1,25 @@
+
+title: Маггот байтс
+original: Maggot baits
+vndb: v18077
+status: released
+date: 2026-06-15
+length: 20-25 часов
+platforms: [pc]
+censorship: none
+tags: [триллер, драма, жестокость, дарк фэнтези, мистика, сюжет, экшен, ужасы, гуро, антигерой, взрослыйГГ]
+desc: >
+  Новелла от создателей Euphoria.
+
+  После прорыва магической Бездны карантинный город Канто стерли с карт, и он превратился в
+  Пандемониум - пристанище для преступников и бессмертных Ведьм. В этом беззаконном
+  мегаполисе случайная встреча главного героя с одной из Ведьм запускает механизм их
+  жестокой общей судьбы...
+posts:
+  tg: https://t.me/innocence_translations/211
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1Y502SIwW20rx7wk95_D3I2vWhjlHkkxP/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1lkuNLyNZG81PLCvTAJvgHbZ7arP4N_8j/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/16" }

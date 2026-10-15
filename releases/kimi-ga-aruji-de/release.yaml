@@ -1,0 +1,29 @@
+
+title: Ты - хозяин, я - слуга
+original: Kimi ga Aruji de Shitsuji ga Ore de
+vndb: v581
+status: released
+date: 2026-09-26
+length: 20-30 часов
+platforms: [pc]
+censorship: pixel
+tags: [романтика, комедия, повседневность, моэге, ГГ парень]
+desc: >
+  Новелла от создателей Majikoi
+
+  Из-за семейных проблем главный герой и его сестра сбегают из родного захолустья в большой
+  город. Оставшись без денег и крыши над головой, они устраиваются слугами в особняк
+  влиятельной семьи, где прислуживают трем сестрам. Новая работа быстро втягивает их в
+  запутанную и комичную жизнь обитателей особняка...
+note: |
+  На Proton/Winlator/Gamehub не тестировалось, может работать, может не работать.
+posts:
+  tg: https://t.me/innocence_translations/475
+  vk: https://vk.ru/innocence_translations?w=wall-233660350_246
+  boosty: https://boosty.to/innocence_translations/posts/80eb1fbf-6c46-43a9-acfd-fd703e98d817
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/13RpVK-Jacjn7B39IvB7hyh20xogCvSEt/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1F5D0F5aWHTOZAvcj-pCnUdoA-DXC0bIu/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/62" }

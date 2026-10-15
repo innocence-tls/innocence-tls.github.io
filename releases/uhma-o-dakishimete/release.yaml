@@ -1,0 +1,23 @@
+
+title: ЮМА
+subtitle: История болезни
+original: UHMA o Dakishimete
+vndb: v5699
+status: released
+date: 2026-01-27
+length: 2 часа
+platforms: [pc, android]
+tags: [триллер, школа, драма, уцуге, мистика, сюжет]
+desc: >
+  Главная героиня страдает от тяжелой болезни и живет в изоляции после смерти матери. Из-за
+  отстраненного поведения и мрачного вида одноклассники обходят ее стороной. Постепенно
+  происходящее с ней и вокруг нее начинает напоминать жуткие школьные легенды...
+note: |
+  Запуск на Android через Kirikidroid2: https://t.me/visual_novels_for_android/80
+posts:
+  tg: https://t.me/innocence_translations/48
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1CfDcicttl4-hQDyGU_wNn6BPe0uahpWI/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1QIngMbgBWXWXnI6H4116txdcHJnjbG7S/view?usp=sharing" }

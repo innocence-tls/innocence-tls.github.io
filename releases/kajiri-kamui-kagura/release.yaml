@@ -1,0 +1,31 @@
+
+title: Проклятый танец богов
+subtitle: Свет рассвета
+original: Kajiri Kamui Kagura
+vndb: v5844
+status: released
+date: 2026-07-01
+length: 60-70 часов
+platforms: [pc]
+tags: [триллер, жестокость, романтика, сюжет, мистика, фэнтези, приключения, экшен, философия, силакрови, несколькоГГ, умныйГГ, ГГ девушка, ГГ парень]
+desc: >
+  Новелла от создателей Dies irae.
+
+  Когда-то попытка сёгунов захватить восточные земли закончилась сокрушительным поражением
+  от рук превосходящих демонов. Спустя три века изоляции на божественную страну Шинсю вновь
+  наступает тьма. Четверым героям предстоит отправиться в опасное путешествие, чтобы дать
+  отпор захватчикам...
+note: |
+  На Proton/Winlator не тестировалось, может работать, может не работать.
+  Инструкция по запуску.
+  1. Установить шрифт notosanskr-bold.ttf
+  2. Запускать игру через Kajiri_Kamui_Kagura_RUS.exe
+  3. Поменять в настройках игры шрифт на notosans kr
+posts:
+  tg: https://t.me/innocence_translations/248
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1xUewxoK3OvhK7xBoFYDl0a2opdoX4gtN/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1MZ1tiGKldiTPE5Or-L6D0chdDqVR2kzi/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/22" }

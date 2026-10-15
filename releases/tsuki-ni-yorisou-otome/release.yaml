@@ -1,0 +1,27 @@
+
+title: Истинная леди в лунном сиянии
+original: Tsuki ni Yorisou Otome no Sahou
+vndb: v10680
+status: released
+date: 2026-09-03
+length: 30 часов
+platforms: [pc]
+censorship: pixel
+tags: [романтика, повседневность, комедия, моэге, ГГ парень, ГГ трап]
+desc: >
+  Будучи изгоем в благородной семье, главный герой мечтает стать дизайнером одежды. Ради
+  цели он притворяется девушкой, поступает в элитную школу моды и нанимается горничной к
+  богатой однокласснице, пытаясь доказать всем собственный талант...
+note: |
+  Дополнительная информация:
+  1. Сделано для стим версии: https://store.steampowered.com/app/1776970/_/.
+  2. Версия "игра с русификатором" уже содержит 18+ патч.
+  На Proton/Winlator/Gamehub не тестировалось, может работать, может не работать.
+posts:
+  tg: https://t.me/innocence_translations/389
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1yFWu2Y8NJAfEvrvfAC700GKXIhsnTAqA/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1r9634TwkzF75HgyNTzavwKwhEjJhu_9v/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/46" }

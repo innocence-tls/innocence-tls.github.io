@@ -1,0 +1,26 @@
+
+title: Выходящее за рамки творчество
+subtitle: Новый вызов
+original: Hamidashi Creative Re:Re:call
+vndb: v53590
+status: released
+date: 2026-06-04
+length: 5-10 часов
+platforms: [pc]
+censorship: pixel
+tags: [комедия, школа, повседневность, романтика, пародия, моэге]
+desc: >
+  Заключительная часть Hamidashi Creative.
+
+  Случайная встреча сводит (не)везучего главного героя и богатую, благородную девушку. Чтобы
+  немного поставить её на место, парень решает показать, как живет простой люд. Изнеженной
+  барышне придётся отправиться копать огород, дабы узнать, какова реальная жизнь за
+  пределами её особняка...
+posts:
+  tg: https://t.me/innocence_translations/193
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1RF3a9jvpg6DS6VWFYLPEzpEfFjTIMl2X/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1p_38xqjOoy8pH1JzKAXn2cmY6gKuMqTt/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/12" }

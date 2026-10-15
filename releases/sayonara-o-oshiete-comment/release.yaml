@@ -1,0 +1,28 @@
+
+title: Сайоши
+subtitle: Научи меня прощаться
+original: Sayonara o Oshiete ~Comment te Dire Adieu~
+vndb: v1200
+status: released
+date: 2025-12-09
+length: 10-15 часов
+platforms: [pc]
+censorship: pixel
+tags: []
+desc: >
+  Реальность - гнилое место. По крайней мере в этом убежден главный герой - школьный учитель
+  Хитоми Хиросуке. Будучи падшим человеком, он начинает проецировать свои тёмные желания на
+  учениц школы, желая преподать им прощальный урок...
+note: |
+  #триллер #ужасы #денпа #драма #уцуге #эроге #взрослыйГГ #школа #craftwork
+  На Proton/Winlator не тестировалось, может работать, может не работать.
+posts:
+  tg: https://t.me/innocence_translations/26
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1x4ivOHqvAvdVdRJEIBFNq1NcxDLzY6sa/view?usp=sharing" }
+  android:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1-5ayZhElB4oIwXAcw7wjbcqK1sWwy-n3/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/74" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1V8g-oJ1NOQrRaNz73eM54qWFpUwv5LA6/view?usp=sharing" }

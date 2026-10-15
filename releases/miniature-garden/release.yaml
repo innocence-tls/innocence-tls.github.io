@@ -1,0 +1,24 @@
+
+title: Академия Хаконива
+original: Miniature Garden
+status: released
+date: 2026-08-30
+length: 5 часов
+platforms: [pc, android]
+tags: [триллер, драма, мистика, ужасы, жестокость, школа, детектив, ГГ парень]
+desc: >
+  Раз в три года в лесной школе проходит особый фестиваль, о котором ходят жуткие слухи - в
+  эту ночь кого-то ждёт неестественная смерть. На закате главный герой и ещё четверо
+  учеников оказываются заперты в пустом здании. Случайность ли это, или же жуткое
+  пророчество начинает сбываться...
+note: |
+  Запуск на Android через Kirikidroid2: https://t.me/visual_novels_for_android/80
+  Взят перевод графики от Divo: https://steamcommunity.com/sharedfiles/filedetails/?id=3786086390
+posts:
+  tg: https://t.me/innocence_translations/378
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/19d3yMMMjAE1xu8G1S8WgQ51-tzf8RDbt/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1vwK66qXslTBhrSnkgpnEDsn25_KgE2bO/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/44" }

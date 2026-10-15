@@ -1,0 +1,27 @@
+
+title: Паралост
+original: Paradise Lost
+vndb: v1951
+status: released
+date: 2026-08-17
+length: 30-40 часов
+platforms: [pc]
+censorship: pixel
+tags: [триллер, экшен, городскоефэнтези, драма, мистика, ужасы, жестокость, философия, антигерой, ГГ парень, несколькоГГ]
+desc: >
+  Новелла от создателей Dies irae.
+
+  Действие происходит в изолированном разрушенном городе Содом, где царит закон "выживает
+  сильнейший", процветают криминальные банды, сумасшедшие киборги и творится полный
+  беспредел. Главный герой - циничный наёмник - пытается занять трон этого жестокого мира...
+note: |
+  На Proton/Winlator/Gamehub не тестировалось, может работать, может не работать.
+posts:
+  tg: https://t.me/innocence_translations/348
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1F8uPndZ4p2EzLouS2r1Ist248EEg3g0Z/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/45" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1KUFy7rVtqc3cKOsVPWfJcCZ7DTU1usdu/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/39" }

@@ -1,0 +1,29 @@
+
+title: Боевая академия Сеншинкан
+subtitle: Строй восьми судеб
+original: "Soushuu Senshinkan Gakuen: Hachimyoujin"
+vndb: v12455
+status: released
+date: 2026-07-16
+length: 40-50 часов
+platforms: [pc]
+censorship: pixel
+tags: [триллер, романтика, сюжет, мистика, жестокость, философия, школа, ГГ парень, умныйГГ]
+desc: >
+  Новелла от создателей Dies irae.
+
+  Главный герой вместе с друзьями получают возможность входить в мир снов по своему желанию,
+  но вскоре оказываются заперты в жутком пространстве, способном изменять историю и убивать
+  людей в реальной жизни...
+note: |
+  Soushuu Senshinkan Gakuen: Hachimyoujin - 1 часть.
+  Soushuu Senshinkan Gakuen: Bansenjin: https://t.me/innocence_translations/486 - 2 часть
+  На Proton/Winlator не тестировалось, может работать, может не работать.
+posts:
+  tg: https://t.me/innocence_translations/277
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1KXwas44gHwM-3E8aRwxpmAPZ67QZCutg/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1xfqBKXC6KSKI9szEmKWkrGipGBYPW96n/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/28" }

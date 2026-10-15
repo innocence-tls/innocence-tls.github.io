@@ -1,0 +1,24 @@
+
+title: Кокоро
+original: COCORO
+vndb: v52780
+status: released
+date: 2026-08-29
+length: 5 часов
+platforms: [pc]
+tags: [драма, романтика, повседневность, накиге]
+desc: >
+  После восстания ИИ город детства главного героя лежит в руинах. Вернувшись в заброшенный
+  ботанический сад, юноша встречает девушку-гуманоида, мечтающую стать человеком. Она
+  преданно ждёт своего жениха из прошлого, даже не подозревая, что давший когда-то обещание
+  возлюбленный стоит прямо перед ней...
+note: |
+  На Proton/Winlator/Gamehub не тестировалось, может работать, может не работать.
+posts:
+  tg: https://t.me/innocence_translations/373
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1LFXZwyGMFx735XVLoAiaEH59sU2rHIxM/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1Lo9wYHEXK6_FzwHfKcj7w1fU_kM5G3dd/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/43" }

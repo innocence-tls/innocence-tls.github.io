@@ -1,0 +1,25 @@
+
+title: Свадьба утренней зари
+original: Kyokkou no Marriage
+vndb: v49512
+status: released
+date: 2026-09-07
+length: 20-30 часов
+platforms: [pc]
+censorship: pixel
+tags: [триллер, экшен, мистика, жестокость, романтика, приключения, фэнтези, дарк фэнтези, уцуге, ГГ парень, антигерой, умныйГГ, ГГ манипулятор]
+desc: >
+  В мире, где бок о бок с людьми живут феи, одарённый юный чародей получает шанс стать
+  спутником величайшей из них - почитаемой святой девы. Однако никто и не подозревает о
+  тёмных мотивах юноши, главный герой хочет совершить нечто ужасное благодаря обретённой
+  силе...
+note: |
+  На Proton/Winlator/Gamehub не тестировалось, может работать, может не работать.
+posts:
+  tg: https://t.me/innocence_translations/410
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/12_FRv8WQRMPZ9AWdI8FuvtQ08jSG6nHN/view?usp=sharing" }
+  patch:
+    - { host: other, url: "https://www.mediafire.com/file/7ffbmqrfqu7b5n1/Kyokomari_RUS_patch.rar/file" }
+    - { host: tg, url: "https://t.me/innocence_files/50" }

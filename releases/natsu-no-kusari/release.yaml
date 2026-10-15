@@ -1,0 +1,25 @@
+
+title: Оковы лета
+original: Natsu no Kusari
+vndb: v18806
+status: released
+date: 2026-06-12
+length: 5-10 часов
+platforms: [pc, android]
+censorship: pixel
+tags: [ужасы, триллер, драма, жестокость, умныйГГ, антигерой, психология, ГГ манипулятор]
+desc: >
+  Новелла от создателей Euphoria.
+
+  Одинокий и подавленный школьник, уставший от серой рутины, решает избавиться от скуки,
+  выбрав случайную девушку в качестве жертвы, чтобы запереть и сломить её волю...
+posts:
+  tg: https://t.me/innocence_translations/206
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/13YhtE8V8JIXaEtjPSGACaTaXbi1-_x6U/view?usp=sharing" }
+  android:
+    - { host: tg, url: "https://t.me/innocence_files/69" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1ZNeGMAYBi6AZQt7p8mQ_z4buiI9Mq9We/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/15" }

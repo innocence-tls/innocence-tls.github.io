@@ -1,0 +1,29 @@
+
+title: "Ангелос Армас: Ангел-дуалист"
+original: Tenshi no Nichou Kenjuu -Angelos Armas-
+vndb: v429
+status: released
+date: 2025-10-28
+length: 15-20 часов
+platforms: [pc, android]
+censorship: pixel
+tags: [триллер, драма, уцуге, жестокость, взрослыйГГ, экшен, сюжет, ужасы, мистика, романтика]
+desc: >
+  Новелла от создателей легендарной Saya no Uta.
+
+  Человечество на грани полного вымирания, всему виной всеобщее бесплодие. Главный герой -
+  Ангел Вим. Его работа отправлять на тот свет неупокоенные души умерших. Изо дня в день
+  хладнокровно исполняя свой долг, он начинает подозревать нечто странное в предназначении
+  Ангелов...
+note: |
+  На Proton/Winlator не тестировалось, может работать, может не работать.
+posts:
+  tg: https://t.me/innocence_translations/8
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1arMqFV3KUnN3586TPK__5mo15FAh3pH6/view?usp=sharing" }
+  android:
+    - { host: tg, url: "https://t.me/innocence_files/70" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1fbNQJhbEX6DNxqiu7ctcLOZde2IdLF0R/view?usp=drive_link" }
+    - { host: tg, url: "https://t.me/innocence_files/14" }

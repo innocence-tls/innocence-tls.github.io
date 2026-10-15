@@ -1,0 +1,24 @@
+
+title: Эдельвейс
+original: Edelweiss
+vndb: v501
+status: released
+date: 2026-02-25
+length: 10-15 часов
+platforms: [pc]
+censorship: pixel
+tags: [триллер, драма, жестокость, сюжет, взрослыйГГ, ГГ девушка, детектив]
+desc: >
+  Главная героиня - аристократка, ставшая детективом в захудалом агентстве. Ее напарник
+  берется за расследование дела годичной давности, которое полиция быстро закрыла как
+  самоубийство. Едва взглянув на имя жертвы, героиня понимает, погибшая - ее лучшая школьная
+  подруга...
+note: |
+  На Proton/Winlator не тестировалось, может работать, может не работать.
+posts:
+  tg: https://t.me/innocence_translations/67
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1wqlGYqv3f0MirejrstmtPg3ysWXtVWv6/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1Lvcq2cbmgoeCwc2SW7E3gHGQTbajbAdr/view?usp=sharing" }

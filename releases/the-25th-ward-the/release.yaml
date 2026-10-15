@@ -1,0 +1,30 @@
+
+title: "25-й округ: Серебряное дело"
+original: "The 25th Ward: The Silver Case"
+vndb: v22728
+status: released
+date: 2026-07-04
+length: 15-20 часов
+platforms: [pc]
+tags: [детектив, триллер, жестокость, сюжет, мистика, экшен, философия, умныйГГ, антигерой, взрослыйГГ]
+desc: >
+  Продолжение психологического триллера «The Silver Case» от SUDA51.
+
+  Спустя пять лет в недавно отстроенном 25-м округе Канто происходит загадочное убийство,
+  сплетающее судьбы нескольких героев. В полуфутуристическом мире на грани краха им
+  предстоит расследовать дело с разных точек зрения, чтобы погрузиться во тьму и узнать
+  шокирующую правду...
+note: |
+  Работает на Steam версии. Руководство: https://steamcommunity.com/sharedfiles/filedetails/?id=3757391323
+  Прохождение: https://telegra.ph/25th-Ward-The-Silver-Case-Prohozhdenie-07-04
+  Если при скачивании русификатора с гугл диска вы не видите файлов - это визуальный баг. Просто скачайте архив.
+posts:
+  tg: https://t.me/innocence_translations/254
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1JqsLp6YjVZYVzjCm5ujZR2owqHf6ZnUG/view?usp=sharing" }
+    - { host: other, url: "https://rutracker.org/forum/viewtopic.php?t=5534075" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1qYSOSWrUMPRkWzy0XGnvRTLNJC5BJttJ/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/23" }
+    - { host: other, url: "https://www.mediafire.com/file/da5ervd4qskc1su/The25thWardSILVERCASE_RUS_Patch.rar/file" }

@@ -1,0 +1,30 @@
+
+title: Ведьмин шабаш
+original: Sanoba Witch
+vndb: v16044
+status: released
+date: 2026-09-10
+length: 30-40 часов
+platforms: [pc, android]
+censorship: pixel
+tags: [романтика, повседневность, комедия, школа, мистика, моэге, ГГ парень]
+desc: >
+  Главный герой умеет чувствовать чужие эмоции. Случайно застав образцовую одноклассницу за
+  крайне неловким и интимным занятием, он узнаёт её постыдную тайну - и существование
+  настоящих ведьм. Общий секрет сближает их, втягивая юношу в водоворот хаотичных и
+  волнующих событий...
+note: |
+  Дополнительная информация:
+  1. Сделано для стим версии: https://store.steampowered.com/app/888790/Sabbat_of_the_Witch/.
+  2. Версия "игра с русификатором" уже содержит 18+ патч.
+  Запуск на Android через Kirikidroid2: https://t.me/visual_novels_for_android/80
+posts:
+  tg: https://t.me/innocence_translations/417
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/103B0iA6L0p_n6LC8AfIR29c_veVqwlGo/view?usp=sharing" }
+  android:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1AGamIXFjqXL13jh_CU7JPzkuNvgOaRbo/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1OPNPOv7CBJ3LFEJ_lE425S_ar-3wKSgD/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/51" }

@@ -1,0 +1,30 @@
+
+title: Принцесса порчи
+subtitle: Эвтаназия
+original: Kusarihime ~Euthanasia~
+vndb: v37
+status: released
+date: 2026-08-25
+length: 10-15 часов
+platforms: [pc]
+censorship: pixel
+tags: [триллер, денпа, сюжет, драма, гуро, жестокость, ужасы, силакрови, ГГ парень]
+desc: >
+  Новелла, которой вдохновлялся автор Песни Сайи.
+
+  Потеряв память после загадочной гибели отца и сестры, главный герой возвращается в родной
+  город с мачехой. Там он встречает загадочную девушку в алом кимоно - точную копию своей
+  сестры. Пока к юноше возвращаются воспоминания, наружу выходят погребённые под секретами
+  мрачные тайны прошлого...
+note: |
+  За основу взят перевод от Mofeto: https://vndb.org/r76749
+  На Proton/Winlator/Gamehub не тестировалось, может работать, может не работать.
+posts:
+  tg: https://t.me/innocence_translations/362
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1WX1-KDhnoOdr4ClEZtes4lQH8-E6CQPb/view?usp=sharing" }
+    - { host: other, url: "https://rutracker.org/forum/viewtopic.php?t=6905526" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1ykzB5huoVD2nROyYHP7coS9wARiBxEbf/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/41" }

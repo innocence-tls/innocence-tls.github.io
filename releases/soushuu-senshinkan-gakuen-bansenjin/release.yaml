@@ -1,0 +1,30 @@
+
+title: Боевая академия Сеншинкан
+subtitle: Бансенджин
+original: "Soushuu Senshinkan Gakuen: Bansenjin"
+vndb: v16131
+status: released
+date: 2026-10-01
+length: 30-40 часов
+platforms: [pc]
+censorship: pixel
+tags: [триллер, романтика, сюжет, мистика, жестокость, философия, повседневность, городскоефэнтези, школа, ГГ парень, умныйГГ]
+desc: >
+  Новелла от создателей Dies irae, продолжение Soushuu Senshinkan: Hachimyoujin.
+
+  Главный герой и его друзья переходят на второй год обучения, и к ним присоединяются новые
+  ученики. Беззаботные будни рушатся, когда во время подготовки к фестивалю они раскрывают
+  страшную тайну академии. Реальность начинает пожирать кошмар, и им приходится пробудить
+  свои скрытые силы, чтобы вновь наказать негодяев за их плохие промыслы...
+note: |
+  Soushuu Senshinkan Gakuen: Hachimyoujin: https://t.me/innocence_translations/277?single - 1 часть.
+  Soushuu Senshinkan Gakuen: Bansenjin - 2 часть
+  На Proton/Winlator/Gamehub не тестировалось, может работать, может не работать.
+posts:
+  tg: https://t.me/innocence_translations/486
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1wVqfPk5Zc3ITKXQYXkLBtOz6tdX23sY5/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1m132LXsweAvunX1l3eFO6zyz9-O72XdP/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/65" }

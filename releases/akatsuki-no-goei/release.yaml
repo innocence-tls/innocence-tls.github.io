@@ -1,0 +1,34 @@
+
+title: Стражи Рассвета
+subtitle: Троица
+original: Akatsuki no Goei
+vndb: v629
+status: released
+date: 2026-05-31
+length: 70-80 часов (вся трилогия)
+platforms: [pc, android]
+censorship: pixel
+tags: [триллер, романтика, сюжет, умныйГГ, повседневность, экшен, антигерой, приключения]
+desc: >
+  Новелла от создателя легендарного Класса превосходства.
+
+  Выходец из опасных трущоб спасает благородную леди и становится ее личным телохранителем.
+  Оказавшись в высшем обществе, главный герой отказывается играть по правилам знати. Он
+  плюет на этикет, откровенно дерзит аристократам, кошмарит чопорную элиту и решает проблемы
+  исключительно по жестким уличным понятиям...
+note: |
+  Это перевод всей трилогии.
+  1. Akatsuki no Goei: https://vndb.org/v629
+  2. Akatsuki no Goei ~Principal-tachi no Kyuujitsu~: https://vndb.org/v1307
+  3. Akatsuki no Goei ~Tsumibukaki Shuumatsuron~: https://vndb.org/v3271
+  Запуск на Android через Kirikidroid2: https://t.me/visual_novels_for_android/80
+posts:
+  tg: https://t.me/innocence_translations/180
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1ItXoDjugXKIoew5o3Ug_gHWXNVQ7lSZn/view?usp=drive_link" }
+  android:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1pJS0jfjwL3qCaVLBhGL5RtwX0LC8kn4X/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1AV5dENdFzpAfxuE4BevvgbgwtDvu7V7y/view?usp=drive_link" }
+    - { host: tg, url: "https://t.me/innocence_files/10" }

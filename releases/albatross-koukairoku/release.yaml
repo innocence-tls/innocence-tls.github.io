@@ -1,0 +1,26 @@
+
+title: Судовый журнал Альбатроса
+original: Albatross Koukairoku
+vndb: v3883
+status: released
+date: 2026-09-06
+length: 50-60 часов
+platforms: [pc]
+censorship: pixel
+tags: [триллер, комедия, сюжет, романтика, приключения, ужасы, ГГ парень, взрослыйГГ]
+desc: >
+  На борту корабля собрались эксцентричный капитан и его безумная команда. Без карт и
+  чёткого курса они бороздят неизведанные моря, встречая корабли-призраки и гигантских
+  чудовищ. Никто из них не знает, куда они плывут, но для этих изгоев совместное плавание
+  давно стало единственным домом...
+note: |
+  На Proton/Winlator/Gamehub не тестировалось, может работать, может не работать.
+posts:
+  tg: https://t.me/innocence_translations/405
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1qi_yND91kz8Lv6au7E7l9PgGRhGg48Sz/view?usp=sharing" }
+    - { host: other, url: "https://rutracker.org/forum/viewtopic.php?t=6905475" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1TB32-MydtPSHAOlmbyWUhJBPuxC5MKEq/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/48" }

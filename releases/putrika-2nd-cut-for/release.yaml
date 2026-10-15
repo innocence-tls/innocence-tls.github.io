@@ -1,0 +1,28 @@
+
+title: Путрика 2-й акт
+subtitle: Во имя изысканного одеяния
+original: Putrika 2nd.cut:For the Exquisite Attire
+vndb: v57718
+status: released
+date: 2026-07-13
+length: 5-10 часов
+platforms: [pc]
+tags: [драма, триллер, жестокость, сюжет, мистика, уцуге, дарк фэнтези, ГГ парень, ГГ девушка]
+desc: >
+  Продолжение Putrika 1st.
+
+  Главный герой - обычный портной с тёмным прошлым, прибывает в столицу Ильварент - город,
+  где безраздельно властвует Церковь Белого Нефрита. Но на улицах города орудует
+  безжалостный убийца, чьи жертвы - исключительно священнослужители. Оказавшись меж
+  церковных интриг и кровавой охоты маньяка, герой вступает на путь, который не сулит
+  ничего, кроме гибели и кровавой трагедии...
+note: |
+  На Proton/Winlator не тестировалось, может работать, может не работать.
+posts:
+  tg: https://t.me/innocence_translations/270
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/17_HWdZ3-T9kXChVvvyPOJ6hc1GrVb6zp/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1aW9QmfSzxERPK9eMvxCSBSyay8q_vCy7/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/26" }

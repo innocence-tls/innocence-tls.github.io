@@ -1,0 +1,27 @@
+
+title: Счастливый кошмар
+subtitle: Осколки снов
+original: Hapymaher -Fragmentation Dream-
+vndb: v13108
+status: released
+date: 2026-08-12
+length: 15-20 часов
+platforms: [pc]
+censorship: pixel
+tags: [драма, триллер, романтика, сюжет, мистика, детектив, силакрови, ГГ парень]
+desc: >
+  Продолжение Hapymaher.
+
+  Кошмары главного героя позади. С верными друзьями он наслаждается школьными буднями. Но
+  юноша не в силах забыть ту, с кем простился навсегда. И тогда его любимый кошмар
+  возвращается, начиная историю сна, ведущего к сладкому счастливому финалу...
+note: |
+  На Proton/Winlator/Gamehub не тестировалось, может работать, может не работать.
+posts:
+  tg: https://t.me/innocence_translations/328
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1Fo-4IlaA8dgQBqaXYmkprnmA0fHnB9dF/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1qdG_xqV-XzzbQieTvHz9tQwDGI_1isR7/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/36" }

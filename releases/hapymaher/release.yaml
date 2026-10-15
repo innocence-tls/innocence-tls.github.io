@@ -1,0 +1,26 @@
+
+title: Счастливый кошмар
+subtitle: конец сожалений
+original: Hapymaher
+vndb: v10957
+status: released
+date: 2026-08-09
+length: 30-40 часов
+platforms: [pc]
+censorship: pixel
+tags: [драма, триллер, романтика, сюжет, мистика, детектив, силакрови, ГГ парень]
+desc: >
+  Днем главный герой живет как обычный школьник, но из-за травмы по ночам видит лишь
+  изматывающие осознанные сновидения. Однажды в его сон вторгается загадочная девушка из
+  прошлого, а на помощь приходит загадочная странница снов. Так начинается история сладкого
+  и счастливого кошмара...
+note: |
+  На Proton/Winlator/Gamehub не тестировалось, может работать, может не работать.
+posts:
+  tg: https://t.me/innocence_translations/323
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1USbOifhOElXo_SRL_34T4y2J3wVQsgKP/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1VF3LNnT5UpzFJ9h4nFFwqdXZ4XONw0EH/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/35" }

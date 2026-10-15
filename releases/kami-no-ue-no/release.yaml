@@ -1,0 +1,24 @@
+
+title: Волшебство книжных страниц
+original: Kami no Ue no Mahoutsukai
+vndb: v15871
+status: released
+date: 2026-03-23
+length: 30-40 часов
+platforms: [pc, android]
+censorship: pixel
+tags: [триллер, драма, романтика, сюжет, мистика, умныйГГ, детектив, уцуге, силакрови]
+desc: >
+  Случайный визит в мистическую библиотеку навсегда меняет жизнь главного героя и его
+  сестры. Книги на здешних полках прокляты: любой написанный сюжет оживает, делая читателей
+  невольными актерами. Отныне они пленники чужого пера, где следующая история может
+  закончиться кровавой трагедией...
+note: |
+  Запуск на Android через Kirikidroid2: https://t.me/visual_novels_for_android/80
+posts:
+  tg: https://t.me/innocence_translations/102
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1lK_YPRV3iKLF-T6b81ULieLB7JiXwZq4/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1N5hgAxpRkO2XKDWWXs2dy4MZz6gZrfXe/view?usp=sharing" }

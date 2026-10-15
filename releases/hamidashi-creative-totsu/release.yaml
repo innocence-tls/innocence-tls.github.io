@@ -1,0 +1,27 @@
+
+title: Выходящее за рамки творчество
+subtitle: Новый вызов
+original: Hamidashi Creative Totsu
+vndb: v33205
+status: released
+date: 2026-06-02
+length: 15-20 часов
+platforms: [pc]
+censorship: pixel
+tags: [комедия, школа, повседневность, романтика, силакрови, пародия, моэге]
+desc: >
+  Продолжение Hamidashi Creative.
+
+  Главного героя ждут совместный быт, летние поездки и подготовка к школьному фестивалю.
+  Повседневность (не)везучего президента студсовета и его эксцентричного окружения обрастает
+  новыми подробностями...
+note: |
+  На Proton/Winlator не тестировалось, может работать, может не работать.
+posts:
+  tg: https://t.me/innocence_translations/186
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1wUmj0hJNmMvILkaPEfD2-1rf1EDkVMjg/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1tD7NDxXEzwiul6ylBc_AVph7CQMjlQ8N/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/11" }

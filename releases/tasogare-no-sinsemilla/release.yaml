@@ -1,0 +1,24 @@
+
+title: Сумеречная Синсемилья
+original: Tasogare no Sinsemilla
+vndb: v3938
+status: released
+date: 2026-04-15
+length: 40-50 часов
+platforms: [pc, android]
+censorship: pixel
+tags: [драма, триллер, мистика, комедия, повседневность, романтика, силакрови]
+desc: >
+  Главный герой возвращается в родную деревню, известную легендой о небесной деве. Нападение
+  загадочного монстра рушит его покой и заставляет столкнуться с тайнами забытого прошлого.
+  Ситуацию усложняет и приезд его младшей сестры, которая знает гораздо больше, чем
+  говорит...
+note: |
+  Запуск на Android через Kirikidroid2: https://t.me/visual_novels_for_android/80
+posts:
+  tg: https://t.me/innocence_translations/123
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1LqkYPwPBr9UyRkf90Ol5zlIQgGOvlnQv/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1YTRud77WpviZK9B-pcVvyFAIBjM6sZja/view?usp=sharing" }

@@ -1,0 +1,25 @@
+
+title: День гнева
+subtitle: Безумные влюбленные
+original: Dies irae ~Amantes amentes~
+status: released
+date: 2026-05-11
+length: 70-80 часов
+platforms: [pc]
+tags: [триллер, жестокость, романтика, сюжет, мистика, ужасы, умныйГГ, приключения, экшен, философия]
+desc: >
+  В 1945 году таинственный орден оккультистов провел ритуал, пообещав вернуть Золотого
+  Зверя. В наши дни в Японии главный герой видит кошмар об отсечении головы на гильотине.
+  Наутро морок сбывается наяву - в городе находят реально обезглавленное тело, знаменуя
+  приход Дня Гнева...
+note: |
+  ⚡️ Руководство в Steam + прохождение: https://steamcommunity.com/sharedfiles/filedetails/?id=3724373538
+posts:
+  tg: https://t.me/innocence_translations/147
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1FP4_0AyAXleegY-jQVhfqHb6TDF6fUwn/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1006jmNntIaQKEZsup3a1auKLuQgb_aaX/view" }
+    - { host: tg, url: "https://t.me/innocence_files/3" }
+    - { host: other, url: "https://www.mediafire.com/file/5r87k1l42c1vwy0/Dies_irae_AA_Rus_patch.rar/file" }

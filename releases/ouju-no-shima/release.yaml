@@ -1,0 +1,27 @@
+
+title: Остров кровавых проклятий
+original: Ouju no Shima
+vndb: v48959
+status: released
+date: 2026-08-05
+length: 15-20 часов
+platforms: [pc]
+censorship: pixel
+tags: [триллер, драма, сюжет, мистика, экшен, криминал, гуро, жестокость, несколькоГГ, взрослыйГГ, умныйГГ]
+desc: >
+  Новелла от создателей Euphoria.
+
+  Небольшой островок служит притоном с борделями, подконтрольный криминальному клану. Власть
+  здесь удерживают колдуны, способные убивать проклятиями. Один из главных героев служит
+  киллером этим бандитам. Когда на остров прибывает второй герой, их неизбежное столкновение
+  перерастает в кровавую битву...
+note: |
+  На Proton/Winlator/Gamehub не тестировалось, может работать, может не работать.
+posts:
+  tg: https://t.me/innocence_translations/307
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1UwbgxFHo7DwlP_PWhh40ji2WAZsW0fRb/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/33" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1eJxxhKi3Plm7YZXF4V7kYS5wOuCFHY_w/view?usp=sharing" }

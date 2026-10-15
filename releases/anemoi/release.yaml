@@ -1,0 +1,25 @@
+
+title: анемой
+original: anemoi
+vndb: v47937
+status: released
+date: 2026-05-03
+length: 50-60 часов
+platforms: [pc]
+tags: [драма, романтика, мистика, повседневность, комедия, моэге, приключения, силакрови, накиге]
+desc: >
+  Новая новелла от Key, создателей Clannad и Rewrite.
+
+  Главный герой и его сестра возвращаются в уединенный северный городок, чтобы вскрыть
+  закопанную в детстве капсулу времени. Здесь время словно застыло, а жизнь течет просто и
+  неспешно. В ожидании заветного дня они наслаждаются тишиной, теплом воспоминаний и шепотом
+  ностальгии...
+note: |
+  На Proton/Winlator не тестировалось, может работать, может не работать.
+posts:
+  tg: https://t.me/innocence_translations/141
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1PMPm1ODGRppwgnQJjFULLbSzDM711lFl/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1rNZkmE9Fy6WkR_0NhzFRuTtKOIBpT76A/view?usp=sharing" }

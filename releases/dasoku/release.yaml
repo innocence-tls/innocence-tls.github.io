@@ -1,0 +1,25 @@
+
+title: Дасоку
+subtitle: Змеиные ноги
+original: Dasoku
+vndb: v29098
+status: released
+date: 2026-06-05
+length: 15-20 часов
+platforms: [pc]
+censorship: pixel
+tags: [триллер, драма, жестокость, ужасы, гуро, антигерой, детектив]
+desc: >
+  Глухой остров. Главный герой с друзьями приехали на курорт, отдохнуть, выпить пива и
+  поесть шашлыков, не подозревая, что из темноты кустов за ними наблюдает серийный убийца.
+  Пока жертвы мирно развлекаются, маньяк готовит план их казни.
+
+  Утром безмятежный пейзаж сменится кровавым натюрмортом...
+posts:
+  tg: https://t.me/innocence_translations/200
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1zywaRblgqMr-xlnVp4JHQAa0g9RbmCx3/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1LMPdEqI7RZCoKdL_KryNGV_XZ16roO7l/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/13" }

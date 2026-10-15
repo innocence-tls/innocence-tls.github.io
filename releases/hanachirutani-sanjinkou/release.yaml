@@ -1,0 +1,25 @@
+
+title: Горная долина Ханачирутани
+original: Hanachirutani Sanjinkou
+vndb: v7661
+status: released
+date: 2026-08-27
+length: 25-30 часов
+platforms: [pc]
+censorship: pixel
+tags: [триллер, драма, сюжет, ужасы, гуро, жестокость, драма, мистика, ГГ парень, антигерой]
+desc: >
+  Потеряв зверски убитую возлюбленную, главный герой превращается в одержимого местью
+  демона. Ослеплённый яростью, юноша преследует таинственных горных чудовищ в непроходимых
+  лесах, неумолимо ведя к неминуемой гибели и заклятых врагов, и всех, кто встанет на его
+  пути...
+note: |
+  На Proton/Winlator/Gamehub не тестировалось, может работать, может не работать.
+posts:
+  tg: https://t.me/innocence_translations/368
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/13cwH2BmM7hFhFs1fWmfB6A6_cojKuT-S/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1hVo38T4NpkRZPzo-8KWATKsNz6IIx7bt/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/42" }

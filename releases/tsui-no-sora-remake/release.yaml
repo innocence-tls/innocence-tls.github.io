@@ -1,0 +1,29 @@
+
+title: Небо конца
+subtitle: Ремейк 2025
+original: Tsui no Sora Remake
+vndb: v28806
+status: released
+date: 2026-03-12
+length: 15-20 часов
+platforms: [pc]
+censorship: pixel
+tags: [драма, триллер, жестокость, школа, мистика, ужасы, психология, философия, денпа, сюжет]
+desc: >
+  Ремейк культовой новеллы, идейного прародителя Subarashiki Hibi.
+
+  Загадочная смерть школьницы порождает волну безумия. По классам расползаются слухи о
+  грядущем конце света, предсказанном Нострадамусом. Окружающие стремительно теряют рассудок
+  и сбиваются в агрессивную секту, ведомую одним из учеников, объявившим себя истинным
+  Спасителем...
+note: |
+  В отличие от ремейка 2020 года, данное издание [2025] является ультимативным. Обновлена графика (некоторые спрайты и новые иллюстрации), улучшена режиссура, добавлены новые сцены и переработан интерфейс.
+  За основу был взят перевод от Maid-Mania: https://t.me/maidmania/16 и перенесен на новую версию игры.
+  Нами же переведены новые сцены, интерфейс и некоторая графика.
+posts:
+  tg: https://t.me/innocence_translations/87
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1ctO3ni3XIWsBWJlqigLVNmFyaQLXVN6P/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1plnkus7zoBtnBLd_oHzWexcUWCZbho0B/view?usp=sharing" }

@@ -1,0 +1,28 @@
+
+title: Метеор-Мировой Актёр
+subtitle: Газосветная пуля
+original: "Ryuusei World Actor: Gaslight Bullet"
+vndb: v60196
+status: released
+date: 2026-02-28
+length: 20-30 часов
+platforms: [pc]
+censorship: pixel
+tags: [триллер, жестокость, сюжет, взрослыйГГ, антигерой, городскоефэнтези, экшен, криминал]
+desc: >
+  Новелла от создателя легендарного 'Класса превосходства'.
+
+  Главный герой - пьяница и детектив из полицейского «отстойника» для самых безнадежных
+  кадров. Раскрытию дел он предпочитает алкоголь и безделье. Но когда в городе начинает
+  беспредел жестокая группировка, ему приходится отставить бутылку и вступить в кровавое
+  противостояние...
+note: |
+  Это заключительная третья часть в трилогии новелл Meteor World Actor. 
+  На Proton/Winlator не тестировалось, может работать, может не работать.
+posts:
+  tg: https://t.me/innocence_translations/77
+downloads:
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1va-zxpAKiIbjFOZWlUddLbnDwHnzOalL/view?usp=sharing" }
+  game:
+    - { host: other, url: "https://sukebei.nyaa.si/view/4529934" }

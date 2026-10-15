@@ -1,0 +1,25 @@
+
+title: Выходящее за рамки творчество
+original: Hamidashi Creative
+vndb: v27449
+status: released
+date: 2026-05-15
+length: 40-50 часов
+platforms: [pc]
+censorship: pixel
+tags: [комедия, повседневность, школа, романтика, пародия, силакрови]
+desc: >
+  Главный герой - замкнутый мизантроп, чья спокойная жизнь рушится, когда школьная лотерея
+  случайно выбирает его президентом студсовета. Чтобы навести порядок, ему приходится
+  набирать в команду местных прогульщиков и чудаков, превращая школьные будни в абсолютный
+  хаос...
+note: |
+  На Proton/Winlator не тестировалось, может работать, может не работать.
+posts:
+  tg: https://t.me/innocence_translations/152
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/10sPPf8tOXFFyVUAfvHqcoJK7o05xhcov/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1BMgTsC5Y1oos-ei3B5l3z8utMwml8T2Z/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/5" }

@@ -1,0 +1,28 @@
+
+title: Фантом
+subtitle: ПРИЗРАК ИНФЕРНО -НИТРО АРХИВЫ-
+original: Phantom PHANTOM OF INFERNO NITRO ARCHIVE
+status: released
+date: 2026-09-04
+length: 15-20 часов
+platforms: [pc]
+tags: [триллер, экшен, жестокость, драма, романтика, сюжет, антигерой, ГГ парень, умныйГГ]
+desc: >
+  Новелла от создателей Saya no Uta.
+
+  Став свидетелем заказного убийства, обычный турист попадает в плен к тайному преступному
+  синдикату. Ему стирают память и превращают в хладнокровного киллера. Теперь главный герой
+  вынужден бороться за выживание в мире лжи и жестокости, надеясь вернуть своё прошлое и
+  вырваться на свободу...
+note: |
+  Так как текст ремейка на 100% соответствует оригиналу, был перенесен ручной перевод оригинальной игры от pin201: https://my-maon.blogspot.com/p/phantom-integration-hd.html.
+  Руководство в стиме: https://steamcommunity.com/sharedfiles/filedetails/?id=3795369314
+  На Proton/Winlator/Gamehub не тестировалось, может работать, может не работать.
+posts:
+  tg: https://t.me/innocence_translations/394
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1vzUGp734nz6irlVhPlJPBlED_U0aIJ_N/view?usp=sharing" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1AHkDjoF7LugI8vscy_HpPQZlg898nUax/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/47" }

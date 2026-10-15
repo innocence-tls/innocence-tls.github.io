@@ -1,0 +1,29 @@
+
+title: ""
+original: Sister Other Paranoia
+status: released
+date: 2026-08-15
+length: 5 часов
+platforms: [pc]
+tags: [драма, триллер, денпа, ужасы, жестокость, силакрови, сюжет, философия, мистика, ГГ парень, антигерой, ГГ манипулятор]
+desc: >
+  Новелла от создателей Needy Girl Overdose
+
+  Разочаровавшись в людях, главный герой обретает способность читать мысли и замыкается в
+  себе. Неожиданный успех написанного им романа лишь усиливает зависть окружающих и его
+  мизантропию. Единственным утешением для юноши становится младшая сестра, с которой они
+  погружаются в нездоровую созависимость...
+note: |
+  Есть 2 версии перевода - отличие лишь одно: в первом сестра главного героя называет его "братик", во втором "онии-чан".
+  Версия с братиками: https://drive.google.com/file/d/1tfMSEfaqw0asG-ElyV3D2C6HEWXDR5-f/view?usp=sharing
+  Версия с онии-чанами: https://drive.google.com/file/d/1HjfqDdMGAwSqTQlnk76KN2OIsGtwzkeh/view?usp=sharing
+  Руководство в Steam: https://steamcommunity.com/sharedfiles/filedetails/?id=3783683814
+posts:
+  tg: https://t.me/innocence_translations/343
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1EryqaVwa1VWv2h973q0G_g8oGVJFWHrh/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/63" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1tfMSEfaqw0asG-ElyV3D2C6HEWXDR5-f/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/38" }
