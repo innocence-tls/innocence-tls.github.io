@@ -47,7 +47,13 @@ const names = {
   x: 'x',
 };
 
-export const icons = Object.fromEntries(Object.entries(names).map(([k, v]) => [k, lucide(v)])) as Record<keyof typeof names, string>;
+// Логотип Windows (четыре окна): в simple-icons его нет
+const windows = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.55l7.5-1.03v6.9H3zm8.5-1.17L21 3v8.42h-9.5zM3 12.58h7.5v6.9L3 18.45zm8.5 0H21V21l-9.5-1.3z"/></svg>';
+
+export const icons = {
+  ...(Object.fromEntries(Object.entries(names).map(([k, v]) => [k, lucide(v)])) as Record<keyof typeof names, string>),
+  windows,
+};
 
 export const socialMeta: Record<string, { label: string; svg: string; color: string }> = {
   telegram: { label: 'Telegram', ...brands.telegram },

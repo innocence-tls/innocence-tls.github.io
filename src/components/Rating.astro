@@ -10,7 +10,7 @@ const info = r.info;
 {
   info?.rating && (
     <a class:list={['rating', { big }]} href={`https://vndb.org/${r.vndb}`} target="_blank" rel="noopener" title={`Рейтинг VNDB, ${info.votes} голосов`}>
-      <small>VNDB</small>
+      <small>РЕЙТИНГ</small>
       <span>
         <b>{(info.rating / 10).toFixed(1)}</b>
         <Fragment set:html={icons.star} />

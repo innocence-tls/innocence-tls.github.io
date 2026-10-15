@@ -6,6 +6,7 @@ import satori from 'satori';
 import { Resvg } from '@resvg/resvg-js';
 import type { Release } from './releases';
 import { year, site } from './releases';
+import { tagColor } from './tagcolor';
 
 const font = (pkg: string, file: string) => fs.readFileSync(path.join(__ROOT__, 'node_modules/@fontsource', pkg, 'files', file));
 // fontsource режет шрифты на подмножества, поэтому латиница и кириллица идут отдельными семействами с фолбэком
@@ -34,7 +35,12 @@ const star = `data:image/svg+xml;base64,${Buffer.from(
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#b9a2ff" d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5-4.8-4.6 6.6-.9z"/></svg>',
 ).toString('base64')}`;
 
-const pill = (t: string) =>
+const pill = (t: string) => {
+  const c = tagColor(t);
+  return h('div', { fontSize: 25, fontWeight: 700, padding: '5px 18px 7px', borderRadius: 999, backgroundImage: c.bg, border: `1.5px solid ${c.border}`, color: c.fg }, t);
+};
+// Плашка без цвета тега (счётчик переводов, платформы на главной)
+const plainPill = (t: string) =>
   h('div', { fontSize: 25, fontWeight: 700, padding: '5px 18px 7px', borderRadius: 999, background: 'rgba(10,10,18,0.62)', border: '1.5px solid rgba(255,255,255,0.16)', color: '#f1eff8' }, t);
 // Постер в белой рамке
 const framed = (src: string, w: number, hgt: number, pad: number, radius: number, rot: number, extra: Record<string, unknown> = {}) =>
@@ -109,7 +115,7 @@ export async function renderOg(r: Release): Promise<Buffer> {
           h(
             'div',
             { flexDirection: 'column', paddingLeft: 26, borderLeft: '2px solid rgba(255,255,255,0.18)' },
-            h('div', { fontSize: 20, fontWeight: 700, color: 'rgba(235,232,245,0.7)', letterSpacing: 1 }, 'VNDB'),
+            h('div', { fontSize: 20, fontWeight: 700, color: 'rgba(235,232,245,0.7)', letterSpacing: 1 }, 'РЕЙТИНГ'),
             h(
               'div',
               { alignItems: 'center', gap: 8, marginTop: -4 },
@@ -180,8 +186,8 @@ export async function renderHomeOg(releases: Release[]): Promise<Buffer> {
       h(
         'div',
         { gap: 10 },
-        pill(`${n} ${plural(n, 'перевод', 'перевода', 'переводов')}`),
-        pill(platforms.has('android') ? 'ПК и Android' : 'ПК'),
+        plainPill(`${n} ${plural(n, 'перевод', 'перевода', 'переводов')}`),
+        plainPill(platforms.has('android') ? 'ПК и Android' : 'ПК'),
       ),
     ),
   );

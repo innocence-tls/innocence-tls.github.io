@@ -123,7 +123,7 @@ export const facts = (r: Release) =>
   [
     ['Дата выхода', year(r)],
     ['Разработчик', r.info?.developers?.join(', ')],
-    ['Продолжительность', r.length],
+    ['Длительность', r.length],
   ].filter(([, v]) => v) as [string, string][];
 
 export const fullTitle = (r: Release) => (r.subtitle ? `${r.title}: ${r.subtitle}` : r.title);

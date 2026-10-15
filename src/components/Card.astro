@@ -4,6 +4,7 @@
 import { Image } from 'astro:assets';
 import type { Release } from '../lib/releases';
 import { icons } from '../lib/icons';
+import { tagStyle } from '../lib/tagcolor';
 import Backdrop from './Backdrop.astro';
 import Facts from './Facts.astro';
 import Rating from './Rating.astro';
@@ -40,7 +41,7 @@ const search = [r.title, r.subtitle, r.original, r.info?.alttitle, ...r.tags].fi
     <Facts r={r} />
     <Rating r={r} />
   </div>
-  {r.tags.length > 0 && <div class="tags">{r.tags.slice(0, 6).map((t) => <span>{t}</span>)}</div>}
+  {r.tags.length > 0 && <div class="tags">{r.tags.slice(0, 6).map((t) => <span style={tagStyle(t)}>{t}</span>)}</div>}
   <div class="foot">
     <Platforms r={r} />
     <div class="act">
@@ -181,9 +182,9 @@ const search = [r.title, r.subtitle, r.original, r.info?.alttitle, ...r.tags].fi
     font-weight: 600;
     padding: 3px 10px;
     border-radius: 999px;
-    color: #e6e4ee;
-    background: rgb(10 10 16 / 0.55);
-    border: 1px solid rgb(255 255 255 / 0.12);
+    color: var(--tfg);
+    background: var(--tbg);
+    border: 1px solid var(--tbd);
   }
   .foot {
     grid-area: foot;

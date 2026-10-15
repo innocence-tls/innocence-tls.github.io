@@ -5,7 +5,7 @@ import { icons, brands } from '../lib/icons';
 
 const { r } = Astro.props as { r: Release };
 const list = [
-  r.platforms.includes('pc') && { k: 'pc', label: 'ПК', svg: icons.pc },
+  r.platforms.includes('pc') && { k: 'pc', label: 'ПК', svg: icons.windows },
   r.platforms.includes('android') && { k: 'android', label: 'Android', svg: brands.android.svg },
 ].filter(Boolean) as { k: string; label: string; svg: string }[];
 ---

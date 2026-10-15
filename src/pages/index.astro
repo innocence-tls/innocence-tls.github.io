@@ -9,6 +9,7 @@ import Platforms from '../components/Platforms.astro';
 import Posts from '../components/Posts.astro';
 import { getReleases, year, site } from '../lib/releases';
 import { icons, brands } from '../lib/icons';
+import { tagStyle } from '../lib/tagcolor';
 
 const all = await getReleases();
 const released = all.filter((r) => r.status === 'released');
@@ -49,7 +50,7 @@ const topTags = [...tagCount].sort((a, b) => b[1] - a[1]).slice(0, 14).map(([t])
               <Facts r={latest} />
               <Rating r={latest} big />
             </div>
-            {latest.tags.length > 0 && <div class="hero-tags">{latest.tags.slice(0, 6).map((t) => <span>{t}</span>)}</div>}
+            {latest.tags.length > 0 && <div class="hero-tags">{latest.tags.slice(0, 6).map((t) => <span style={tagStyle(t)}>{t}</span>)}</div>}
             {latest.desc && <p class="hero-desc">{latest.desc}</p>}
             <div class="hero-btns">
               <a class="btn btn-accent" href={`${base}r/${latest.slug}/#download`}>
@@ -319,9 +320,9 @@ const topTags = [...tagCount].sort((a, b) => b[1] - a[1]).slice(0, 14).map(([t])
     font-weight: 700;
     padding: 4px 13px;
     border-radius: 999px;
-    color: #eeedf3;
-    background: rgb(10 10 16 / 0.55);
-    border: 1px solid rgb(255 255 255 / 0.14);
+    color: var(--tfg);
+    background: var(--tbg);
+    border: 1px solid var(--tbd);
   }
   .hero-desc {
     max-width: 640px;
