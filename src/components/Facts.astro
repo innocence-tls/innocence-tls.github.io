@@ -1,17 +1,36 @@
 ---
-// Основные факты строками 'Ключ: значение'
+// Основные факты: строками 'Ключ: значение' или сеткой (grid: подпись над значением, первым рейтинг VNDB с голосами)
 import type { Release } from '../lib/releases';
 import { facts } from '../lib/releases';
+import { icons } from '../lib/icons';
 
-const { r, extra = [] } = Astro.props as { r: Release; extra?: [string, string][] };
+const { r, extra = [], grid = false } = Astro.props as { r: Release; extra?: [string, string][]; grid?: boolean };
 const list = [...facts(r), ...extra];
+const info = r.info;
+const rating = grid && info?.rating ? (info.rating / 10).toFixed(1) : undefined;
+const plural = (n: number, one: string, few: string, many: string) =>
+  n % 10 === 1 && n % 100 !== 11 ? one : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? few : many;
 ---
 
-<dl class="facts">
+<dl class:list={['facts', { grid }]}>
+  {
+    rating && (
+      <div class="rate">
+        <dt>Рейтинг VNDB</dt>
+        <dd>
+          <a href={`https://vndb.org/${r.vndb}`} target="_blank" rel="noopener">
+            <Fragment set:html={icons.star} />
+            <b>{rating}</b>
+            <small>{info!.votes} {plural(info!.votes, 'голос', 'голоса', 'голосов')}</small>
+          </a>
+        </dd>
+      </div>
+    )
+  }
   {
     list.map(([k, v]) => (
       <div>
-        <dt>{k}:</dt>
+        <dt>{grid ? k : `${k}:`}</dt>
         <dd>{v}</dd>
       </div>
     ))
@@ -39,5 +58,56 @@ const list = [...facts(r), ...extra];
     color: var(--muted);
     font-weight: 600;
     min-width: 0;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, max-content));
+    gap: 12px 36px;
+  }
+  .grid div {
+    flex-direction: column;
+    gap: 2px;
+  }
+  .grid dt {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-shadow: 0 1px 8px rgb(0 0 0 / 0.6);
+  }
+  .grid dd {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .rate a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .rate :global(svg) {
+    color: #b9a2ff;
+    fill: currentColor;
+  }
+  .rate b {
+    font-weight: 800;
+  }
+  .rate small {
+    margin-left: 3px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+  .rate a:hover b {
+    color: #b9a2ff;
+  }
+  @media (max-width: 700px) {
+    .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 16px;
+    }
+    .grid dd {
+      font-size: 14px;
+    }
   }
 </style>

@@ -4,7 +4,6 @@ import Base from '../../layouts/Base.astro';
 import Downloads from '../../components/Downloads.astro';
 import Backdrop from '../../components/Backdrop.astro';
 import Facts from '../../components/Facts.astro';
-import Rating from '../../components/Rating.astro';
 import Platforms from '../../components/Platforms.astro';
 import Posts from '../../components/Posts.astro';
 import { getReleases, censorshipLabel, type Release } from '../../lib/releases';
@@ -37,10 +36,9 @@ const note = r.note && esc(r.note).replace(/https?:\/\/\S+/g, (u) => `<a href="$
   <section class="hero">
     <Backdrop src={img} width={480} />
     <div class="wrap">
-      <a class="back" href={base}><Fragment set:html={icons.back} /> Все переводы</a>
       <div class="head">
         <div class="art">
-          {img && <Image src={img} alt={r.title} widths={[360, 720]} sizes="(max-width: 700px) 140px, 330px" loading="eager" />}
+          {img && <Image src={img} alt={r.title} widths={[300, 600]} sizes="(max-width: 700px) 140px, 250px" loading="eager" />}
           {r.favorite && <span class="fav" title="Любимое"><Fragment set:html={icons.star} /></span>}
         </div>
         <div class="title">
@@ -49,11 +47,10 @@ const note = r.note && esc(r.note).replace(/https?:\/\/\S+/g, (u) => `<a href="$
           <p class="orig">{r.original}{info?.alttitle && <span> · {info.alttitle}</span>}</p>
         </div>
         <div class="info">
-          <div class="mid">
-            <Facts r={r} extra={extra} />
-            <Rating r={r} big />
-          </div>
+          <Facts r={r} extra={extra} grid />
           {r.tags.length > 0 && <div class="tags">{r.tags.map((t) => <span style={tagStyle(t)}>{t}</span>)}</div>}
+          {r.desc && <p class="desc">{r.desc}</p>}
+          {note && <div class="note"><Fragment set:html={icons.info} /><p set:html={note} /></div>}
           <div class="cta">
             <a class="btn btn-accent" href="#download"><Fragment set:html={icons.download} /> Скачать</a>
             <Posts r={r} big />
@@ -64,26 +61,20 @@ const note = r.note && esc(r.note).replace(/https?:\/\/\S+/g, (u) => `<a href="$
     </div>
   </section>
 
-  <div class="wrap main">
-    {r.desc && (
+  <div class:list={['wrap', 'main', { two: r.shots.length > 0 }]}>
+    <div class="col">
       <section>
-        <h2 class="h">Описание</h2>
-        <p class="desc">{r.desc}</p>
+        <h2 class="h">Скачать</h2>
+        <Downloads r={r} />
       </section>
-    )}
-    {note && <div class="note"><Fragment set:html={icons.info} /><p set:html={note} /></div>}
-
-    <section>
-      <h2 class="h">Скачать</h2>
-      <Downloads r={r} />
-    </section>
+    </div>
 
     {r.shots.length > 0 && (
       <section>
         <h2 class="h">Скриншоты</h2>
-        <div class="shots">
+        <div class:list={['shots', { odd: r.shots.length % 2 }]}>
           {r.shots.map((s) => (
-            <a href={s.src} class="shot" data-full={s.src}>
+            <a href={s.src} class="shot">
               <Image src={s} alt="Скриншот перевода" width={640} loading="lazy" />
             </a>
           ))}
@@ -92,20 +83,48 @@ const note = r.note && esc(r.note).replace(/https?:\/\/\S+/g, (u) => `<a href="$
     )}
   </div>
 
-  <dialog id="lb"><img alt="" /></dialog>
+  <dialog id="lb">
+    <img alt="" />
+    <button class="nav prev" aria-label="Предыдущий"><Fragment set:html={icons.back} /></button>
+    <button class="nav next" aria-label="Следующий"><Fragment set:html={icons.arrow} /></button>
+    <span class="count"></span>
+  </dialog>
 </Base>
 
 <script>
+  // Просмотр скриншотов: стрелки, клавиши, свайп; клик мимо картинки закрывает
   const lb = document.getElementById('lb') as HTMLDialogElement;
   const img = lb.querySelector('img')!;
-  document.querySelectorAll<HTMLAnchorElement>('.shot').forEach((a) =>
+  const count = lb.querySelector('.count')!;
+  const shots = [...document.querySelectorAll<HTMLAnchorElement>('.shot')];
+  let cur = 0;
+  const show = (i: number) => {
+    cur = (i + shots.length) % shots.length;
+    img.src = shots[cur].href;
+    count.textContent = `${cur + 1} / ${shots.length}`;
+  };
+  lb.classList.toggle('single', shots.length < 2);
+  shots.forEach((a, i) =>
     a.addEventListener('click', (e) => {
       e.preventDefault();
-      img.src = a.dataset.full!;
+      show(i);
       lb.showModal();
     }),
   );
-  lb.addEventListener('click', () => lb.close());
+  lb.querySelector('.prev')!.addEventListener('click', () => show(cur - 1));
+  lb.querySelector('.next')!.addEventListener('click', () => show(cur + 1));
+  lb.addEventListener('click', (e) => e.target === lb && lb.close());
+  img.addEventListener('click', () => show(cur + 1));
+  lb.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') show(cur - 1);
+    if (e.key === 'ArrowRight') show(cur + 1);
+  });
+  let x0 = 0;
+  lb.addEventListener('touchstart', (e) => (x0 = e.touches[0].clientX), { passive: true });
+  lb.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) show(cur + (dx < 0 ? 1 : -1));
+  });
 </script>
 
 <style>
@@ -113,46 +132,34 @@ const note = r.note && esc(r.note).replace(/https?:\/\/\S+/g, (u) => `<a href="$
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    padding: 26px 0 56px;
+    padding: 30px 0 36px;
     --blur: 36px;
     --bright: 0.85;
-    --shade: linear-gradient(90deg, rgb(8 8 12 / 0.2), rgb(8 8 12 / 0.55) 40%, rgb(8 8 12 / 0.7));
+    --shade: linear-gradient(90deg, rgb(8 8 12 / 0.2), rgb(8 8 12 / 0.62) 30%, rgb(8 8 12 / 0.72));
   }
   .hero::after {
     content: '';
     position: absolute;
     inset: auto 0 0;
-    height: 40%;
+    height: 30%;
     z-index: -1;
     background: linear-gradient(transparent, var(--bg));
   }
-  .back {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--muted);
-    font-weight: 600;
-    font-size: 14px;
-    margin-bottom: 26px;
-  }
-  .back:hover {
-    color: var(--text);
-  }
   .head {
     display: grid;
-    grid-template-columns: 330px minmax(0, 1fr);
+    grid-template-columns: 250px minmax(0, 1fr);
     grid-template-areas:
       'art title'
       'art info';
     grid-template-rows: auto 1fr;
-    column-gap: 52px;
+    column-gap: 44px;
     align-items: start;
   }
   .art {
     grid-area: art;
     position: relative;
-    padding: 7px;
-    border-radius: 20px;
+    padding: 6px;
+    border-radius: 18px;
     background: #fff;
     box-shadow: 0 30px 70px -20px rgb(0 0 0 / 0.8), 0 0 90px -20px color-mix(in srgb, var(--accent) 60%, transparent);
     transform: rotate(-2deg);
@@ -162,18 +169,18 @@ const note = r.note && esc(r.note).replace(/https?:\/\/\S+/g, (u) => `<a href="$
     aspect-ratio: 2 / 3;
     object-fit: cover;
     object-position: top;
-    border-radius: 14px;
+    border-radius: 13px;
   }
   .fav {
     position: absolute;
-    top: 16px;
-    left: 16px;
+    top: 14px;
+    left: 14px;
     display: grid;
     place-items: center;
-    width: 34px;
-    height: 34px;
+    width: 32px;
+    height: 32px;
     border-radius: 10px;
-    font-size: 18px;
+    font-size: 17px;
     color: #ffd166;
     background: rgb(8 8 12 / 0.75);
     backdrop-filter: blur(6px);
@@ -183,97 +190,102 @@ const note = r.note && esc(r.note).replace(/https?:\/\/\S+/g, (u) => `<a href="$
   }
   .title {
     grid-area: title;
-    padding-top: 8px;
   }
   .info {
     grid-area: info;
   }
+  .title :global(.plats) {
+    margin-bottom: 12px;
+  }
   h1 {
-    font-size: clamp(30px, 4.2vw, 50px);
+    font-size: clamp(28px, 3.2vw, 38px);
     letter-spacing: -0.03em;
     text-wrap: balance;
   }
   .orig {
-    margin: 10px 0 0;
-    font-size: 17px;
+    margin: 6px 0 0;
+    font-size: 15px;
     font-weight: 600;
     color: var(--muted);
   }
   .orig span {
     color: var(--dim);
   }
-  .mid {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-    margin-top: 26px;
-    font-size: 16px;
-  }
-  .mid :global(.rating) {
-    padding-left: 28px;
-    border-left: 1px solid var(--line-2);
+  .info :global(.facts) {
+    margin-top: 20px;
   }
   .tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 22px;
+    gap: 6px;
+    margin-top: 16px;
   }
   .tags span {
-    font-size: 13.5px;
+    font-size: 12px;
     font-weight: 700;
-    padding: 4px 13px;
+    padding: 3px 10px;
     border-radius: 999px;
     color: var(--tfg);
     background: var(--tbg);
     border: 1px solid var(--tbd);
+  }
+  .desc {
+    max-width: 760px;
+    margin: 16px 0 0;
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: #dcdae4;
   }
   .cta {
     display: flex;
     align-items: center;
     gap: 10px;
     flex-wrap: wrap;
-    margin-top: 28px;
-  }
-  .title :global(.plats) {
-    margin-bottom: 16px;
+    margin-top: 20px;
   }
   @media (max-width: 1000px) {
     .head {
-      grid-template-columns: 240px minmax(0, 1fr);
-      column-gap: 32px;
+      grid-template-columns: 200px minmax(0, 1fr);
+      column-gap: 30px;
     }
   }
 
+  /* Ниже шапки: слева загрузки и заметка, справа скриншоты */
   .main {
     display: grid;
-    gap: 40px;
-    margin-top: 8px;
+    gap: 28px;
+    margin-top: 4px;
+  }
+  .main.two {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: 36px;
+    align-items: start;
+  }
+  .col {
+    display: grid;
+    gap: 14px;
+    min-width: 0;
   }
   .h {
-    font-size: 20px;
-    margin-bottom: 14px;
-  }
-  .desc {
-    max-width: 780px;
-    margin: 0;
-    font-size: 16.5px;
-    line-height: 1.75;
-    color: #dcdae4;
+    font-size: 18px;
+    margin-bottom: 12px;
   }
   .note {
     display: flex;
     gap: 12px;
-    max-width: 780px;
-    padding: 14px 16px;
+    max-width: 760px;
+    margin-top: 14px;
+    padding: 10px 14px;
     border-radius: var(--radius);
-    background: var(--bg-2);
+    background: rgb(16 16 23 / 0.7);
+    backdrop-filter: blur(6px);
     border: 1px solid var(--line);
     border-left: 3px solid var(--accent);
     color: var(--muted);
     font-size: 14px;
   }
   .note > :global(svg) {
+    flex: none;
     font-size: 18px;
     margin-top: 2px;
     color: var(--accent);
@@ -286,11 +298,15 @@ const note = r.note && esc(r.note).replace(/https?:\/\/\S+/g, (u) => `<a href="$
   }
   .shots {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  /* Нечётное число: первый скрин во всю ширину */
+  .shots.odd .shot:first-child {
+    grid-column: 1 / -1;
   }
   .shot {
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
     border: 1px solid var(--line);
     transition: border-color 0.2s, transform 0.2s;
@@ -304,17 +320,22 @@ const note = r.note && esc(r.note).replace(/https?:\/\/\S+/g, (u) => `<a href="$
     aspect-ratio: 16 / 9;
     object-fit: cover;
   }
+  @media (max-width: 900px) {
+    .main.two {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 28px;
+    }
+  }
 
   /* Телефон: постер с названием рядом, факты и кнопки ниже, скриншоты лентой со свайпом */
   @media (max-width: 700px) {
+    /* Текст на всю ширину: затемнение сверху вниз, чтобы подписи фактов читались */
     .hero {
-      padding: 16px 0 32px;
-    }
-    .back {
-      margin-bottom: 16px;
+      padding: 16px 0 26px;
+      --shade: linear-gradient(rgb(8 8 12 / 0.25), rgb(8 8 12 / 0.62) 40%, rgb(8 8 12 / 0.7));
     }
     .head {
-      grid-template-columns: 136px minmax(0, 1fr);
+      grid-template-columns: 120px minmax(0, 1fr);
       grid-template-areas:
         'art title'
         'info info';
@@ -323,68 +344,57 @@ const note = r.note && esc(r.note).replace(/https?:\/\/\S+/g, (u) => `<a href="$
     }
     .art {
       padding: 4px;
-      border-radius: 13px;
+      border-radius: 12px;
     }
     .art img {
-      border-radius: 9px;
+      border-radius: 8px;
     }
     .fav {
-      top: 9px;
-      left: 9px;
-      width: 26px;
-      height: 26px;
-      font-size: 14px;
-    }
-    .title {
-      padding: 0;
+      top: 8px;
+      left: 8px;
+      width: 24px;
+      height: 24px;
+      font-size: 13px;
     }
     .title :global(.plats) {
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .title :global(.plat) {
-      height: 26px;
+      height: 24px;
       padding: 0 8px;
       font-size: 12px;
     }
     h1 {
-      font-size: 23px;
+      font-size: 22px;
     }
     .orig {
-      font-size: 13.5px;
-      margin-top: 6px;
+      font-size: 13px;
+      margin-top: 4px;
     }
-    .mid {
-      justify-content: space-between;
-      gap: 14px;
-      margin-top: 22px;
-      font-size: 14px;
-    }
-    .mid :global(.rating) {
-      padding-left: 16px;
-    }
-    .mid :global(.rating b) {
-      font-size: 34px;
+    .info :global(.facts) {
+      margin-top: 18px;
     }
     .tags {
-      gap: 6px;
-      margin-top: 16px;
+      margin-top: 14px;
     }
     .tags span {
-      font-size: 12.5px;
-      padding: 3px 11px;
+      font-size: 11.5px;
+      padding: 2px 9px;
+    }
+    .desc {
+      margin-top: 14px;
+      font-size: 14.5px;
+      line-height: 1.6;
     }
     .cta {
       gap: 8px;
-      margin-top: 20px;
+      margin-top: 16px;
     }
     .cta .btn-accent {
       flex-basis: 100%;
     }
     .cta .btn {
       flex-grow: 1;
-    }
-    .desc {
-      font-size: 15.5px;
     }
     .shots {
       display: flex;
@@ -400,24 +410,88 @@ const note = r.note && esc(r.note).replace(/https?:\/\/\S+/g, (u) => `<a href="$
       display: none;
     }
     .shot {
-      flex: 0 0 86%;
+      flex: 0 0 80%;
       scroll-snap-align: start;
     }
   }
+
   dialog {
     padding: 0;
     border: 0;
     background: none;
-    max-width: 94vw;
-    max-height: 94vh;
+    max-width: 100vw;
+    max-height: 100vh;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+  dialog[open] {
+    display: grid;
+    place-items: center;
   }
   dialog::backdrop {
-    background: rgb(0 0 0 / 0.85);
+    background: rgb(0 0 0 / 0.88);
     backdrop-filter: blur(6px);
   }
   dialog img {
-    max-width: 100%;
-    max-height: 90vh;
+    max-width: min(94vw, 1600px);
+    max-height: 88vh;
     border-radius: 10px;
+    cursor: pointer;
+  }
+  .nav {
+    position: fixed;
+    top: 50%;
+    translate: 0 -50%;
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid var(--line-2);
+    background: rgb(16 16 23 / 0.8);
+    color: var(--text);
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .nav:hover {
+    background: var(--accent);
+    color: #0b0b10;
+  }
+  .prev {
+    left: 16px;
+  }
+  .next {
+    right: 16px;
+  }
+  .count {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    translate: -50% 0;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: rgb(16 16 23 / 0.8);
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .single .nav,
+  .single .count {
+    display: none;
+  }
+  /* На телефоне листают свайпом, стрелки мельче */
+  @media (max-width: 700px) {
+    .nav {
+      width: 38px;
+      height: 38px;
+      font-size: 17px;
+    }
+    .prev {
+      left: 8px;
+    }
+    .next {
+      right: 8px;
+    }
   }
 </style>
