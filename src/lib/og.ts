@@ -1,4 +1,4 @@
-// Картинка-превью 1200x630 для ссылок (Telegram, VK, Discord): баннер + название + инфа с VNDB.
+// Картинки-превью 1200x630 для ссылок (Telegram, VK, Discord): постер + название + инфа с VNDB.
 import fs from 'node:fs';
 import path from 'node:path';
 import sharp from 'sharp';
@@ -8,52 +8,65 @@ import type { Release } from './releases';
 import { year, site } from './releases';
 
 const font = (pkg: string, file: string) => fs.readFileSync(path.join(__ROOT__, 'node_modules/@fontsource', pkg, 'files', file));
-const fonts = [
-  // fontsource режет шрифты на подмножества, поэтому латиница и кириллица идут отдельными семействами с фолбэком
-  { name: 'UnbLat', weight: 700 as const, data: font('unbounded', 'unbounded-latin-700-normal.woff') },
-  { name: 'UnbCyr', weight: 700 as const, data: font('unbounded', 'unbounded-cyrillic-700-normal.woff') },
-  { name: 'ManLat', weight: 500 as const, data: font('manrope', 'manrope-latin-500-normal.woff') },
-  { name: 'ManLat', weight: 700 as const, data: font('manrope', 'manrope-latin-700-normal.woff') },
-  { name: 'ManCyr', weight: 500 as const, data: font('manrope', 'manrope-cyrillic-500-normal.woff') },
-  { name: 'ManCyr', weight: 700 as const, data: font('manrope', 'manrope-cyrillic-700-normal.woff') },
-];
-const HEAD = 'UnbLat, UnbCyr';
+// fontsource режет шрифты на подмножества, поэтому латиница и кириллица идут отдельными семействами с фолбэком
+const fonts = ([600, 700, 800] as const).flatMap((weight) => [
+  { name: 'ManLat', weight, data: font('manrope', `manrope-latin-${weight}-normal.woff`) },
+  { name: 'ManCyr', weight, data: font('manrope', `manrope-cyrillic-${weight}-normal.woff`) },
+]);
 const BODY = 'ManLat, ManCyr';
+const DIM = 'rgba(235,232,245,0.78)';
 
 // Мини-хелпер вместо JSX: h('div', {стили}, ...дети)
 type Node = { type: string; props: Record<string, unknown> };
-const h = (type: string, style: Record<string, unknown>, ...children: (Node | string | false | undefined)[]): Node => ({
+type Child = Node | string | false | undefined | null;
+const h = (type: string, style: Record<string, unknown>, ...children: Child[]): Node => ({
   type,
-  props: { style: { display: 'flex', ...style }, children: children.filter((c) => c !== false && c !== undefined) },
+  props: { style: { display: 'flex', ...style }, children: children.filter((c) => c !== false && c !== undefined && c !== null) },
 });
 const img = (src: string, style: Record<string, unknown>): Node => ({ type: 'img', props: { src, style } });
+const uri = async (s: sharp.Sharp) => `data:image/jpeg;base64,${(await s.jpeg({ quality: 85 }).toBuffer()).toString('base64')}`;
+// Размытый затемнённый фон из картинки
+const backdrop = (file: string, blur: number, brightness: number) =>
+  uri(sharp(file).resize(600, 315, { fit: 'cover' }).blur(blur).modulate({ brightness, saturation: 1.25 }));
 
-const dataUri = async (file: string, width: number, blur = 0) => {
-  let s = sharp(file).resize(width);
-  if (blur) s = s.blur(blur).modulate({ brightness: 0.45, saturation: 1.3 });
-  return `data:image/jpeg;base64,${(await s.jpeg({ quality: 82 }).toBuffer()).toString('base64')}`;
-};
+const avatar = () => `data:image/jpeg;base64,${fs.readFileSync(path.join(__ROOT__, 'public/avatar.jpg')).toString('base64')}`;
+const star = `data:image/svg+xml;base64,${Buffer.from(
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#b9a2ff" d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5-4.8-4.6 6.6-.9z"/></svg>',
+).toString('base64')}`;
 
-// hsl(...) из акцента -> hex для resvg
-const hex = (accent: string) => {
-  const m = accent.match(/hsl\((\d+)\s+(\d+)%\s+(\d+)%/);
-  if (!m) return accent;
-  const [hh, ss, ll] = [+m[1], +m[2] / 100, +m[3] / 100];
-  const f = (n: number) => {
-    const k = (n + hh / 30) % 12;
-    const c = ll - ss * Math.min(ll, 1 - ll) * Math.max(-1, Math.min(k - 3, 9 - k, 1));
-    return Math.round(c * 255).toString(16).padStart(2, '0');
-  };
-  return `#${f(0)}${f(8)}${f(4)}`;
-};
+const pill = (t: string) =>
+  h('div', { fontSize: 25, fontWeight: 700, padding: '5px 18px 7px', borderRadius: 999, background: 'rgba(10,10,18,0.62)', border: '1.5px solid rgba(255,255,255,0.16)', color: '#f1eff8' }, t);
+// Постер в белой рамке
+const framed = (src: string, w: number, hgt: number, pad: number, radius: number, rot: number, extra: Record<string, unknown> = {}) =>
+  h(
+    'div',
+    { width: w + pad * 2, height: hgt + pad * 2, padding: pad, background: '#fff', borderRadius: radius, boxShadow: '0 18px 50px rgba(0,0,0,0.55)', transform: `rotate(${rot}deg)`, ...extra },
+    img(src, { width: w, height: hgt, borderRadius: radius - pad + 1, objectFit: 'cover' }),
+  );
+const layer = (style: Record<string, unknown>) => h('div', { position: 'absolute', top: 0, left: 0, width: 1200, height: 630, ...style });
 
+async function render(tree: Node): Promise<Buffer> {
+  const svg = await satori(tree as never, { width: 1200, height: 630, fonts });
+  const png = new Resvg(svg, { fitTo: { mode: 'width', value: 1200 } }).render().asPng();
+  return sharp(png).jpeg({ quality: 88, mozjpeg: true }).toBuffer();
+}
+
+// Превью релиза. Без постера (только баннер) карточки слева нет, текст на всю ширину.
 export async function renderOg(r: Release): Promise<Buffer> {
-  const bannerFile = r.imageFile!;
-  const accent = hex(r.accent);
-  const [bg, art] = await Promise.all([dataUri(bannerFile, 600, 30), dataUri(bannerFile, 1040)]);
-  const avatar = `data:image/jpeg;base64,${fs.readFileSync(path.join(__ROOT__, 'public/avatar.jpg')).toString('base64')}`;
+  const poster = r.posterFile;
   const info = r.info;
+  const PH = 550;
+  const meta = poster ? await sharp(poster).metadata() : undefined;
+  const PW = meta ? Math.round((PH * meta.width!) / meta.height!) : 0;
+  const [bg, art] = await Promise.all([
+    poster ? backdrop(poster, 18, 0.55) : backdrop(r.imageFile!, 4, 0.4),
+    poster ? uri(sharp(poster).resize({ height: PH * 2 })) : undefined,
+  ]);
+  const X = poster ? 32 + PW + 16 + 50 : 64;
+  const W = 1200 - X - 44;
 
+  const longest = Math.max(r.title.length + (r.subtitle ? 1 : 0), r.subtitle?.length ?? 0);
+  const titleSize = longest > 22 ? 46 : longest > 18 ? 52 : longest > 14 ? 58 : longest > 10 ? 62 : 70;
   const rows = [
     ['Год выхода', year(r)],
     ['Разработчик', info?.developers?.join(', ')],
@@ -61,77 +74,116 @@ export async function renderOg(r: Release): Promise<Buffer> {
     ['Платформы', r.platforms.map((p) => (p === 'pc' ? 'ПК' : 'Android')).join(', ')],
   ].filter(([, v]) => v) as [string, string][];
 
-  const titleSize = r.title.length > 18 ? 36 : r.title.length > 12 ? 42 : 50;
-  const star = `data:image/svg+xml;base64,${Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="${accent}" d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>`).toString('base64')}`;
-
-  // В Telegram картинка показывается ~в 3 раза меньше, поэтому весь текст крупный (от 24px)
+  // В Telegram картинка показывается ~в 3 раза меньше, поэтому весь текст крупный (от 25px)
   const tree = h(
     'div',
-    { width: 1200, height: 630, position: 'relative', background: '#08080c', fontFamily: BODY, color: '#f4f3f8' },
+    { width: 1200, height: 630, position: 'relative', background: '#0b0b12', fontFamily: BODY, color: '#fff' },
     img(bg, { position: 'absolute', top: 0, left: 0, width: 1200, height: 630, objectFit: 'cover' }),
-    h('div', { position: 'absolute', top: 0, left: 0, width: 1200, height: 630, background: 'linear-gradient(90deg, rgba(8,8,12,0.45), rgba(8,8,12,0.9))' }),
+    layer({ background: 'linear-gradient(90deg, rgba(11,11,18,0.1) 0%, rgba(11,11,18,0.55) 40%, rgba(11,11,18,0.78) 100%)' }),
+    art && framed(art, PW, PH, 8, 22, -2, { position: 'absolute', top: 32, left: 32 }),
     h(
       'div',
-      { position: 'absolute', top: 36, left: 40, width: 1120, height: 558, flexDirection: 'column' },
+      { position: 'absolute', top: 38, left: X, width: W, height: 554, flexDirection: 'column', justifyContent: 'space-between' },
+      // Название
       h(
         'div',
-        { height: 352, alignItems: 'center', gap: 36 },
-        // Баннер
+        { flexDirection: 'column' },
         h(
           'div',
-          { width: 560, height: 315, borderRadius: 20, overflow: 'hidden', border: `3px solid ${accent}`, boxShadow: `0 0 60px ${accent}88`, flexShrink: 0 },
-          img(art, { width: 560, height: 315, objectFit: 'cover' }),
+          { flexDirection: 'column', width: W, fontSize: titleSize, fontWeight: 800, lineHeight: 1.06, letterSpacing: -1 },
+          h('div', {}, r.subtitle ? `${r.title}:` : r.title),
+          r.subtitle && h('div', {}, r.subtitle),
         ),
-        // Инфа
+        h('div', { fontSize: 27, fontWeight: 600, color: 'rgba(235,232,245,0.72)', marginTop: 8 }, r.original),
+      ),
+      // Инфа + рейтинг
+      h(
+        'div',
+        { alignItems: 'center', justifyContent: 'space-between', width: W },
         h(
           'div',
-          { flexDirection: 'column', width: 524 },
-          h('div', { fontFamily: HEAD, fontSize: titleSize, lineHeight: 1.08, fontWeight: 700 }, r.title),
-          r.subtitle && h('div', { fontSize: 30, fontWeight: 700, color: accent, marginTop: 6 }, r.subtitle),
+          { flexDirection: 'column', gap: 3 },
+          ...rows.map(([k, v]) => h('div', { fontSize: 27, lineHeight: 1.3 }, h('div', { fontWeight: 800, marginRight: 10 }, `${k}:`), h('div', { fontWeight: 600, color: DIM }, v))),
+        ),
+        info?.rating &&
           h(
             'div',
-            { flexDirection: 'column', marginTop: 18, gap: 4 },
-            ...rows.map(([k, v]) =>
-              h('div', { fontSize: 27, lineHeight: 1.3 }, h('div', { color: '#b4b2c4', width: 205, flexShrink: 0, fontWeight: 500 }, k), h('div', { fontWeight: 700, flex: 1 }, v)),
-            ),
-          ),
-          info?.rating &&
+            { flexDirection: 'column', paddingLeft: 26, borderLeft: '2px solid rgba(255,255,255,0.18)' },
+            h('div', { fontSize: 20, fontWeight: 700, color: 'rgba(235,232,245,0.7)', letterSpacing: 1 }, 'VNDB'),
             h(
               'div',
-              { alignItems: 'center', gap: 12, marginTop: 14 },
-              h('div', { fontFamily: HEAD, fontSize: 50, fontWeight: 700 }, (info.rating / 10).toFixed(1)),
-              img(star, { width: 42, height: 42 }),
-              h('div', { fontSize: 26, color: '#b4b2c4', fontWeight: 700 }, 'VNDB'),
+              { alignItems: 'center', gap: 8, marginTop: -4 },
+              h('div', { fontSize: 76, fontWeight: 800, letterSpacing: -2 }, (info.rating / 10).toFixed(1)),
+              img(star, { width: 46, height: 46 }),
             ),
-        ),
+          ),
       ),
-      // Низ: теги в два ряда и подпись группы
+      // Теги, максимум два ряда
+      h('div', { gap: 10, flexWrap: 'wrap', width: W, height: 102, overflow: 'hidden', alignContent: 'flex-start' }, ...r.tags.map(pill)),
+      // Группа
       h(
         'div',
-        { height: 206, width: 1120, justifyContent: 'space-between', alignItems: 'center', borderTop: '2px solid rgba(255,255,255,0.12)', paddingTop: 8 },
-        h(
-          'div',
-          { gap: 10, flexWrap: 'wrap', width: 610, height: 108, overflow: 'hidden', alignContent: 'flex-start' },
-          ...r.tags.slice(0, 8).map((t) =>
-            h('div', { fontSize: 25, fontWeight: 700, padding: '6px 18px', borderRadius: 999, background: 'rgba(255,255,255,0.12)', border: '2px solid rgba(255,255,255,0.18)' }, t),
-          ),
-        ),
-        h(
-          'div',
-          { alignItems: 'center', gap: 16 },
-          img(avatar, { width: 84, height: 84, borderRadius: 42, border: `3px solid ${accent}` }),
-          h(
-            'div',
-            { flexDirection: 'column', gap: 2 },
-            h('div', { fontFamily: HEAD, fontSize: 25, fontWeight: 700 }, site.name),
-            h('div', { fontSize: 24, color: '#c9c7d6', fontWeight: 700 }, site.socials.telegram.replace(/^https?:\/\//, '')),
-          ),
-        ),
+        { alignItems: 'center', gap: 16 },
+        img(avatar(), { width: 66, height: 66, borderRadius: 33, border: '3px solid rgba(255,255,255,0.85)' }),
+        h('div', { fontSize: 32, fontWeight: 800, letterSpacing: -0.5 }, site.name),
       ),
     ),
   );
+  return render(tree);
+}
 
-  const svg = await satori(tree as never, { width: 1200, height: 630, fonts });
-  const png = new Resvg(svg, { fitTo: { mode: 'width', value: 1200 } }).render().asPng();
-  return sharp(png).jpeg({ quality: 86, mozjpeg: true }).toBuffer();
+const plural = (n: number, one: string, few: string, many: string) =>
+  n % 10 === 1 && n % 100 !== 11 ? one : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? few : many;
+
+// Превью главной: аватар, название, слоган и веер из постеров последних релизов
+export async function renderHomeOg(releases: Release[]): Promise<Buffer> {
+  const released = releases.filter((r) => r.status === 'released');
+  // сначала вышедшие (новые первыми), добор из планов; самый свежий в веере сверху справа
+  const posters = [...released, ...releases.filter((r) => r.status !== 'released')]
+    .map((r) => r.posterFile)
+    .filter((f): f is string => !!f)
+    .slice(0, 4)
+    .reverse();
+  const PH = 330, PW = Math.round(PH * 0.707);
+  const arts = await Promise.all(posters.map((p) => uri(sharp(p).resize(PW * 2, PH * 2, { fit: 'cover', position: 'top' }))));
+  const bg = posters.length ? await backdrop(posters[posters.length - 1], 22, 0.45) : undefined;
+  const fans: Record<number, { left: number; top: number; rot: number }[]> = {
+    1: [{ left: 180, top: 140, rot: 3 }],
+    2: [{ left: 100, top: 150, rot: -5 }, { left: 260, top: 140, rot: 5 }],
+    3: [{ left: 40, top: 165, rot: -8 }, { left: 185, top: 135, rot: 0 }, { left: 330, top: 165, rot: 8 }],
+    4: [{ left: 0, top: 170, rot: -9 }, { left: 125, top: 135, rot: -3 }, { left: 250, top: 135, rot: 3 }, { left: 370, top: 170, rot: 9 }],
+  };
+  const pos = fans[arts.length] ?? [];
+  const n = released.length;
+  const platforms = new Set(released.flatMap((r) => r.platforms));
+
+  const tree = h(
+    'div',
+    { width: 1200, height: 630, position: 'relative', background: '#0b0b12', fontFamily: BODY, color: '#fff' },
+    bg && img(bg, { position: 'absolute', top: 0, left: 0, width: 1200, height: 630, objectFit: 'cover' }),
+    layer({ background: 'linear-gradient(90deg, rgba(11,11,18,0.85) 0%, rgba(11,11,18,0.55) 55%, rgba(11,11,18,0.25) 100%)' }),
+    h(
+      'div',
+      { position: 'absolute', top: 0, left: 590, width: 610, height: 630 },
+      ...arts.map((a, i) => framed(a, PW, PH, 6, 18, pos[i].rot, { position: 'absolute', left: pos[i].left, top: pos[i].top })),
+    ),
+    h(
+      'div',
+      { position: 'absolute', top: 60, left: 60, width: 520, height: 510, flexDirection: 'column', justifyContent: 'space-between' },
+      img(avatar(), { width: 132, height: 132, borderRadius: 66, border: '4px solid rgba(255,255,255,0.9)' }),
+      h(
+        'div',
+        { flexDirection: 'column' },
+        h('div', { fontSize: 70, fontWeight: 800, lineHeight: 1.0, letterSpacing: -2, width: 520 }, site.name),
+        h('div', { fontSize: 32, fontWeight: 600, color: 'rgba(235,232,245,0.82)', marginTop: 16 }, site.tagline),
+      ),
+      h(
+        'div',
+        { gap: 10 },
+        pill(`${n} ${plural(n, 'перевод', 'перевода', 'переводов')}`),
+        pill(platforms.has('android') ? 'ПК и Android' : 'ПК'),
+      ),
+    ),
+  );
+  return render(tree);
 }

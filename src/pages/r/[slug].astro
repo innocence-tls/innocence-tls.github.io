@@ -11,7 +11,7 @@ export async function getStaticPaths() {
 
 const { r } = Astro.props as { r: Release };
 const base = import.meta.env.BASE_URL;
-const og = r.imageFile ? `${base}og/${r.slug}.jpg` : undefined;
+const og = r.posterFile || r.imageFile ? `${base}og/${r.slug}.jpg` : undefined;
 const info = r.info;
 // Описание для превью ссылки: до ~200 символов, обрезка по слову
 const short = r.desc && (r.desc.length > 200 ? r.desc.slice(0, 200).replace(/[\s,.;:!?-]+\S*$/, '') + '...' : r.desc);

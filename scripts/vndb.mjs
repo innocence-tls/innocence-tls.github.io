@@ -49,15 +49,23 @@ try {
   console.warn(`vndb: не удалось обновить (${e.message}), беру кеш`);
 }
 
-// Обложка с VNDB нужна только релизам без своего баннера, и только если она без откровенного.
+// Обложка с VNDB, только если она без откровенного:
+// - релизу без своего баннера/обложки кладётся в его папку как cover.jpg;
+// - релизу с баннером, но без poster.*, идёт в src/data/posters/ (не в репо) для превью ссылок.
+const POSTERS = path.join(ROOT, 'src/data/posters');
 for (const r of releases) {
   const dir = path.join(REL, r.slug);
-  const has = fs.readdirSync(dir).some((f) => /^(banner|cover)\.(jpe?g|png|webp)$/i.test(f));
+  const files = fs.readdirSync(dir);
   const img = cache[r.vndb]?.image;
-  if (has || !img || img.sexual >= 1) continue;
+  if (!img || img.sexual >= 1) continue;
+  let out;
+  if (!files.some((f) => /^(banner|cover)\.(jpe?g|png|webp)$/i.test(f))) out = path.join(dir, 'cover.jpg');
+  else if (!files.some((f) => /^(poster|cover)\.(jpe?g|png|webp)$/i.test(f))) out = path.join(POSTERS, `${r.slug}.jpg`);
+  if (!out || fs.existsSync(out)) continue;
   try {
     const buf = Buffer.from(await (await fetch(img.url)).arrayBuffer());
-    fs.writeFileSync(path.join(dir, 'cover.jpg'), buf);
+    fs.mkdirSync(path.dirname(out), { recursive: true });
+    fs.writeFileSync(out, buf);
     console.log(`vndb: обложка для ${r.slug}`);
   } catch (e) {
     console.warn(`vndb: обложка ${r.slug} не скачалась (${e.message})`);

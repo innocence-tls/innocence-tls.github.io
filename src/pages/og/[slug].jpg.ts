@@ -4,7 +4,7 @@ import { getReleases, type Release } from '../../lib/releases';
 import { renderOg } from '../../lib/og';
 
 export async function getStaticPaths() {
-  return (await getReleases()).filter((r) => r.status === 'released' && r.imageFile).map((r) => ({ params: { slug: r.slug }, props: { r } }));
+  return (await getReleases()).filter((r) => r.status === 'released' && (r.posterFile || r.imageFile)).map((r) => ({ params: { slug: r.slug }, props: { r } }));
 }
 
 export const GET: APIRoute = async ({ props }) =>

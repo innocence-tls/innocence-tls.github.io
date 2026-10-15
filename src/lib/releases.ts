@@ -59,11 +59,23 @@ export type Release = z.infer<typeof schema> & {
   shots: ImageMetadata[];
   accent: string;
   imageFile?: string; // путь на диске к баннеру/обложке, для генерации превью
+  posterFile?: string; // вертикальный постер для превью ссылки: poster.jpg, обложка или постер с VNDB
   info?: VndbInfo;
 };
 
 const yamls = import.meta.glob('/releases/*/release.yaml', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
-const images = import.meta.glob('/releases/*/**/*.{jpg,jpeg,png,webp}', { import: 'default', eager: true }) as Record<string, ImageMetadata>;
+// poster.* нужен только для превью ссылок, на сайт его не тащим
+const images = import.meta.glob(['/releases/*/**/*.{jpg,jpeg,png,webp}', '!/releases/*/poster.*'], { import: 'default', eager: true }) as Record<string, ImageMetadata>;
+
+// Постер для превью: свой poster.* > обложка > постер с VNDB (качает scripts/vndb.mjs, только без откровенного)
+function posterOf(slug: string, coverFile?: string) {
+  const dir = path.join(__ROOT__, 'releases', slug);
+  const own = fs.readdirSync(dir).find((f) => /^poster\.(jpe?g|png|webp)$/i.test(f));
+  if (own) return path.join(dir, own);
+  if (coverFile) return coverFile;
+  const vndb = path.join(__ROOT__, 'src/data/posters', `${slug}.jpg`);
+  return fs.existsSync(vndb) ? vndb : undefined;
+}
 
 const slugOf = (p: string) => p.split('/')[2];
 
@@ -108,9 +120,11 @@ export async function getReleases(): Promise<Release[]> {
     const shots = own.filter(([k]) => k.includes('/shots/')).sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true })).map(([, v]) => v);
     const srcFile = own.find(([k]) => /\/(banner|cover)\.\w+$/.test(k))?.[0];
     const imageFile = srcFile ? path.join(__ROOT__, srcFile) : undefined;
+    const coverSrc = own.find(([k]) => /\/cover\.\w+$/.test(k))?.[0];
+    const posterFile = posterOf(slug, coverSrc && path.join(__ROOT__, coverSrc));
     const accent = parsed.data.accent ?? (imageFile ? await accentOf(imageFile) : 'hsl(345 85% 62%)');
     const info = parsed.data.vndb ? (vndbData as Record<string, VndbInfo>)[parsed.data.vndb] : undefined;
-    cache.set(slug, { ...parsed.data, slug, banner, cover, shots, accent, imageFile, info });
+    cache.set(slug, { ...parsed.data, slug, banner, cover, shots, accent, imageFile, posterFile, info });
   }
   return [...cache.values()].sort(byDate);
 }

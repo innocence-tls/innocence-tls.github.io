@@ -17,7 +17,7 @@ released.forEach((r) => r.tags.forEach((t) => tagCount.set(t, (tagCount.get(t) ?
 const topTags = [...tagCount].sort((a, b) => b[1] - a[1]).slice(0, 14).map(([t]) => t);
 ---
 
-<Base>
+<Base image={`${base}og/home.jpg`}>
   {
     latest && (
       <section class="hero" style={`--accent:${latest.accent}`}>
