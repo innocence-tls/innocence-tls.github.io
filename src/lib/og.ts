@@ -40,6 +40,24 @@ const pill = (t: string) => {
   // Высота задана явно (43 + рамка 3 + зазор 10 = два ряда ровно в 102px блока тегов), иначе нижний ряд обрезается
   return h('div', { fontSize: 25, fontWeight: 700, height: 43, padding: '0 18px 3px', alignItems: 'center', borderRadius: 999, backgroundImage: c.bg, border: `1.5px solid ${c.border}`, color: c.fg }, t);
 };
+// Теги по рядам: ширину плашки оцениваем с запасом, в два ряда целиком влезают только те, что помещаются; остальные не рисуем
+// (переносу и обрезке по высоте доверять нельзя: нижний ряд режется)
+function tagRows(tags: string[], width: number, maxRows = 2): string[][] {
+  const rows: string[][] = [[]];
+  let used = 0;
+  for (const t of tags) {
+    const w = t.length * 14.5 + 39;
+    if (rows[rows.length - 1].length && used + 10 + w > width) {
+      if (rows.length === maxRows) break;
+      rows.push([]);
+      used = 0;
+    }
+    const row = rows[rows.length - 1];
+    used += (row.length ? 10 : 0) + w;
+    row.push(t);
+  }
+  return rows;
+}
 // Плашка без цвета тега (счётчик переводов, платформы на главной)
 const plainPill = (t: string) =>
   h('div', { fontSize: 25, fontWeight: 700, padding: '5px 18px 7px', borderRadius: 999, background: 'rgba(10,10,18,0.62)', border: '1.5px solid rgba(255,255,255,0.16)', color: '#f1eff8' }, t);
@@ -126,7 +144,7 @@ export async function renderOg(r: Release): Promise<Buffer> {
           ),
       ),
       // Теги, максимум два ряда
-      h('div', { gap: 10, flexWrap: 'wrap', width: W, height: 102, overflow: 'hidden', alignContent: 'flex-start' }, ...r.tags.map(pill)),
+      h('div', { flexDirection: 'column', gap: 10, width: W }, ...tagRows(r.tags, W).map((row) => h('div', { gap: 10 }, ...row.map(pill)))),
       // Группа
       h(
         'div',
