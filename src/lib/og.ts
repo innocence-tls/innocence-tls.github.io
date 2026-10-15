@@ -37,7 +37,8 @@ const star = `data:image/svg+xml;base64,${Buffer.from(
 
 const pill = (t: string) => {
   const c = tagColor(t);
-  return h('div', { fontSize: 25, fontWeight: 700, padding: '5px 18px 7px', borderRadius: 999, backgroundImage: c.bg, border: `1.5px solid ${c.border}`, color: c.fg }, t);
+  // Высота задана явно (43 + рамка 3 + зазор 10 = два ряда ровно в 102px блока тегов), иначе нижний ряд обрезается
+  return h('div', { fontSize: 25, fontWeight: 700, height: 43, padding: '0 18px 3px', alignItems: 'center', borderRadius: 999, backgroundImage: c.bg, border: `1.5px solid ${c.border}`, color: c.fg }, t);
 };
 // Плашка без цвета тега (счётчик переводов, платформы на главной)
 const plainPill = (t: string) =>
