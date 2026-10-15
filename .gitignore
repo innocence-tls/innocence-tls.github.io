@@ -6,3 +6,5 @@ src/data/posters/
 # локальные заметки и инструменты, не для репо
 docs/dev.md
 scripts/shoot.mjs
+admin/
+admin.cmd

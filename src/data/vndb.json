@@ -112,5 +112,21 @@
    "url": "https://t.vndb.org/cv/89/89689.jpg",
    "violence": 0
   }
+ },
+ "v702": {
+  "title": "Kanojo x Kanojo x Kanojo ~Sanshimai to no Dokidoki Kyoudou Seikatsu~",
+  "alttitle": "彼女×彼女×彼女～三姉妹とのドキドキ共同生活～",
+  "released": "2008-05-30",
+  "rating": 74.8,
+  "votes": 431,
+  "minutes": 1680,
+  "developers": [
+   "ωstar"
+  ],
+  "image": {
+   "sexual": 2,
+   "url": "https://t.vndb.org/cv/43/94743.jpg",
+   "violence": 0
+  }
  }
 }
