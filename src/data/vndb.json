@@ -1383,5 +1383,37 @@
    "url": "https://t.vndb.org/cv/65/103065.jpg",
    "violence": 0
   }
+ },
+ "v28871": {
+  "title": "Hibikino-san-chi wa Eroge-ya-san!",
+  "alttitle": "響野さん家はエロゲ屋さん！",
+  "released": "2020-11-27",
+  "rating": 72.4,
+  "votes": 169,
+  "minutes": 1475,
+  "developers": [
+   "Sonora"
+  ],
+  "image": {
+   "sexual": 0.07,
+   "url": "https://t.vndb.org/cv/29/89229.jpg",
+   "violence": 0
+  }
+ },
+ "v4037": {
+  "title": "Eroge! ~H mo Game mo Kaihatsu Zanmai~",
+  "alttitle": "えろげー！～Hもゲームも開発三昧～",
+  "released": "2010-06-25",
+  "rating": 69.4,
+  "votes": 2596,
+  "minutes": 1268,
+  "developers": [
+   "CLOCKUP team.ANISE"
+  ],
+  "image": {
+   "sexual": 1,
+   "url": "https://t.vndb.org/cv/35/89135.jpg",
+   "violence": 0
+  }
  }
 }
