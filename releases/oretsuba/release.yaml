@@ -2,4 +2,36 @@ title: Мы - бескрылые
 subtitle: Под невинным небом
 original: Ore-tachi ni Tsubasa wa Nai
 vndb: v1141
-status: wip
+status: released
+date: 2026-10-23
+length: 50 часов
+platforms: [pc, android]
+censorship: pixel
+tags: [драма, триллер, философия, романтика, комедия, криминал, сюжет, школа, силакрови, умныйГГ, ГГ парень]
+desc: >
+  Трое главных героев живут в одном городе, но будто в разных мирах. Один сбегает от жизни в
+  фантазии, другой ищет себя в повседневной суете, третий решает чужие проблемы кулаками. Их
+  судьбы постепенно переплетаются, и за привычной городской жизнью проступает история куда
+  страннее и загадочнее, чем кажется на первый взгляд...
+
+  vndb
+note: |
+  Сделано по спецзаказу.
+  Установка андроид версии через APK.
+  Жесты:
+  - Свайп вверх - открыть меню
+  - Свайп вправо - пропуск
+  - Свайп влево - откат назад
+  - Свайп вниз - скрыть окно текста
+posts:
+  tg: https://t.me/innocence_translations/553
+  vk: https://vk.ru/innocence_translations?w=wall-233660350_298
+  boosty: https://boosty.to/innocence_translations/posts/f779c826-cf2d-47fe-82bb-05a8cecd71cc
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1CpyLPA-bGIstRnz575x4oPON7XM777Wi/view?usp=sharing" }
+  android:
+    - { host: tg, url: "https://t.me/innocence_files/80" }
+  patch:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1hzqn5a6UH9y7Yeg0GAMkufhRai8ELStK/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/81" }
