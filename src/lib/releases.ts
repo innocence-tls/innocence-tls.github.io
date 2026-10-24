@@ -49,7 +49,7 @@ function posterOf(slug: string, coverFile?: string) {
 const slugOf = (p: string) => p.split('/')[2];
 
 // Акцент карточки: самый 'громкий' насыщенный оттенок постера (или баннера), приведённый к яркому и читаемому.
-async function accentOf(file: string): Promise<string> {
+export async function accentOf(file: string): Promise<string> {
   const { data } = await sharp(file).resize(48, 27, { fit: 'fill' }).removeAlpha().raw().toBuffer({ resolveWithObject: true });
   const bins = new Array(36).fill(0).map(() => ({ w: 0, h: 0 }));
   for (let i = 0; i < data.length; i += 3) {

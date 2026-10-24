@@ -1,0 +1,15 @@
+release: gerokasu
+date: 2026-10-17
+to: [pc, android]
+from: switch
+note: |
+  Сделано по спецзаказу.
+posts:
+  tg: https://t.me/innocence_translations/529
+  boosty: https://boosty.to/innocence_translations/posts/e9461cc1-05ae-40cc-9ae4-c2e460d72efa
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/112zdqhRRZu6qfg2mSuA0FR4QftUs1vxG/view?usp=sharing" }
+  android:
+    - { host: tg, url: "https://t.me/innocence_files/77" }
+    - { host: gdrive, url: "https://drive.google.com/file/d/1yd2pKB_LCZ2gCrVunCgTRE_rAfCrcASV/view?usp=sharing" }

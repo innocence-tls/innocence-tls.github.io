@@ -1,0 +1,11 @@
+release: angelos-armas
+date: 2026-10-20
+to: [android]
+from: pc
+engine: NPS
+posts:
+  tg: https://t.me/innocence_translations/546
+  boosty: https://boosty.to/innocence_translations/posts/cae045f6-29e0-4cb6-95a5-b31337382d54
+downloads:
+  android:
+    - { host: tg, url: "https://t.me/innocence_files/70" }

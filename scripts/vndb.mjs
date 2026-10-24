@@ -7,6 +7,7 @@ import YAML from 'yaml';
 const ROOT = path.resolve(import.meta.dirname, '..');
 const OUT = path.join(ROOT, 'src/data/vndb.json');
 const REL = path.join(ROOT, 'releases');
+const PORTS = path.join(ROOT, 'ports');
 
 const cache = fs.existsSync(OUT) ? JSON.parse(fs.readFileSync(OUT, 'utf8')) : {};
 const releases = fs.readdirSync(REL)
@@ -14,7 +15,15 @@ const releases = fs.readdirSync(REL)
   .map((d) => ({ slug: d, ...YAML.parse(fs.readFileSync(path.join(REL, d, 'release.yaml'), 'utf8')) }))
   .filter((r) => r.vndb);
 
-const ids = [...new Set(releases.map((r) => r.vndb))];
+// Порты: свой VNDB-id, если порт не привязан к релизу (у привязанного данные берутся у релиза)
+const ports = fs.existsSync(PORTS)
+  ? fs.readdirSync(PORTS)
+      .filter((d) => fs.existsSync(path.join(PORTS, d, 'port.yaml')))
+      .map((d) => ({ slug: d, ...YAML.parse(fs.readFileSync(path.join(PORTS, d, 'port.yaml'), 'utf8')) }))
+      .filter((p) => p.vndb)
+  : [];
+
+const ids = [...new Set([...releases, ...ports].map((r) => r.vndb))];
 const fields = 'id,title,alttitle,released,rating,votecount,length_minutes,developers.name,image.url,image.sexual,image.violence';
 
 async function query(chunk) {
@@ -52,6 +61,7 @@ try {
 // Обложка с VNDB, только если она без откровенного:
 // - релизу без своего баннера/обложки кладётся в его папку как cover.jpg;
 // - релизу с баннером, но без poster.*, идёт в src/data/posters/ (не в репо) для превью ссылок.
+// - порту с собственным VNDB-id и без своей картинки идёт в его папку как cover.jpg.
 const POSTERS = path.join(ROOT, 'src/data/posters');
 for (const r of releases) {
   const dir = path.join(REL, r.slug);
@@ -69,5 +79,18 @@ for (const r of releases) {
     console.log(`vndb: обложка для ${r.slug}`);
   } catch (e) {
     console.warn(`vndb: обложка ${r.slug} не скачалась (${e.message})`);
+  }
+}
+
+for (const p of ports) {
+  const dir = path.join(PORTS, p.slug);
+  const img = cache[p.vndb]?.image;
+  const out = path.join(dir, 'cover.jpg');
+  if (!img || img.sexual >= 1 || fs.existsSync(out) || fs.readdirSync(dir).some((f) => /^(poster|cover)\.(jpe?g|png|webp)$/i.test(f))) continue;
+  try {
+    fs.writeFileSync(out, Buffer.from(await (await fetch(img.url)).arrayBuffer()));
+    console.log(`vndb: обложка для порта ${p.slug}`);
+  } catch (e) {
+    console.warn(`vndb: обложка порта ${p.slug} не скачалась (${e.message})`);
   }
 }

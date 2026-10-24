@@ -4,8 +4,8 @@
   "alttitle": "俺たちに翼はない",
   "released": "2009-01-30",
   "rating": 86.5,
-  "votes": 662,
-  "minutes": 3757,
+  "votes": 667,
+  "minutes": 3645,
   "developers": [
    "Navel"
   ],
@@ -38,7 +38,7 @@
   "alttitle": "いろとりどりのセカイ",
   "released": "2011-07-29",
   "rating": 80.8,
-  "votes": 1447,
+  "votes": 1451,
   "minutes": 2748,
   "developers": [
    "FAVORITE"
@@ -54,7 +54,7 @@
   "alttitle": "駄作",
   "released": "2014-11-28",
   "rating": 63.4,
-  "votes": 336,
+  "votes": 338,
   "minutes": 738,
   "developers": [
    "CYCLET"
@@ -70,24 +70,24 @@
   "alttitle": null,
   "released": "2019-12-20",
   "rating": 61,
-  "votes": 1142,
+  "votes": 1144,
   "minutes": 262,
   "developers": [
    "Black Cyc"
   ],
   "image": {
-   "sexual": 2,
-   "url": "https://t.vndb.org/cv/19/75719.jpg",
-   "violence": 0.87
+   "sexual": 1,
+   "url": "https://t.vndb.org/cv/16/77916.jpg",
+   "violence": 0.93
   }
  },
  "v30012": {
   "title": "Fuyukara, Kururu.",
   "alttitle": "ふゆから、くるる。",
   "released": "2021-09-24",
-  "rating": 73.7,
-  "votes": 314,
-  "minutes": 1141,
+  "rating": 73.8,
+  "votes": 321,
+  "minutes": 1151,
   "developers": [
    "SILKY'S PLUS"
   ],
@@ -149,8 +149,8 @@
   "title": "Ousama Ren'ai",
   "alttitle": "王様恋愛",
   "released": "2026-09-25",
-  "rating": 74,
-  "votes": 76,
+  "rating": 74.3,
+  "votes": 80,
   "minutes": 982,
   "developers": [
    "ASa Project"
@@ -165,9 +165,9 @@
   "title": "Shizuku",
   "alttitle": "雫",
   "released": "1996-01-26",
-  "rating": 62.5,
-  "votes": 573,
-  "minutes": 660,
+  "rating": 62.6,
+  "votes": 575,
+  "minutes": 661,
   "developers": [
    "Leaf"
   ],
@@ -182,7 +182,7 @@
   "alttitle": "終ノ空",
   "released": "1999-08-27",
   "rating": 68.3,
-  "votes": 937,
+  "votes": 943,
   "minutes": 464,
   "developers": [
    "KeroQ"
@@ -197,8 +197,8 @@
   "title": "Saiaku Naru Saiyaku Ningen ni Sasagu",
   "alttitle": "最悪なる災厄人間に捧ぐ",
   "released": "2018-08-22",
-  "rating": 82.9,
-  "votes": 180,
+  "rating": 82.8,
+  "votes": 179,
   "minutes": 2385,
   "developers": [
    "Kemco Corporation",
@@ -231,7 +231,7 @@
   "alttitle": "サノバウィッチ",
   "released": "2015-02-27",
   "rating": 78.3,
-  "votes": 5970,
+  "votes": 5987,
   "minutes": 3000,
   "developers": [
    "Yuzusoft"
@@ -263,8 +263,8 @@
   "title": "Albatross Koukairoku",
   "alttitle": "信天翁航海録",
   "released": "2010-07-23",
-  "rating": 82.6,
-  "votes": 173,
+  "rating": 82.7,
+  "votes": 175,
   "minutes": 3062,
   "developers": [
    "raiL-soft"
@@ -280,7 +280,7 @@
   "alttitle": "月に寄りそう乙女の作法",
   "released": "2012-10-26",
   "rating": 79.5,
-  "votes": 1136,
+  "votes": 1139,
   "minutes": 2351,
   "developers": [
    "Navel"
@@ -327,8 +327,8 @@
   "title": "Kusarihime ~Euthanasia~",
   "alttitle": "腐り姫 ～euthanasia～",
   "released": "2002-02-08",
-  "rating": 79.1,
-  "votes": 565,
+  "rating": 79.2,
+  "votes": 566,
   "minutes": 945,
   "developers": [
    "Liar-soft"
@@ -344,7 +344,7 @@
   "alttitle": null,
   "released": "2022-09-15",
   "rating": 86.6,
-  "votes": 222,
+  "votes": 224,
   "minutes": 3000,
   "developers": [
    "BA-KU"
@@ -359,7 +359,7 @@
   "title": "Paradise Lost",
   "alttitle": null,
   "released": "2004-01-16",
-  "rating": 71.2,
+  "rating": 71.1,
   "votes": 253,
   "minutes": 2059,
   "developers": [
@@ -392,7 +392,7 @@
   "alttitle": "ハピメア",
   "released": "2013-02-28",
   "rating": 73.9,
-  "votes": 1865,
+  "votes": 1867,
   "minutes": 2400,
   "developers": [
    "Purple software"
@@ -439,8 +439,8 @@
   "title": "Uchi wa Mou, Enki Dekinai.",
   "alttitle": "ウチはもう、延期できない。",
   "released": "2021-11-26",
-  "rating": 75,
-  "votes": 280,
+  "rating": 75.1,
+  "votes": 282,
   "minutes": 1650,
   "developers": [
    "Sonora"
@@ -455,7 +455,7 @@
   "title": "Konchuu Kansatsu",
   "alttitle": "昆蟲姦察",
   "released": "2012-06-22",
-  "rating": 61.2,
+  "rating": 61,
   "votes": 126,
   "minutes": 300,
   "developers": [
@@ -472,7 +472,7 @@
   "alttitle": "ディメンション凸ラバース！！",
   "released": "2026-04-24",
   "rating": 82.6,
-  "votes": 526,
+  "votes": 530,
   "minutes": 1683,
   "developers": [
    "CRYSTALiA"
@@ -487,7 +487,7 @@
   "title": "Soushuu Senshinkan Gakuen: Hachimyoujin",
   "alttitle": "相州戦神館學園 八命陣",
   "released": "2014-02-28",
-  "rating": 82.8,
+  "rating": 82.7,
   "votes": 341,
   "minutes": 3261,
   "developers": [
@@ -503,9 +503,9 @@
   "title": "Putrika 2nd.cut:For the Exquisite Attire",
   "alttitle": "プトリカ 2nd.cut:For the Exquisite Attire",
   "released": "2026-06-05",
-  "rating": 79.5,
-  "votes": 68,
-  "minutes": 544,
+  "rating": 79.7,
+  "votes": 69,
+  "minutes": 553,
   "developers": [
    "Totometori"
   ],
@@ -520,8 +520,8 @@
   "alttitle": "プトリカ 1st.cut:The Reason She Must Perish",
   "released": "2024-10-07",
   "rating": 74.9,
-  "votes": 279,
-  "minutes": 245,
+  "votes": 281,
+  "minutes": 246,
   "developers": [
    "Totometori"
   ],
@@ -536,7 +536,7 @@
   "alttitle": "さくら、もゆ。-as the Night's, Reincarnation-",
   "released": "2019-01-31",
   "rating": 85.4,
-  "votes": 885,
+  "votes": 884,
   "minutes": 3652,
   "developers": [
    "FAVORITE"
@@ -552,7 +552,7 @@
   "alttitle": "シルバー事件25区",
   "released": "2005-10-03",
   "rating": 85.3,
-  "votes": 543,
+  "votes": 547,
   "minutes": 1260,
   "developers": [
    "Active Gaming Media Inc.",
@@ -585,7 +585,7 @@
   "alttitle": null,
   "released": "2019-06-28",
   "rating": 68.3,
-  "votes": 626,
+  "votes": 629,
   "minutes": 1018,
   "developers": [
    "CLOCKUP"
@@ -601,7 +601,7 @@
   "alttitle": null,
   "released": "2018-07-27",
   "rating": 74.4,
-  "votes": 425,
+  "votes": 426,
   "minutes": 1170,
   "developers": [
    "CLOCKUP"
@@ -617,7 +617,7 @@
   "alttitle": null,
   "released": "2015-11-27",
   "rating": 69.4,
-  "votes": 1608,
+  "votes": 1610,
   "minutes": 1408,
   "developers": [
    "CLOCKUP"
@@ -632,8 +632,8 @@
   "title": "Natsu no Kusari",
   "alttitle": "夏ノ鎖",
   "released": "2016-03-25",
-  "rating": 71.6,
-  "votes": 676,
+  "rating": 71.7,
+  "votes": 679,
   "minutes": 350,
   "developers": [
    "CLOCKUP"
@@ -664,9 +664,9 @@
   "title": "Hamidashi Creative Re:Re:call",
   "alttitle": "ハミダシクリエイティブRe:Re:call",
   "released": "2025-04-25",
-  "rating": 69.8,
-  "votes": 154,
-  "minutes": 525,
+  "rating": 70.2,
+  "votes": 158,
+  "minutes": 513,
   "developers": [
    "Madosoft"
   ],
@@ -681,7 +681,7 @@
   "alttitle": "ハミダシクリエイティブ凸",
   "released": "2022-11-25",
   "rating": 77.7,
-  "votes": 327,
+  "votes": 329,
   "minutes": 1230,
   "developers": [
    "Madosoft"
@@ -697,7 +697,7 @@
   "alttitle": "暁の護衛",
   "released": "2008-03-27",
   "rating": 73.6,
-  "votes": 1336,
+  "votes": 1338,
   "minutes": 1542,
   "developers": [
    "Syangrila"
@@ -729,7 +729,7 @@
   "alttitle": "ハミダシクリエイティブ",
   "released": "2020-09-25",
   "rating": 77,
-  "votes": 747,
+  "votes": 752,
   "minutes": 2632,
   "developers": [
    "Madosoft"
@@ -744,8 +744,8 @@
   "title": "anemoi",
   "alttitle": null,
   "released": "2026-04-24",
-  "rating": 79.4,
-  "votes": 289,
+  "rating": 79.3,
+  "votes": 295,
   "minutes": 3720,
   "developers": [
    "Key"
@@ -793,7 +793,7 @@
   "alttitle": "黄昏のシンセミア",
   "released": "2010-07-22",
   "rating": 79.6,
-  "votes": 474,
+  "votes": 475,
   "minutes": 2518,
   "developers": [
    "Applique"
@@ -825,7 +825,7 @@
   "alttitle": "冥契のルペルカリア",
   "released": "2021-02-26",
   "rating": 81.5,
-  "votes": 839,
+  "votes": 840,
   "minutes": 1575,
   "developers": [
    "Uguisu Kagura"
@@ -840,8 +840,8 @@
   "title": "Kami no Ue no Mahoutsukai",
   "alttitle": "紙の上の魔法使い",
   "released": "2014-12-19",
-  "rating": 81.9,
-  "votes": 715,
+  "rating": 82,
+  "votes": 718,
   "minutes": 2040,
   "developers": [
    "Uguisu Kagura"
@@ -857,7 +857,7 @@
   "alttitle": "終ノ空 remake",
   "released": "2020-12-25",
   "rating": 78.1,
-  "votes": 1744,
+  "votes": 1751,
   "minutes": 1021,
   "developers": [
    "KeroQ"
@@ -873,7 +873,7 @@
   "alttitle": "サクラノ刻－櫻の森の下を歩む－",
   "released": "2023-02-24",
   "rating": 87,
-  "votes": 1112,
+  "votes": 1114,
   "minutes": 2948,
   "developers": [
    "Makura"
@@ -888,7 +888,7 @@
   "title": "Ryuusei World Actor: Gaslight Bullet",
   "alttitle": "流星ワールドアクター Gaslight Bullet",
   "released": "2026-02-27",
-  "rating": 78.3,
+  "rating": 78.4,
   "votes": 193,
   "minutes": 1780,
   "developers": [
@@ -920,8 +920,8 @@
   "title": "Suisou Ginka no Istoria",
   "alttitle": "水葬銀貨のイストリア",
   "released": "2017-03-24",
-  "rating": 77.5,
-  "votes": 406,
+  "rating": 77.6,
+  "votes": 408,
   "minutes": 2550,
   "developers": [
    "Uguisu Kagura"
@@ -952,9 +952,9 @@
   "title": "Mahou Shoujo no Majo Saiban",
   "alttitle": "魔法少女ノ魔女裁判",
   "released": "2025-07-18",
-  "rating": 80.3,
-  "votes": 1315,
-  "minutes": 1912,
+  "rating": 80.2,
+  "votes": 1325,
+  "minutes": 1916,
   "developers": [
    "Re,AER LLC.",
    "Acacia"
@@ -970,7 +970,7 @@
   "alttitle": "カオスヘッド らぶChu☆Chu!",
   "released": "2010-03-25",
   "rating": 67.3,
-  "votes": 248,
+  "votes": 249,
   "minutes": 1380,
   "developers": [
    "NITRO PLUS",
@@ -987,9 +987,9 @@
   "title": "Sayonara o Oshiete ~Comment te Dire Adieu~",
   "alttitle": "さよならを教えて～comment te dire adieu～",
   "released": "2001-03-02",
-  "rating": 78.7,
-  "votes": 1524,
-  "minutes": 672,
+  "rating": 78.6,
+  "votes": 1550,
+  "minutes": 668,
   "developers": [
    "CRAFTWORK"
   ],
@@ -1020,7 +1020,7 @@
   "alttitle": "Rance Ⅹ -決戦-",
   "released": "2018-02-23",
   "rating": 90.6,
-  "votes": 1255,
+  "votes": 1262,
   "minutes": 10092,
   "developers": [
    "Alice Soft"
@@ -1035,8 +1035,8 @@
   "title": "Tenshi no Nichou Kenjuu -Angelos Armas-",
   "alttitle": "天使ノ二挺拳銃 -Angelos Armas-",
   "released": "2005-01-28",
-  "rating": 68.7,
-  "votes": 112,
+  "rating": 68.8,
+  "votes": 113,
   "minutes": 1200,
   "developers": [
    "NITRO PLUS"
@@ -1052,7 +1052,7 @@
   "alttitle": null,
   "released": "2021-10-29",
   "rating": 77.6,
-  "votes": 475,
+  "votes": 478,
   "minutes": 1178,
   "developers": [
    "HARUKAZE"
@@ -1067,8 +1067,8 @@
   "title": "Soushuu Senshinkan Gakuen: Bansenjin",
   "alttitle": "相州戦神館學園 万仙陣",
   "released": "2015-04-24",
-  "rating": 81.6,
-  "votes": 187,
+  "rating": 81.5,
+  "votes": 186,
   "minutes": 2400,
   "developers": [
    "light"
@@ -1115,7 +1115,7 @@
   "title": "Kanojo x Kanojo x Kanojo Dokidoki Full Throttle!",
   "alttitle": "彼女×彼女×彼女　ドキドキ フルスロットル！",
   "released": "2009-02-27",
-  "rating": 74.5,
+  "rating": 74.4,
   "votes": 250,
   "minutes": 1109,
   "developers": [
@@ -1131,7 +1131,7 @@
   "title": "Kitto, Sumiwataru Asairo Yori mo,",
   "alttitle": "きっと、澄みわたる朝色よりも、",
   "released": "2009-07-24",
-  "rating": 83.6,
+  "rating": 83.5,
   "votes": 574,
   "minutes": 1875,
   "developers": [
@@ -1163,8 +1163,8 @@
   "title": "Natsuzora no Perseus",
   "alttitle": "夏空のペルセウス",
   "released": "2012-12-21",
-  "rating": 72.1,
-  "votes": 330,
+  "rating": 72,
+  "votes": 331,
   "minutes": 729,
   "developers": [
    "minori"
@@ -1195,8 +1195,8 @@
   "title": "Kanojo to Ore to, Koisuru Resort ~Kanojo to Ore to Koibito to. & Koisuru Natsu no Last Resort W Fan Disc~",
   "alttitle": "彼女と俺と、恋するリゾート ～彼女と俺と恋人と。＆恋する夏のラストリゾートWファンディスク～",
   "released": "2014-10-31",
-  "rating": 74.7,
-  "votes": 98,
+  "rating": 74.9,
+  "votes": 99,
   "minutes": 1411,
   "developers": [
    "PULLTOP LATTE"
@@ -1212,8 +1212,8 @@
   "alttitle": null,
   "released": "2019-12-20",
   "rating": 80.5,
-  "votes": 931,
-  "minutes": 2270,
+  "votes": 933,
+  "minutes": 2273,
   "developers": [
    "OVERDRIVE"
   ],
@@ -1243,8 +1243,8 @@
   "title": "Gensou Rougoku no Kaleidoscope",
   "alttitle": "幻想牢獄のカレイドスコープ",
   "released": "2020-12-17",
-  "rating": 49,
-  "votes": 188,
+  "rating": 49.2,
+  "votes": 189,
   "minutes": 500,
   "developers": [
    "07th Expansion",
@@ -1260,15 +1260,15 @@
   "title": "Chinmai Kyuuketsuki no Ojou-sama ni Torawareta Ore wa, Nyotaika Saserarete Juujun na Imouto Maid ni Choukyou Sareteshimau Sou Desu",
   "alttitle": "ちんまい吸血姫のお嬢様に囚われた俺は、女体化させられて従順な妹メイドに調教されてしまうそうです。",
   "released": "2025-11-28",
-  "rating": 52.4,
-  "votes": 41,
+  "rating": 52.1,
+  "votes": 42,
   "minutes": 296,
   "developers": [
    "Studio Ubai Trans"
   ],
   "image": {
-   "sexual": 0,
-   "url": "https://t.vndb.org/cv/91/137091.jpg",
+   "sexual": 2,
+   "url": "https://t.vndb.org/cv/93/117393.jpg",
    "violence": 0
   }
  },
@@ -1276,9 +1276,9 @@
   "title": "Boku no Kanojo wa Gatenkei/Kanojo ga Shita Koto, Boku ga Sareta Koto/Kyonyuu Tsuma Kanzen Hokaku Keikaku/Boku no Tsuma ga Aitsu ni Netoraremashita.",
   "alttitle": "ボクの彼女はガテン系/彼女がした事、僕がされた事/巨乳妻完全捕獲計画/ボクの妻がアイツに寝取られました。",
   "released": "2011-12-08",
-  "rating": 76.8,
-  "votes": 605,
-  "minutes": 1080,
+  "rating": 76.9,
+  "votes": 606,
+  "minutes": 1099,
   "developers": [
    "elf"
   ],
@@ -1324,8 +1324,8 @@
   "title": "Pure Girl",
   "alttitle": "ピュアガール",
   "released": "2012-09-28",
-  "rating": 72.6,
-  "votes": 237,
+  "rating": 72.5,
+  "votes": 239,
   "minutes": 1500,
   "developers": [
    "Frontwing"
@@ -1357,7 +1357,7 @@
   "alttitle": "いろとりどりのヒカリ",
   "released": "2012-08-31",
   "rating": 84.4,
-  "votes": 653,
+  "votes": 655,
   "minutes": 2230,
   "developers": [
    "FAVORITE"
@@ -1372,7 +1372,7 @@
   "title": "Akai Hitomi ni Utsuru Sekai",
   "alttitle": "紅い瞳に映るセカイ",
   "released": "2015-07-24",
-  "rating": 79,
+  "rating": 78.9,
   "votes": 403,
   "minutes": 568,
   "developers": [
@@ -1405,7 +1405,7 @@
   "alttitle": "えろげー！～Hもゲームも開発三昧～",
   "released": "2010-06-25",
   "rating": 69.4,
-  "votes": 2596,
+  "votes": 2597,
   "minutes": 1268,
   "developers": [
    "CLOCKUP team.ANISE"
@@ -1446,6 +1446,38 @@
   "image": {
    "sexual": 0,
    "url": "https://t.vndb.org/cv/45/92145.jpg",
+   "violence": 0
+  }
+ },
+ "v3144": {
+  "title": "Subarashiki Hibi ~Furenzoku Sonzai~",
+  "alttitle": "素晴らしき日々～不連続存在～",
+  "released": "2010-03-26",
+  "rating": 86.8,
+  "votes": 12248,
+  "minutes": 3098,
+  "developers": [
+   "KeroQ"
+  ],
+  "image": {
+   "sexual": 0,
+   "url": "https://t.vndb.org/cv/17/90017.jpg",
+   "violence": 0
+  }
+ },
+ "v6540": {
+  "title": "euphoria",
+  "alttitle": null,
+  "released": "2011-06-24",
+  "rating": 71.8,
+  "votes": 6231,
+  "minutes": 1875,
+  "developers": [
+   "CLOCKUP"
+  ],
+  "image": {
+   "sexual": 0,
+   "url": "https://t.vndb.org/cv/77/88077.jpg",
    "violence": 0
   }
  }

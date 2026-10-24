@@ -53,6 +53,31 @@ downloads:
 Для `wip`/`planned` хватает `title`, `original`, `vndb`, `status`: обложка скачается с VNDB сама
 (если она без откровенного).
 
+## Порты
+
+Раздел 'Порты' (`/ports/`): `ports/<имя>/port.yaml`. Проще через админку (вкладка 'Порты', 'Новый порт' из ссылки на пост ТГ). Вручную:
+
+```yaml
+release: gerokasu        # необязательно: наш релиз, откуда возьмутся название, оригинал, vndb, постер
+title: Эйфория           # без release: свои название / original / vndb
+original: Euphoria
+date: 2026-10-16
+to: [android]            # на что порт: pc, android, switch, ps3, ps4, ps5, psp, vita, ios
+from: pc                 # с чего
+engine: YU-RIS
+translation: { by: WyccStreams, url: "https://boosty.to/wyccstreams" }   # пусто = наш перевод
+features: [Правки текста, Доперевод около 300 строк]
+note: Спецзаказ. Ссылки в тексте станут кликабельными.
+posts: { tg: "https://t.me/innocence_translations/527" }
+downloads:
+  android:
+    - { host: tg, url: "https://t.me/innocence_files/76" }
+  game:                  # версия для ПК, если есть
+    - { host: gdrive, url: "https://drive.google.com/…" }
+```
+
+Постер: `poster.jpg` в папке порта; нет его, берётся постер релиза или обложка VNDB.
+
 ## Превью ссылок
 
 Для каждого релиза при сборке рисуется картинка 1200x630 (`/og/<имя>.jpg`): постер, название,

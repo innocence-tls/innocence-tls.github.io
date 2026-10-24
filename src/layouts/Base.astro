@@ -16,6 +16,7 @@ const path = Astro.url.pathname;
 const nav = [
   { href: `${base}#catalog`, label: 'Все переводы' },
   { href: `${base}#upcoming`, label: 'В работе', more: ' и в планах' },
+  { href: `${base}ports/`, label: 'Порты', on: path.startsWith(`${base}ports`) },
   { href: `${base}requests/`, label: 'Стол заказов', on: path.startsWith(`${base}requests`) },
 ];
 const ogImage = image ? new URL(image, Astro.site).href : new URL(`${base}avatar.jpg`, Astro.site).href;

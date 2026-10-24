@@ -1,0 +1,11 @@
+release: natsu-no-kusari
+date: 2026-10-13
+to: [android]
+from: pc
+engine: YU-RIS
+posts:
+  tg: https://t.me/innocence_translations/514
+downloads:
+  android:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1qGfk2tonf2N6Pg_piPxqq0_PHM9cUjtg/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/69" }

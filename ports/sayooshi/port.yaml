@@ -1,0 +1,13 @@
+release: sayooshi
+date: 2026-10-14
+to: [android]
+from: pc
+engine: SiglusEngine
+note: |
+  Гайд по прохождению: https://telegra.ph/Sayonara-o-Oshiete-Comment-te-Dire-Adieu-Prohozhdenie-10-14
+posts:
+  tg: https://t.me/innocence_translations/520
+downloads:
+  android:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1-5ayZhElB4oIwXAcw7wjbcqK1sWwy-n3/view?usp=sharing" }
+    - { host: tg, url: "https://t.me/innocence_files/74" }

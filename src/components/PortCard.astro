@@ -1,0 +1,459 @@
+---
+// Карточка порта: постер слева; справа название, маршрут 'с чего -> на что', перевод, особенности и кнопки скачивания.
+import { Image } from 'astro:assets';
+import type { Port } from '../lib/ports';
+import { icons, hostMeta, platformMeta, portKindMeta } from '../lib/icons';
+import Backdrop from './Backdrop.astro';
+import Posts from './Posts.astro';
+
+const { p } = Astro.props as { p: Port };
+const base = import.meta.env.BASE_URL;
+const meta = (k: string) => platformMeta[k] ?? { label: k, svg: icons.pc, color: '#9aa0b4' };
+const from = meta(p.from);
+const to = p.to.map(meta);
+const kicker = `Порт на ${to.map((t) => t.label).join(' и ')}`;
+const kickerColor = to.length === 1 ? to[0].color : 'var(--accent)';
+const kinds = (['android', 'game'] as const).filter((k) => p.downloads[k]?.length);
+const dev = [p.info?.developers?.join(', '), p.info?.released?.slice(0, 4)].filter(Boolean).join(', ');
+const date = p.date?.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).replace(/\s?г\.$/, '');
+const relHref = p.rel && `${base}r/${p.rel.slug}/`;
+const tr = p.translation;
+const trName = tr?.by ?? (p.rel ? 'наш' : undefined);
+const trHref = tr?.url ?? (tr?.by ? undefined : relHref);
+
+// Ссылки в приписке становятся кликабельными
+const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const note = p.note && esc(p.note.trim()).replace(/https?:\/\/[^\s<]+/g, (u) => `<a href="${u}" target="_blank" rel="noopener">${u.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}</a>`);
+const search = [p.title, p.subtitle, p.original, p.info?.alttitle].filter(Boolean).join(' ').toLowerCase();
+---
+
+<article
+  class="card"
+  style={`--accent:${p.accent}`}
+  data-search={search}
+  data-to={p.to.join('|')}
+  data-from={p.from}
+>
+  <Backdrop src={p.poster} />
+  <div class="poster">
+    {p.poster ? <Image src={p.poster} alt={p.title} widths={[240, 400]} sizes="(max-width: 700px) 120px, 190px" loading="lazy" /> : <div class="noimg"><Fragment set:html={to[0].svg} /></div>}
+  </div>
+
+  <div class="head">
+    <span class="kicker" style={`--c:${kickerColor}`}>
+      <Fragment set:html={to.length === 1 ? to[0].svg : icons.sparkles} />
+      {kicker}
+    </span>
+    <h3>{p.title}{p.subtitle && <span>: {p.subtitle}</span>}</h3>
+    {p.original && <p class="orig">{p.original}</p>}
+    {dev && <p class="dev">{dev}</p>}
+  </div>
+
+  <div class="body">
+    <div class="route" aria-label={`Порт с ${from.label} на ${to.map((t) => t.label).join(', ')}`}>
+      <div class="end">
+        <small>С чего</small>
+        <span class="plat" style={`--c:${from.color}`}><Fragment set:html={from.svg} />{from.label}</span>
+      </div>
+      <span class="arrow" aria-hidden="true"><Fragment set:html={icons.arrow} /></span>
+      <div class="end">
+        <small>На что</small>
+        <div class="plats">
+          {to.map((t) => <span class="plat" style={`--c:${t.color}`}><Fragment set:html={t.svg} />{t.label}</span>)}
+        </div>
+      </div>
+    </div>
+
+    {
+      (p.engine || trName) && (
+        <dl class="info">
+          {p.engine && <><dt>Движок оригинала</dt><dd>{p.engine}</dd></>}
+          {trName && <><dt>Перевод</dt><dd>{trHref ? <a href={trHref} target={tr?.url ? '_blank' : undefined} rel="noopener">{trName}</a> : trName}</dd></>}
+        </dl>
+      )
+    }
+
+    {p.features.length > 0 && <ul class="feat">{p.features.map((f) => <li><Fragment set:html={icons.sparkles} />{f}</li>)}</ul>}
+    {note && <p class="note" set:html={note} />}
+
+    {
+      kinds.length > 0 && (
+        <div class="dls">
+          {kinds.map((k, i) => (
+            <div class:list={['dl', { main: i === 0 }]}>
+              <span class="dl-k"><Fragment set:html={portKindMeta[k].svg} />{portKindMeta[k].label}</span>
+              <div class="hosts">
+                {p.downloads[k]!.map((l) => (
+                  <a class="host" href={l.url} target="_blank" rel="noopener" style={`--c:${hostMeta[l.host].color}`}>
+                    <Fragment set:html={hostMeta[l.host].svg} />
+                    {l.label ?? hostMeta[l.host].label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      )
+    }
+
+    <div class="foot">
+      <span class="when">{date && <><Fragment set:html={icons.calendar} />{date}</>}</span>
+      <div class="act">
+        <Posts r={p as any} />
+        {relHref && <a class="more" href={relHref}>О переводе <Fragment set:html={icons.arrow} /></a>}
+      </div>
+    </div>
+  </div>
+</article>
+
+<style>
+  .card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 190px minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      'poster head'
+      'poster body';
+    column-gap: 22px;
+    padding: 16px 18px 16px 16px;
+    border-radius: 20px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    transition: border-color 0.35s, box-shadow 0.35s;
+    --bright: 0.55;
+  }
+  .card:hover {
+    border-color: color-mix(in srgb, var(--accent) 50%, transparent);
+    box-shadow: 0 20px 50px -22px color-mix(in srgb, var(--accent) 70%, transparent);
+  }
+  .card[hidden] {
+    display: none;
+  }
+
+  .poster {
+    grid-area: poster;
+    align-self: start;
+    padding: 4px;
+    border-radius: 14px;
+    background: rgb(255 255 255 / 0.92);
+    box-shadow: 0 14px 34px -10px rgb(0 0 0 / 0.7);
+    transform: rotate(-1.5deg);
+  }
+  .poster img,
+  .noimg {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 10px;
+  }
+  .noimg {
+    display: grid;
+    place-items: center;
+    font-size: 54px;
+    color: var(--accent);
+    background: linear-gradient(160deg, var(--bg-3), var(--bg));
+  }
+
+  .head {
+    grid-area: head;
+    padding-top: 2px;
+  }
+  .kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 4px 11px;
+    border-radius: 999px;
+    font: 800 11.5px var(--body);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--c);
+    background: color-mix(in srgb, var(--c) 14%, rgb(10 10 16 / 0.5));
+    border: 1px solid color-mix(in srgb, var(--c) 38%, transparent);
+  }
+  h3 {
+    margin-top: 11px;
+    font-size: 21px;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  .orig {
+    margin: 5px 0 0;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+  .dev {
+    margin: 3px 0 0;
+    font-size: 12.5px;
+    color: var(--muted);
+  }
+
+  .body {
+    grid-area: body;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 16px;
+  }
+
+  /* Маршрут: с чего -> на что */
+  .route {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+    padding: 11px 14px 12px;
+    border-radius: 14px;
+    background: rgb(8 8 12 / 0.45);
+    border: 1px solid var(--line-2);
+    backdrop-filter: blur(6px);
+  }
+  .end small {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+  .plats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .plat {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    height: 34px;
+    padding: 0 13px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--c);
+    background: color-mix(in srgb, var(--c) 15%, rgb(10 10 16 / 0.5));
+    border: 1px solid color-mix(in srgb, var(--c) 40%, transparent);
+    white-space: nowrap;
+  }
+  .plat :global(svg) {
+    font-size: 16px;
+  }
+  .arrow {
+    display: grid;
+    place-items: center;
+    height: 34px;
+    font-size: 20px;
+    color: var(--muted);
+  }
+
+  .info {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 4px 14px;
+    margin: 0;
+    font-size: 14px;
+  }
+  .info dt {
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .info dd {
+    margin: 0;
+    font-weight: 700;
+  }
+  .info a {
+    border-bottom: 1px dashed var(--line-2);
+  }
+  .info a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .feat {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .feat li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 11px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 600;
+    background: rgb(255 255 255 / 0.06);
+    border: 1px solid var(--line-2);
+  }
+  .feat li :global(svg) {
+    color: var(--accent);
+    font-size: 13px;
+  }
+  .note {
+    margin: 0;
+    font-size: 13.5px;
+    color: var(--muted);
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+  }
+  .note :global(a) {
+    color: var(--text);
+    border-bottom: 1px dashed var(--line-2);
+  }
+
+  /* Скачивание */
+  .dls {
+    display: grid;
+    gap: 7px;
+  }
+  .dl {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    padding: 8px 8px 8px 12px;
+    border-radius: 12px;
+    background: rgb(8 8 12 / 0.45);
+    border: 1px solid var(--line);
+  }
+  .dl.main {
+    border-color: color-mix(in srgb, var(--accent) 50%, transparent);
+    background: linear-gradient(100deg, color-mix(in srgb, var(--accent) 18%, rgb(8 8 12 / 0.5)), rgb(8 8 12 / 0.45) 70%);
+  }
+  .dl-k {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 14.5px;
+    font-weight: 800;
+  }
+  .dl-k :global(svg) {
+    font-size: 18px;
+    color: var(--accent);
+  }
+  .hosts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .host {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    height: 34px;
+    padding: 0 13px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 13.5px;
+    border: 1px solid var(--line-2);
+    background: rgb(255 255 255 / 0.05);
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+  }
+  .host :global(svg) {
+    font-size: 16px;
+    color: var(--c);
+  }
+  .host:hover {
+    border-color: var(--c);
+    background: color-mix(in srgb, var(--c) 16%, transparent);
+    transform: translateY(-1px);
+  }
+
+  .foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+  }
+  .when {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12.5px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .act {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .more {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 34px;
+    padding: 0 13px;
+    border-radius: 10px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #0b0b10;
+    background: var(--accent);
+    white-space: nowrap;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .more:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px -8px var(--accent);
+  }
+
+  /* Телефон: постер с названием рядом, остальное на всю ширину */
+  @media (max-width: 700px) {
+    .card {
+      grid-template-columns: 112px minmax(0, 1fr);
+      grid-template-rows: auto auto;
+      grid-template-areas:
+        'poster head'
+        'body body';
+      column-gap: 14px;
+      padding: 12px;
+      border-radius: 18px;
+    }
+    .poster {
+      padding: 3px;
+      border-radius: 11px;
+    }
+    .poster img,
+    .noimg {
+      border-radius: 8px;
+    }
+    .kicker {
+      font-size: 10.5px;
+      padding: 3px 9px;
+    }
+    h3 {
+      margin-top: 9px;
+      font-size: 17px;
+    }
+    .orig {
+      font-size: 12.5px;
+    }
+    .body {
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .route {
+      padding: 10px 12px;
+    }
+    .host {
+      flex: 1;
+      justify-content: center;
+    }
+    .hosts {
+      width: 100%;
+    }
+  }
+</style>

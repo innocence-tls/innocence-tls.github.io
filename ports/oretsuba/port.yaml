@@ -1,0 +1,16 @@
+release: oretsuba
+date: 2026-10-23
+to: [android]
+from: pc
+engine: Lucifen
+note: |
+  Сделано по спецзаказу.
+  Жесты в Android-версии: свайп вверх - меню, вправо - пропуск, влево - откат назад, вниз - скрыть окно текста.
+posts:
+  tg: https://t.me/innocence_translations/553
+  boosty: https://boosty.to/innocence_translations/posts/f779c826-cf2d-47fe-82bb-05a8cecd71cc
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1CpyLPA-bGIstRnz575x4oPON7XM777Wi/view?usp=sharing" }
+  android:
+    - { host: tg, url: "https://t.me/innocence_files/80" }

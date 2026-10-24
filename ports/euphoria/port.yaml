@@ -1,0 +1,17 @@
+title: Эйфория
+original: Euphoria
+vndb: v6540
+date: 2026-10-16
+to: [android]
+from: pc
+engine: YU-RIS
+translation:
+  by: WyccStreams
+  url: https://boosty.to/wyccstreams
+features: [Правки текста, Доперевод около 300 строк]
+posts:
+  tg: https://t.me/innocence_translations/527
+downloads:
+  android:
+    - { host: tg, url: "https://t.me/innocence_files/76" }
+    - { host: gdrive, url: "https://drive.google.com/file/d/11sdbCUcL4Bw40RsSFeoLR-Z_S4WRnlf1/view?usp=sharing" }
