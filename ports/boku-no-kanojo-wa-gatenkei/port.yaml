@@ -1,0 +1,19 @@
+
+release: boku-no-kanojo-wa-gatenkei
+date: 2026-10-27
+to: [android]
+from: pc
+note: |
+  Сделано по спецзаказу.
+  Жесты:
+  - Свайп вверх - открыть меню
+  - Свайп вправо - пропуск
+  - Свайп влево - откат назад
+  - Свайп вниз - скрыть окно текста
+posts:
+  tg: https://t.me/innocence_translations/561
+downloads:
+  game:
+    - { host: tg, url: "https://t.me/innocence_files/84" }
+  android:
+    - { host: tg, url: "https://t.me/innocence_files/82" }
