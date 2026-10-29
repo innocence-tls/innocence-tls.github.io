@@ -3,8 +3,8 @@
   "title": "Ore-tachi ni Tsubasa wa Nai",
   "alttitle": "俺たちに翼はない",
   "released": "2009-01-30",
-  "rating": 86.4,
-  "votes": 669,
+  "rating": 86.5,
+  "votes": 671,
   "minutes": 3645,
   "developers": [
    "Navel"
@@ -38,7 +38,7 @@
   "alttitle": "いろとりどりのセカイ",
   "released": "2011-07-29",
   "rating": 80.8,
-  "votes": 1453,
+  "votes": 1455,
   "minutes": 2748,
   "developers": [
    "FAVORITE"
@@ -54,7 +54,7 @@
   "alttitle": "駄作",
   "released": "2014-11-28",
   "rating": 63.4,
-  "votes": 338,
+  "votes": 339,
   "minutes": 730,
   "developers": [
    "CYCLET"
@@ -86,7 +86,7 @@
   "alttitle": "ふゆから、くるる。",
   "released": "2021-09-24",
   "rating": 73.6,
-  "votes": 324,
+  "votes": 326,
   "minutes": 1151,
   "developers": [
    "SILKY'S PLUS"
@@ -102,7 +102,7 @@
   "alttitle": "アンラベル・トリガー",
   "released": "2024-03-29",
   "rating": 79.6,
-  "votes": 251,
+  "votes": 252,
   "minutes": 2460,
   "developers": [
    "Archive"
@@ -149,9 +149,9 @@
   "title": "Ousama Ren'ai",
   "alttitle": "王様恋愛",
   "released": "2026-09-25",
-  "rating": 73.8,
-  "votes": 83,
-  "minutes": 984,
+  "rating": 73.4,
+  "votes": 86,
+  "minutes": 987,
   "developers": [
    "ASa Project"
   ],
@@ -166,14 +166,14 @@
   "alttitle": "雫",
   "released": "1996-01-26",
   "rating": 62.6,
-  "votes": 577,
+  "votes": 579,
   "minutes": 668,
   "developers": [
    "Leaf"
   ],
   "image": {
-   "sexual": 1.8,
-   "url": "https://t.vndb.org/cv/91/32391.jpg",
+   "sexual": 0,
+   "url": "https://t.vndb.org/cv/32/91332.jpg",
    "violence": 0
   }
  },
@@ -182,7 +182,7 @@
   "alttitle": "終ノ空",
   "released": "1999-08-27",
   "rating": 68.3,
-  "votes": 950,
+  "votes": 952,
   "minutes": 456,
   "developers": [
    "KeroQ"
@@ -197,9 +197,9 @@
   "title": "Saiaku Naru Saiyaku Ningen ni Sasagu",
   "alttitle": "最悪なる災厄人間に捧ぐ",
   "released": "2018-08-22",
-  "rating": 82.7,
-  "votes": 181,
-  "minutes": 2396,
+  "rating": 82.4,
+  "votes": 182,
+  "minutes": 2385,
   "developers": [
    "Kemco Corporation",
    "Water Phoenix"
@@ -231,7 +231,7 @@
   "alttitle": "サノバウィッチ",
   "released": "2015-02-27",
   "rating": 78.3,
-  "votes": 5990,
+  "votes": 5992,
   "minutes": 3000,
   "developers": [
    "Yuzusoft"
@@ -280,7 +280,7 @@
   "alttitle": "月に寄りそう乙女の作法",
   "released": "2012-10-26",
   "rating": 79.5,
-  "votes": 1142,
+  "votes": 1145,
   "minutes": 2351,
   "developers": [
    "Navel"
@@ -295,9 +295,9 @@
   "title": "COCORO",
   "alttitle": null,
   "released": "2026-08-27",
-  "rating": 72.1,
-  "votes": 91,
-  "minutes": 660,
+  "rating": 72.2,
+  "votes": 93,
+  "minutes": 705,
   "developers": [
    "Frontwing"
   ],
@@ -328,8 +328,8 @@
   "alttitle": "腐り姫 ～euthanasia～",
   "released": "2002-02-08",
   "rating": 79.1,
-  "votes": 565,
-  "minutes": 945,
+  "votes": 566,
+  "minutes": 922,
   "developers": [
    "Liar-soft"
   ],
@@ -392,8 +392,8 @@
   "alttitle": "ハピメア",
   "released": "2013-02-28",
   "rating": 73.9,
-  "votes": 1869,
-  "minutes": 2422,
+  "votes": 1870,
+  "minutes": 2445,
   "developers": [
    "Purple software"
   ],
@@ -408,7 +408,7 @@
   "alttitle": "鏖呪ノ嶼",
   "released": "2024-05-31",
   "rating": 65,
-  "votes": 98,
+  "votes": 99,
   "minutes": 1073,
   "developers": [
    "CLOCKUP"
@@ -439,8 +439,8 @@
   "title": "Uchi wa Mou, Enki Dekinai.",
   "alttitle": "ウチはもう、延期できない。",
   "released": "2021-11-26",
-  "rating": 75.1,
-  "votes": 284,
+  "rating": 75,
+  "votes": 285,
   "minutes": 1650,
   "developers": [
    "Sonora"
@@ -471,8 +471,8 @@
   "title": "Dimension Totsu Lovers!!",
   "alttitle": "ディメンション凸ラバース！！",
   "released": "2026-04-24",
-  "rating": 82.7,
-  "votes": 534,
+  "rating": 82.6,
+  "votes": 537,
   "minutes": 1655,
   "developers": [
    "CRYSTALiA"
@@ -536,7 +536,7 @@
   "alttitle": "さくら、もゆ。-as the Night's, Reincarnation-",
   "released": "2019-01-31",
   "rating": 85.5,
-  "votes": 886,
+  "votes": 889,
   "minutes": 3652,
   "developers": [
    "FAVORITE"
@@ -552,7 +552,7 @@
   "alttitle": "シルバー事件25区",
   "released": "2005-10-03",
   "rating": 85.3,
-  "votes": 547,
+  "votes": 548,
   "minutes": 1260,
   "developers": [
    "Active Gaming Media Inc.",
@@ -569,7 +569,7 @@
   "alttitle": "神咒神威神楽",
   "released": "2011-09-30",
   "rating": 83.9,
-  "votes": 410,
+  "votes": 412,
   "minutes": 3712,
   "developers": [
    "light"
@@ -585,8 +585,8 @@
   "alttitle": null,
   "released": "2019-06-28",
   "rating": 68.3,
-  "votes": 630,
-  "minutes": 1018,
+  "votes": 631,
+  "minutes": 1023,
   "developers": [
    "CLOCKUP"
   ],
@@ -633,7 +633,7 @@
   "alttitle": "夏ノ鎖",
   "released": "2016-03-25",
   "rating": 71.7,
-  "votes": 681,
+  "votes": 682,
   "minutes": 350,
   "developers": [
    "CLOCKUP"
@@ -697,7 +697,7 @@
   "alttitle": "暁の護衛",
   "released": "2008-03-27",
   "rating": 73.6,
-  "votes": 1338,
+  "votes": 1337,
   "minutes": 1542,
   "developers": [
    "Syangrila"
@@ -712,8 +712,8 @@
   "title": "Shiniyuku Kishi, Isekai ni Hibiku Danmatsuma",
   "alttitle": "死に逝く騎士、異世界に響く断末魔",
   "released": "2024-04-26",
-  "rating": 65.5,
-  "votes": 177,
+  "rating": 65.6,
+  "votes": 178,
   "minutes": 874,
   "developers": [
    "Bug System"
@@ -729,7 +729,7 @@
   "alttitle": "ハミダシクリエイティブ",
   "released": "2020-09-25",
   "rating": 77.1,
-  "votes": 753,
+  "votes": 755,
   "minutes": 2632,
   "developers": [
    "Madosoft"
@@ -746,7 +746,7 @@
   "released": "2026-04-24",
   "rating": 79.2,
   "votes": 296,
-  "minutes": 3720,
+  "minutes": 3750,
   "developers": [
    "Key"
   ],
@@ -776,9 +776,9 @@
   "title": "Shiniyuku Kimi, Yakata ni Mebuku Zouo",
   "alttitle": "死に逝く君、館に芽吹く憎悪",
   "released": "2016-07-29",
-  "rating": 72.6,
-  "votes": 534,
-  "minutes": 768,
+  "rating": 72.7,
+  "votes": 535,
+  "minutes": 750,
   "developers": [
    "Bug System"
   ],
@@ -793,7 +793,7 @@
   "alttitle": "黄昏のシンセミア",
   "released": "2010-07-22",
   "rating": 79.6,
-  "votes": 474,
+  "votes": 475,
   "minutes": 2518,
   "developers": [
    "Applique"
@@ -825,7 +825,7 @@
   "alttitle": "冥契のルペルカリア",
   "released": "2021-02-26",
   "rating": 81.5,
-  "votes": 840,
+  "votes": 841,
   "minutes": 1575,
   "developers": [
    "Uguisu Kagura"
@@ -857,7 +857,7 @@
   "alttitle": "終ノ空 remake",
   "released": "2020-12-25",
   "rating": 78.1,
-  "votes": 1753,
+  "votes": 1755,
   "minutes": 1021,
   "developers": [
    "KeroQ"
@@ -873,7 +873,7 @@
   "alttitle": "サクラノ刻－櫻の森の下を歩む－",
   "released": "2023-02-24",
   "rating": 87.1,
-  "votes": 1115,
+  "votes": 1117,
   "minutes": 2948,
   "developers": [
    "Makura"
@@ -888,8 +888,8 @@
   "title": "Ryuusei World Actor: Gaslight Bullet",
   "alttitle": "流星ワールドアクター Gaslight Bullet",
   "released": "2026-02-27",
-  "rating": 78.4,
-  "votes": 193,
+  "rating": 78.3,
+  "votes": 194,
   "minutes": 1748,
   "developers": [
    "Heliodor"
@@ -921,7 +921,7 @@
   "alttitle": "水葬銀貨のイストリア",
   "released": "2017-03-24",
   "rating": 77.6,
-  "votes": 409,
+  "votes": 410,
   "minutes": 2550,
   "developers": [
    "Uguisu Kagura"
@@ -953,8 +953,8 @@
   "alttitle": "魔法少女ノ魔女裁判",
   "released": "2025-07-18",
   "rating": 80.2,
-  "votes": 1338,
-  "minutes": 1916,
+  "votes": 1345,
+  "minutes": 1912,
   "developers": [
    "Re,AER LLC.",
    "Acacia"
@@ -987,8 +987,8 @@
   "title": "Sayonara o Oshiete ~Comment te Dire Adieu~",
   "alttitle": "さよならを教えて～comment te dire adieu～",
   "released": "2001-03-02",
-  "rating": 78.5,
-  "votes": 1570,
+  "rating": 78.6,
+  "votes": 1579,
   "minutes": 668,
   "developers": [
    "CRAFTWORK"
@@ -1005,7 +1005,7 @@
   "released": "2010-12-17",
   "rating": 72.2,
   "votes": 332,
-  "minutes": 1930,
+  "minutes": 1884,
   "developers": [
    "NITRO PLUS"
   ],
@@ -1019,8 +1019,8 @@
   "title": "Rance X -Kessen-",
   "alttitle": "Rance Ⅹ -決戦-",
   "released": "2018-02-23",
-  "rating": 90.6,
-  "votes": 1265,
+  "rating": 90.7,
+  "votes": 1269,
   "minutes": 9921,
   "developers": [
    "Alice Soft"
@@ -1052,7 +1052,7 @@
   "alttitle": null,
   "released": "2021-10-29",
   "rating": 77.6,
-  "votes": 478,
+  "votes": 479,
   "minutes": 1178,
   "developers": [
    "HARUKAZE"
@@ -1164,7 +1164,7 @@
   "alttitle": "夏空のペルセウス",
   "released": "2012-12-21",
   "rating": 72,
-  "votes": 331,
+  "votes": 332,
   "minutes": 729,
   "developers": [
    "minori"
@@ -1212,7 +1212,7 @@
   "alttitle": null,
   "released": "2019-12-20",
   "rating": 80.5,
-  "votes": 932,
+  "votes": 933,
   "minutes": 2273,
   "developers": [
    "OVERDRIVE"
@@ -1340,8 +1340,8 @@
   "title": "Yuki Koi Melt",
   "alttitle": "ゆきこいめると",
   "released": "2015-03-27",
-  "rating": 69.3,
-  "votes": 729,
+  "rating": 69.4,
+  "votes": 730,
   "minutes": 1775,
   "developers": [
    "Frontwing"
@@ -1372,8 +1372,8 @@
   "title": "Akai Hitomi ni Utsuru Sekai",
   "alttitle": "紅い瞳に映るセカイ",
   "released": "2015-07-24",
-  "rating": 78.9,
-  "votes": 402,
+  "rating": 78.8,
+  "votes": 403,
   "minutes": 568,
   "developers": [
    "FAVORITE"
@@ -1389,7 +1389,7 @@
   "alttitle": "響野さん家はエロゲ屋さん！",
   "released": "2020-11-27",
   "rating": 72.4,
-  "votes": 169,
+  "votes": 168,
   "minutes": 1475,
   "developers": [
    "Sonora"
@@ -1405,7 +1405,7 @@
   "alttitle": "えろげー！～Hもゲームも開発三昧～",
   "released": "2010-06-25",
   "rating": 69.4,
-  "votes": 2598,
+  "votes": 2600,
   "minutes": 1268,
   "developers": [
    "CLOCKUP team.ANISE"
@@ -1454,7 +1454,7 @@
   "alttitle": "素晴らしき日々～不連続存在～",
   "released": "2010-03-26",
   "rating": 86.8,
-  "votes": 12269,
+  "votes": 12277,
   "minutes": 3098,
   "developers": [
    "KeroQ"
@@ -1470,7 +1470,7 @@
   "alttitle": null,
   "released": "2011-06-24",
   "rating": 71.8,
-  "votes": 6237,
+  "votes": 6240,
   "minutes": 1875,
   "developers": [
    "CLOCKUP"
@@ -1511,6 +1511,38 @@
   "image": {
    "sexual": 0,
    "url": "https://t.vndb.org/cv/43/119543.jpg",
+   "violence": 0
+  }
+ },
+ "v9": {
+  "title": "Bible Black -La noche de walpurgis-",
+  "alttitle": null,
+  "released": "2000-07-14",
+  "rating": 70.1,
+  "votes": 2168,
+  "minutes": 720,
+  "developers": [
+   "Active"
+  ],
+  "image": {
+   "sexual": 2,
+   "url": "https://t.vndb.org/cv/57/88357.jpg",
+   "violence": 0
+  }
+ },
+ "v35279": {
+  "title": "SLEEPLESS Nocturne",
+  "alttitle": null,
+  "released": "2022-06-24",
+  "rating": 66.8,
+  "votes": 133,
+  "minutes": 330,
+  "developers": [
+   "Empress"
+  ],
+  "image": {
+   "sexual": 2,
+   "url": "https://t.vndb.org/cv/98/98298.jpg",
    "violence": 0
   }
  }
