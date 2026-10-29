@@ -1,4 +1,34 @@
 title: Персей летнего неба
 original: Natsuzora no Perseus
 vndb: v10597
-status: wip
+status: released
+date: 2026-10-29
+length: 10-15 часов
+platforms: [pc, android]
+censorship: pixel
+tags: [романтика, моэге, драма, повседневность, школа, силакрови, ГГ парень]
+desc: >
+  Главный герой и его младшая сестра умеют забирать чужую боль через простое касание. Сбежав
+  от жестоких родителей в горную деревню, они хотят забыть о своем дурном даре и жить
+  обычной жизнью...
+
+  vndb
+note: |
+  Сделано по спецзаказу
+  Установка андроид версии через APK.
+  Жесты:
+  - Свайп вверх - открыть меню
+  - Свайп вправо - пропуск
+  - Свайп влево - откат назад
+  - Свайп вниз - скрыть окно текста
+posts:
+  tg: https://t.me/innocence_translations/567
+  vk: https://vk.ru/innocence_translations?w=wall-233660350_305
+  boosty: https://boosty.to/innocence_translations/posts/56300e92-cbab-4dea-accd-de48655ec4ce
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/15LVgSFarH3BSmYKpPLjYX3wmlt0xLGGm/view?usp=sharing" }
+  android:
+    - { host: tg, url: "https://t.me/innocence_files/85" }
+  patch:
+    - { host: tg, url: "https://t.me/innocence_files/86" }

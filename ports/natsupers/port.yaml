@@ -1,0 +1,20 @@
+
+release: natsupers
+date: 2026-10-29
+to: [android]
+from: pc
+note: |
+  Сделано по спецзаказу.
+  Жесты:
+  - Свайп вверх - открыть меню
+  - Свайп вправо - пропуск
+  - Свайп влево - откат назад
+  - Свайп вниз - скрыть окно текста
+posts:
+  tg: https://t.me/innocence_translations/567
+  boosty: https://boosty.to/innocence_translations/posts/56300e92-cbab-4dea-accd-de48655ec4ce
+downloads:
+  android:
+    - { host: tg, url: "https://t.me/innocence_files/85" }
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/15LVgSFarH3BSmYKpPLjYX3wmlt0xLGGm/view?usp=sharing" }
