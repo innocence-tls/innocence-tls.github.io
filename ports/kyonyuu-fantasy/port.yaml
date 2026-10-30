@@ -1,0 +1,22 @@
+
+release: kyonyuu-fantasy
+date: 2026-10-30
+to: [android]
+from: pc
+translation:
+  by: Grobodel
+features: [Доперевод 6000 строк текста, Исправлены баги, Без цензуры]
+note: |
+  Сделано по спецзаказу.
+  Жесты:
+  - Свайп вверх - открыть меню
+  - Свайп вправо - пропуск
+  - Свайп влево - откат назад
+  - Свайп вниз - скрыть окно текста
+posts:
+  tg: https://t.me/innocence_translations/574
+downloads:
+  android:
+    - { host: tg, url: "https://t.me/innocence_files/89" }
+  game:
+    - { host: tg, url: "https://t.me/innocence_files/90" }
