@@ -1593,5 +1593,101 @@
    "url": "https://t.vndb.org/cv/50/131550.jpg",
    "violence": 0
   }
+ },
+ "v2190": {
+  "title": "Seito Kaichou Hikaru ~Inma ni Senryou Sareta Gakuen~",
+  "alttitle": "聖徒会長ヒカル～淫魔に占領された学園～",
+  "released": "2009-07-24",
+  "rating": 69.8,
+  "votes": 26,
+  "minutes": 1500,
+  "developers": [
+   "catwalkNERO"
+  ],
+  "image": {
+   "sexual": 2,
+   "url": "https://t.vndb.org/cv/59/2659.jpg",
+   "violence": 0.07
+  }
+ },
+ "v6355": {
+  "title": "Kyonyuu Fantasy Gaiden",
+  "alttitle": "巨乳ファンタジー外伝",
+  "released": "2011-02-25",
+  "rating": 77.2,
+  "votes": 900,
+  "minutes": 954,
+  "developers": [
+   "Waffle"
+  ],
+  "image": {
+   "sexual": 1.56,
+   "url": "https://t.vndb.org/cv/59/79459.jpg",
+   "violence": 0
+  }
+ },
+ "v13083": {
+  "title": "Kyonyuu Fantasy Gaiden 2",
+  "alttitle": "巨乳ファンタジー外伝2",
+  "released": "2013-10-25",
+  "rating": 83.2,
+  "votes": 645,
+  "minutes": 1900,
+  "developers": [
+   "Waffle"
+  ],
+  "image": {
+   "sexual": 2,
+   "url": "https://t.vndb.org/cv/63/79463.jpg",
+   "violence": 0
+  }
+ },
+ "v28343": {
+  "title": "Kyonyuu Fantasy Gaiden 2 After -Lute, Kodai Rome ni Iku-",
+  "alttitle": "巨乳ファンタジー外伝２after -リュート、古代ローマに行く-",
+  "released": "2019-12-20",
+  "rating": 72,
+  "votes": 19,
+  "minutes": null,
+  "developers": [
+   "Waffle"
+  ],
+  "image": {
+   "sexual": 0.18,
+   "url": "https://t.vndb.org/cv/58/127058.jpg",
+   "violence": 0
+  }
+ },
+ "v1648": {
+  "title": "Fault!!",
+  "alttitle": "フォルト!!",
+  "released": "2009-07-31",
+  "rating": 71.1,
+  "votes": 216,
+  "minutes": null,
+  "developers": [
+   "Ciel"
+  ],
+  "image": {
+   "sexual": 1,
+   "url": "https://t.vndb.org/cv/05/122105.jpg",
+   "violence": 0
+  }
+ },
+ "v1041": {
+  "title": "Before Dawn Daybreak ~Shin'en no Utahime~",
+  "alttitle": "Before Dawn Daybreak ～深淵の歌姫～",
+  "released": "2008-10-24",
+  "rating": 66.5,
+  "votes": 44,
+  "minutes": 1200,
+  "developers": [
+   "Black Cyc"
+  ],
+  "image": {
+   "sexual": 2,
+   "url": "https://t.vndb.org/cv/12/76312.jpg",
+   "violence": 0
+  }
  }
 }
