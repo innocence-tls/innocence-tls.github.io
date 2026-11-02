@@ -1,0 +1,21 @@
+
+release: unravel-trigger
+date: 2026-11-01
+to: [android]
+from: pc
+note: |
+  Сделано по спецзаказу.
+  Жесты:
+  - Свайп вверх - открыть меню
+  - Свайп вправо - пропуск
+  - Свайп влево - откат назад
+  - Свайп вниз - скрыть окно текста
+posts:
+  tg: https://t.me/innocence_translations/580
+  vk: https://vk.ru/innocence_translations?w=wall-233660350_313
+  boosty: https://boosty.to/innocence_translations/posts/441e6f10-7833-494b-ade1-c212e6740222
+downloads:
+  android:
+    - { host: tg, url: "https://t.me/innocence_files/91" }
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1u9nUdDxU7ZchoUj9Ul0lvS7b2Xg9nTuf/view?usp=sharing" }

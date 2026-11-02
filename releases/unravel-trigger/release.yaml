@@ -1,4 +1,34 @@
 title: Триггер разгадки
 original: Unravel trigger
 vndb: v47547
-status: wip
+status: released
+date: 2026-11-01
+length: 35-40 часов
+platforms: [pc, android]
+censorship: pixel
+tags: [триллер, экшен, детектив, драма, романтика, фэнтези, сюжет, ГГ парень, взрослыйГГ, антигерой]
+desc: >
+  В буферной зоне между двумя сверхдержавами не утихают конфликты. Главный герой, детектив
+  местного агентства, ищет здесь подругу детства, пропавшую на войне. Поиски заходят в
+  тупик, но однажды он встречает загадочную девушку, мечтающую о мире во всем мире. Эта
+  роковая встреча пробуждает воспоминания о прошлом и запускает цепочку событий, которые
+  навсегда изменят судьбу не только самого героя, но и всего мира...
+
+  vndb
+note: |
+  Сделано по спецзаказу.
+  Установка андроид версии через APK.
+  Жесты:
+  - Свайп вверх - открыть меню
+  - Свайп вправо - пропуск
+  - Свайп влево - откат назад
+  - Свайп вниз - скрыть окно текста
+posts:
+  tg: https://t.me/innocence_translations/580
+  vk: https://vk.ru/innocence_translations?w=wall-233660350_313
+  boosty: https://boosty.to/innocence_translations/posts/441e6f10-7833-494b-ade1-c212e6740222
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1u9nUdDxU7ZchoUj9Ul0lvS7b2Xg9nTuf/view?usp=sharing" }
+  android:
+    - { host: tg, url: "https://t.me/innocence_files/91" }
