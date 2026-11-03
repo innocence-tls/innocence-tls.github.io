@@ -1,5 +1,33 @@
 
-title: ""
+title: Промах!!
 original: Fault!!
 vndb: v1648
-status: planned
+status: released
+date: 2026-11-03
+length: 20-30 часов
+platforms: [pc, android]
+censorship: pixel
+tags: [романтика, повседневность, моэге, силакрови, ГГ парень]
+desc: >
+  Главный герой состоит в теннисном клубе и наслаждается повседневной жизнью в кругу друзей.
+  Однако после несчастного случая он получает непоправимую травму. Пока одна из девушек
+  заботится о нём, его младшая сестра проявляет ревность и недовольство. Вскоре новое
+  происшествие переворачивает всё с ног на голову...
+note: |
+  Сделано по спецзаказу.
+  Релиз включает в себя Fault A (1 часть): https://vndb.org/v1648 и Fault S (2 часть): https://vndb.org/v10392
+  Установка андроид версии через APK.
+  Жесты:
+  - Свайп вверх - открыть меню
+  - Свайп вправо - пропуск
+  - Свайп влево - откат назад
+  - Свайп вниз - скрыть окно текста
+posts:
+  tg: https://t.me/innocence_translations/586
+  boosty: https://boosty.to/innocence_translations/posts/43b2124e-58ef-446d-a13e-76b1f3e5ff74
+downloads:
+  game:
+    - { host: gdrive, url: "https://drive.google.com/file/d/1IaMSE62NM9mhyes5sQ-jqOyewcuPbeCK/view?usp=sharing" }
+  android:
+    - { host: tg, url: "https://t.me/innocence_files/92" }
+    - { host: tg, url: "https://t.me/innocence_files/93" }
