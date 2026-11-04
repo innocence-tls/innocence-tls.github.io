@@ -4,7 +4,7 @@
   "alttitle": "俺たちに翼はない",
   "released": "2009-01-30",
   "rating": 86.5,
-  "votes": 673,
+  "votes": 675,
   "minutes": 3645,
   "developers": [
    "Navel"
@@ -53,8 +53,8 @@
   "title": "Dasaku",
   "alttitle": "駄作",
   "released": "2014-11-28",
-  "rating": 63.4,
-  "votes": 339,
+  "rating": 63.5,
+  "votes": 340,
   "minutes": 730,
   "developers": [
    "CYCLET"
@@ -86,7 +86,7 @@
   "alttitle": "ふゆから、くるる。",
   "released": "2021-09-24",
   "rating": 73.6,
-  "votes": 326,
+  "votes": 327,
   "minutes": 1151,
   "developers": [
    "SILKY'S PLUS"
@@ -149,9 +149,9 @@
   "title": "Ousama Ren'ai",
   "alttitle": "王様恋愛",
   "released": "2026-09-25",
-  "rating": 73.1,
-  "votes": 91,
-  "minutes": 984,
+  "rating": 73.6,
+  "votes": 94,
+  "minutes": 987,
   "developers": [
    "ASa Project"
   ],
@@ -165,9 +165,9 @@
   "title": "Shizuku",
   "alttitle": "雫",
   "released": "1996-01-26",
-  "rating": 62.6,
-  "votes": 581,
-  "minutes": 668,
+  "rating": 62.5,
+  "votes": 583,
+  "minutes": 662,
   "developers": [
    "Leaf"
   ],
@@ -181,8 +181,8 @@
   "title": "Tsui no Sora",
   "alttitle": "終ノ空",
   "released": "1999-08-27",
-  "rating": 68.3,
-  "votes": 955,
+  "rating": 68.2,
+  "votes": 958,
   "minutes": 456,
   "developers": [
    "KeroQ"
@@ -231,7 +231,7 @@
   "alttitle": "サノバウィッチ",
   "released": "2015-02-27",
   "rating": 78.3,
-  "votes": 5997,
+  "votes": 6002,
   "minutes": 3000,
   "developers": [
    "Yuzusoft"
@@ -247,7 +247,7 @@
   "alttitle": "旭光のマリアージュ",
   "released": "2024-08-30",
   "rating": 79.1,
-  "votes": 164,
+  "votes": 166,
   "minutes": 1625,
   "developers": [
    "ensemble",
@@ -264,7 +264,7 @@
   "alttitle": "信天翁航海録",
   "released": "2010-07-23",
   "rating": 83.1,
-  "votes": 176,
+  "votes": 177,
   "minutes": 3080,
   "developers": [
    "raiL-soft"
@@ -280,7 +280,7 @@
   "alttitle": "月に寄りそう乙女の作法",
   "released": "2012-10-26",
   "rating": 79.5,
-  "votes": 1147,
+  "votes": 1149,
   "minutes": 2351,
   "developers": [
    "Navel"
@@ -328,7 +328,7 @@
   "alttitle": "腐り姫 ～euthanasia～",
   "released": "2002-02-08",
   "rating": 79.2,
-  "votes": 567,
+  "votes": 569,
   "minutes": 922,
   "developers": [
    "Liar-soft"
@@ -344,7 +344,7 @@
   "alttitle": null,
   "released": "2022-09-15",
   "rating": 86.4,
-  "votes": 229,
+  "votes": 230,
   "minutes": 2940,
   "developers": [
    "BA-KU"
@@ -440,7 +440,7 @@
   "alttitle": "ウチはもう、延期できない。",
   "released": "2021-11-26",
   "rating": 75.1,
-  "votes": 289,
+  "votes": 291,
   "minutes": 1650,
   "developers": [
    "Sonora"
@@ -472,7 +472,7 @@
   "alttitle": "ディメンション凸ラバース！！",
   "released": "2026-04-24",
   "rating": 82.6,
-  "votes": 540,
+  "votes": 541,
   "minutes": 1655,
   "developers": [
    "CRYSTALiA"
@@ -520,7 +520,7 @@
   "alttitle": "プトリカ 1st.cut:The Reason She Must Perish",
   "released": "2024-10-07",
   "rating": 74.8,
-  "votes": 284,
+  "votes": 285,
   "minutes": 248,
   "developers": [
    "Totometori"
@@ -552,7 +552,7 @@
   "alttitle": "シルバー事件25区",
   "released": "2005-10-03",
   "rating": 85.3,
-  "votes": 549,
+  "votes": 550,
   "minutes": 1260,
   "developers": [
    "Active Gaming Media Inc.",
@@ -569,7 +569,7 @@
   "alttitle": "神咒神威神楽",
   "released": "2011-09-30",
   "rating": 83.9,
-  "votes": 416,
+  "votes": 417,
   "minutes": 3690,
   "developers": [
    "light"
@@ -584,8 +584,8 @@
   "title": "DEAD DAYS",
   "alttitle": null,
   "released": "2019-06-28",
-  "rating": 68.2,
-  "votes": 631,
+  "rating": 68.3,
+  "votes": 632,
   "minutes": 1023,
   "developers": [
    "CLOCKUP"
@@ -601,7 +601,7 @@
   "alttitle": null,
   "released": "2018-07-27",
   "rating": 74.4,
-  "votes": 429,
+  "votes": 430,
   "minutes": 1140,
   "developers": [
    "CLOCKUP"
@@ -617,7 +617,7 @@
   "alttitle": null,
   "released": "2015-11-27",
   "rating": 69.4,
-  "votes": 1614,
+  "votes": 1615,
   "minutes": 1408,
   "developers": [
    "CLOCKUP"
@@ -633,7 +633,7 @@
   "alttitle": "夏ノ鎖",
   "released": "2016-03-25",
   "rating": 71.6,
-  "votes": 682,
+  "votes": 684,
   "minutes": 350,
   "developers": [
    "CLOCKUP"
@@ -681,7 +681,7 @@
   "alttitle": "ハミダシクリエイティブ凸",
   "released": "2022-11-25",
   "rating": 77.7,
-  "votes": 331,
+  "votes": 332,
   "minutes": 1246,
   "developers": [
    "Madosoft"
@@ -696,8 +696,8 @@
   "title": "Akatsuki no Goei",
   "alttitle": "暁の護衛",
   "released": "2008-03-27",
-  "rating": 73.6,
-  "votes": 1340,
+  "rating": 73.5,
+  "votes": 1341,
   "minutes": 1542,
   "developers": [
    "Syangrila"
@@ -729,7 +729,7 @@
   "alttitle": "ハミダシクリエイティブ",
   "released": "2020-09-25",
   "rating": 77.1,
-  "votes": 757,
+  "votes": 760,
   "minutes": 2632,
   "developers": [
    "Madosoft"
@@ -744,8 +744,8 @@
   "title": "anemoi",
   "alttitle": null,
   "released": "2026-04-24",
-  "rating": 79.2,
-  "votes": 298,
+  "rating": 79.3,
+  "votes": 299,
   "minutes": 3750,
   "developers": [
    "Key"
@@ -776,8 +776,8 @@
   "title": "Shiniyuku Kimi, Yakata ni Mebuku Zouo",
   "alttitle": "死に逝く君、館に芽吹く憎悪",
   "released": "2016-07-29",
-  "rating": 72.7,
-  "votes": 535,
+  "rating": 72.6,
+  "votes": 536,
   "minutes": 750,
   "developers": [
    "Bug System"
@@ -825,7 +825,7 @@
   "alttitle": "冥契のルペルカリア",
   "released": "2021-02-26",
   "rating": 81.5,
-  "votes": 843,
+  "votes": 844,
   "minutes": 1575,
   "developers": [
    "Uguisu Kagura"
@@ -841,7 +841,7 @@
   "alttitle": "紙の上の魔法使い",
   "released": "2014-12-19",
   "rating": 81.9,
-  "votes": 723,
+  "votes": 724,
   "minutes": 2040,
   "developers": [
    "Uguisu Kagura"
@@ -857,7 +857,7 @@
   "alttitle": "終ノ空 remake",
   "released": "2020-12-25",
   "rating": 78.1,
-  "votes": 1759,
+  "votes": 1761,
   "minutes": 1021,
   "developers": [
    "KeroQ"
@@ -873,7 +873,7 @@
   "alttitle": "サクラノ刻－櫻の森の下を歩む－",
   "released": "2023-02-24",
   "rating": 87.1,
-  "votes": 1119,
+  "votes": 1120,
   "minutes": 2948,
   "developers": [
    "Makura"
@@ -952,8 +952,8 @@
   "title": "Mahou Shoujo no Majo Saiban",
   "alttitle": "魔法少女ノ魔女裁判",
   "released": "2025-07-18",
-  "rating": 80.2,
-  "votes": 1355,
+  "rating": 80.1,
+  "votes": 1358,
   "minutes": 1898,
   "developers": [
    "Re,AER LLC.",
@@ -988,8 +988,8 @@
   "alttitle": "さよならを教えて～comment te dire adieu～",
   "released": "2001-03-02",
   "rating": 78.5,
-  "votes": 1588,
-  "minutes": 667,
+  "votes": 1596,
+  "minutes": 665,
   "developers": [
    "CRAFTWORK"
   ],
@@ -1020,8 +1020,8 @@
   "alttitle": "Rance Ⅹ -決戦-",
   "released": "2018-02-23",
   "rating": 90.7,
-  "votes": 1271,
-  "minutes": 9921,
+  "votes": 1274,
+  "minutes": 9750,
   "developers": [
    "Alice Soft"
   ],
@@ -1164,7 +1164,7 @@
   "alttitle": "夏空のペルセウス",
   "released": "2012-12-21",
   "rating": 72,
-  "votes": 332,
+  "votes": 333,
   "minutes": 729,
   "developers": [
    "minori"
@@ -1227,9 +1227,9 @@
   "title": "Loca Love - Dousei x Kouhai",
   "alttitle": "ろけらぶ - 同棲×後輩",
   "released": "2018-10-26",
-  "rating": 67.8,
-  "votes": 780,
-  "minutes": 307,
+  "rating": 67.7,
+  "votes": 782,
+  "minutes": 312,
   "developers": [
    "Frontwing"
   ],
@@ -1308,8 +1308,8 @@
   "title": "Innocent Girl",
   "alttitle": "イノセントガール",
   "released": "2014-02-28",
-  "rating": 74.2,
-  "votes": 165,
+  "rating": 74.3,
+  "votes": 166,
   "minutes": 1875,
   "developers": [
    "Frontwing"
@@ -1324,8 +1324,8 @@
   "title": "Pure Girl",
   "alttitle": "ピュアガール",
   "released": "2012-09-28",
-  "rating": 72.5,
-  "votes": 239,
+  "rating": 72.6,
+  "votes": 240,
   "minutes": 1500,
   "developers": [
    "Frontwing"
@@ -1388,8 +1388,8 @@
   "title": "Hibikino-san-chi wa Eroge-ya-san!",
   "alttitle": "響野さん家はエロゲ屋さん！",
   "released": "2020-11-27",
-  "rating": 72.4,
-  "votes": 168,
+  "rating": 72.5,
+  "votes": 170,
   "minutes": 1475,
   "developers": [
    "Sonora"
@@ -1437,8 +1437,8 @@
   "title": "Tsuki ni Yorisou Otome no Sahou 2",
   "alttitle": "月に寄りそう乙女の作法2",
   "released": "2014-12-19",
-  "rating": 76.4,
-  "votes": 385,
+  "rating": 76.3,
+  "votes": 386,
   "minutes": 2401,
   "developers": [
    "Navel"
@@ -1454,8 +1454,8 @@
   "alttitle": "素晴らしき日々～不連続存在～",
   "released": "2010-03-26",
   "rating": 86.8,
-  "votes": 12295,
-  "minutes": 3100,
+  "votes": 12305,
+  "minutes": 3103,
   "developers": [
    "KeroQ"
   ],
@@ -1470,7 +1470,7 @@
   "alttitle": null,
   "released": "2011-06-24",
   "rating": 71.8,
-  "votes": 6247,
+  "votes": 6251,
   "minutes": 1861,
   "developers": [
    "CLOCKUP"
@@ -1519,7 +1519,7 @@
   "alttitle": null,
   "released": "2000-07-14",
   "rating": 70.1,
-  "votes": 2168,
+  "votes": 2169,
   "minutes": 720,
   "developers": [
    "Active"
@@ -1567,7 +1567,7 @@
   "alttitle": "巨乳ファンタジー",
   "released": "2009-10-23",
   "rating": 75.8,
-  "votes": 1842,
+  "votes": 1843,
   "minutes": 1248,
   "developers": [
    "Waffle"
@@ -1662,8 +1662,8 @@
   "title": "Fault!!",
   "alttitle": "フォルト!!",
   "released": "2009-07-31",
-  "rating": 71.1,
-  "votes": 216,
+  "rating": 71,
+  "votes": 217,
   "minutes": null,
   "developers": [
    "Ciel"
@@ -1727,7 +1727,7 @@
   "alttitle": "お前の母ちゃん、良い女だよな。",
   "released": "2018-09-21",
   "rating": 75.4,
-  "votes": 310,
+  "votes": 311,
   "minutes": 528,
   "developers": [
    "ORCSOFT"
@@ -1751,6 +1751,38 @@
   "image": {
    "sexual": 0,
    "url": "https://t.vndb.org/cv/79/98179.jpg",
+   "violence": 0
+  }
+ },
+ "v9409": {
+  "title": "VenusBlood -FRONTIER-",
+  "alttitle": "ヴィーナスブラッド－フロンティア－",
+  "released": "2012-04-27",
+  "rating": 74.2,
+  "votes": 651,
+  "minutes": 3680,
+  "developers": [
+   "dualtail"
+  ],
+  "image": {
+   "sexual": 0.6,
+   "url": "https://t.vndb.org/cv/57/79757.jpg",
+   "violence": 0
+  }
+ },
+ "v51590": {
+  "title": "Bu Lian'ai Jiu Wandan le",
+  "alttitle": "不恋爱就完蛋了",
+  "released": "2025-04-19",
+  "rating": 74.2,
+  "votes": 189,
+  "minutes": 988,
+  "developers": [
+   "Xso"
+  ],
+  "image": {
+   "sexual": 0,
+   "url": "https://t.vndb.org/cv/62/87062.jpg",
    "violence": 0
   }
  }
