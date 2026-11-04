@@ -1,5 +1,28 @@
 
 title: "Влюбись или умри: Найди свою половинку"
+subtitle: Найди свою половинку
 original: Bu Lian'ai Jiu Wandan le
 vndb: v51590
-status: wip
+status: released
+date: 2026-11-04
+length: 15-20 часов
+platforms: [pc, android]
+tags: [романтика, повседневность, комедия, мистика, юри, ГГ девушка]
+desc: >
+  После несчастного случая главную героиню спасает от смерти таинственная незнакомка, но
+  взамен накладывает проклятие - она умрет, если за год не найдет вторую половинку. Вскоре
+  вокруг нее собираются разные красавицы, от подруг до суровой начальницы. Одна из них
+  послана судьбой, а кто-то скрывает злой умысел...
+note: |
+  Сделано по спецзаказу.
+  Установка андроид версии через APK.
+posts:
+  tg: https://t.me/innocence_translations/592
+  boosty: https://boosty.to/innocence_translations/posts/3454f1c4-af3d-4eee-9d78-11ee5dcdfacb
+downloads:
+  game:
+    - { host: tg, url: "https://t.me/innocence_files/96" }
+  android:
+    - { host: tg, url: "https://t.me/innocence_files/97" }
+  patch:
+    - { host: tg, url: "https://t.me/innocence_files/95" }
