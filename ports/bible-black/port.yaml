@@ -1,0 +1,19 @@
+
+release: bible-black
+date: 2026-11-07
+to: [android]
+from: pc
+note: |
+  Сделано по спецзаказу.
+  Жесты:
+  - Свайп вверх - открыть меню
+  - Свайп вправо - пропуск
+  - Свайп влево - откат назад
+  - Свайп вниз - скрыть окно текста
+posts:
+  tg: https://t.me/innocence_translations/605
+downloads:
+  game:
+    - { host: tg, url: "https://t.me/innocence_files/102" }
+  android:
+    - { host: tg, url: "https://t.me/innocence_files/101" }
