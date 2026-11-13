@@ -1,5 +1,29 @@
 
-title: ""
+title: Грудастые Фанатзии
+subtitle: Побочная История
 original: Kyonyuu Fantasy Gaiden
 vndb: v6355
-status: planned
+status: released
+date: 2026-11-13
+length: 15 часов
+platforms: [pc, android]
+censorship: pixel
+tags: [комедия, фэнтези, приключения, романтика, ГГ парень, взрослыйГГ]
+desc: >
+  Продолжение Funbag Fantasy.
+
+  Прошло полтора года с тех пор, как худший выпусник рыцарской академии стал королем. В его
+  стране царит мир, а сам он отдыхает в обнимку с шестью красавицами. Но обиженный сосед
+  готовит ему кровавую месть, а крупная держава и главная церковь континента ополчились на
+  его жену-суккуба. Главный герой и верные ему красотки даже не знают, что скоро столкнутся
+  с тремя сильнейшими врагами...
+note: |
+  Сделано по спецзаказу.
+  Установка андроид версии через APK.
+posts:
+  tg: https://t.me/innocence_translations/630
+downloads:
+  game:
+    - { host: tg, url: "https://t.me/innocence_files/114" }
+  android:
+    - { host: tg, url: "https://t.me/innocence_files/115" }
