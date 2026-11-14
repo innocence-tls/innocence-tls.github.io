@@ -36,7 +36,7 @@ const images = import.meta.glob('/releases/*/**/*.{jpg,jpeg,png,webp}', { import
 // Постеры с VNDB (качает scripts/vndb.mjs, в репо не лежат)
 const vndbPosters = import.meta.glob('/src/data/posters/*.jpg', { import: 'default', eager: true }) as Record<string, ImageMetadata>;
 
-// Постер для превью: свой poster.* > обложка > постер с VNDB (качает scripts/vndb.mjs, только без откровенного)
+// Постер для превью: свой poster.* > обложка > постер с VNDB (качает scripts/vndb.mjs, откровенный размыт)
 function posterOf(slug: string, coverFile?: string) {
   const dir = path.join(__ROOT__, 'releases', slug);
   const own = fs.readdirSync(dir).find((f) => /^poster\.(jpe?g|png|webp)$/i.test(f));
