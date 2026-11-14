@@ -1952,7 +1952,7 @@
   "released": "2011-06-24",
   "rating": 85.3,
   "votes": 8516,
-  "minutes": 4647,
+  "minutes": 4655,
   "developers": [
    "Key"
   ],
@@ -2056,6 +2056,55 @@
    "sexual": 0.13,
    "url": "https://t.vndb.org/cv/01/77301.jpg",
    "violence": 0.07
+  }
+ },
+ "v21465": {
+  "title": "Kizuna Kirameku Koi Iroha",
+  "alttitle": "絆きらめく恋いろは",
+  "released": "2017-11-24",
+  "rating": 74.6,
+  "votes": 573,
+  "minutes": 1710,
+  "developers": [
+   "CRYSTALiA"
+  ],
+  "image": {
+   "sexual": 0,
+   "url": "https://t.vndb.org/cv/58/95258.jpg",
+   "violence": 0
+  }
+ },
+ "v800": {
+  "title": "France Shoujo ~Une fille blanche~",
+  "alttitle": "仏蘭西少女～Une fille blanche～",
+  "released": "2009-07-10",
+  "rating": 74.5,
+  "votes": 76,
+  "minutes": 3953,
+  "developers": [
+   "PIL"
+  ],
+  "image": {
+   "sexual": 2,
+   "url": "https://t.vndb.org/cv/99/139299.jpg",
+   "violence": 0
+  }
+ },
+ "v3371": {
+  "title": "Cla☆Cra - CLASSY☆CRANBERRY'S",
+  "alttitle": "クラ☆クラ CLASSY☆CRANBERRY’S",
+  "released": "2010-07-23",
+  "rating": 74.1,
+  "votes": 248,
+  "minutes": null,
+  "developers": [
+   "ωstar",
+   "Atelier Kaguya P-ch"
+  ],
+  "image": {
+   "sexual": 0.07,
+   "url": "https://t.vndb.org/cv/42/93942.jpg",
+   "violence": 0
   }
  }
 }
