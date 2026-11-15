@@ -1,0 +1,18 @@
+
+title: ОСТРОВ
+original: ISLAND
+vndb: v18498
+date: 2026-11-14
+to: [android]
+from: pc
+translation:
+  by: Творческий уголок переводчиков
+  url: https://t.me/creative_corner_vn
+features: [За основу взят перевод от Творческий уголок переводчиков, "Продолжительность чтения: 30 часов", Добавлен выбор шрифта, Полная версия]
+note: |
+  Сделано по спецзаказу.
+posts:
+  tg: https://t.me/innocence_translations/635
+downloads:
+  android:
+    - { host: tg, url: "https://t.me/innocence_files/113" }

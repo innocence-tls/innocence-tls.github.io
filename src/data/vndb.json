@@ -2250,5 +2250,21 @@
    "url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2585830/ee37aa05bccac0ee84d955d1e0a5dfe950222408/library_600x900_2x.jpg?t=1773057797",
    "sexual": 0
   }
+ },
+ "v18498": {
+  "title": "ISLAND",
+  "alttitle": null,
+  "released": "2016-04-28",
+  "rating": 77.4,
+  "votes": 2137,
+  "minutes": 2100,
+  "developers": [
+   "Frontwing"
+  ],
+  "image": {
+   "sexual": 0,
+   "url": "https://t.vndb.org/cv/39/75939.jpg",
+   "violence": 0
+  }
  }
 }
