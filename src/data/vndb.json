@@ -2218,5 +2218,37 @@
    "url": "https://t.vndb.org/cv/69/94169.jpg",
    "violence": 0
   }
+ },
+ "steam:3915320": {
+  "source": "steam",
+  "title": "I Wish I Had Never Gone into the Dungeon",
+  "alttitle": null,
+  "released": "2025-12-12",
+  "rating": null,
+  "votes": 0,
+  "minutes": null,
+  "developers": [
+   "StudioVR"
+  ],
+  "image": {
+   "url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3915320/a341338127c06a0e27e20a9de80ee568d3c60d79/library_capsule_2x.jpg?t=1790649876",
+   "sexual": 0
+  }
+ },
+ "steam:2585830": {
+  "source": "steam",
+  "title": "Promise Mascot Agency",
+  "alttitle": null,
+  "released": "2025-04-10",
+  "rating": null,
+  "votes": 0,
+  "minutes": null,
+  "developers": [
+   "Kaizen Game Works"
+  ],
+  "image": {
+   "url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2585830/ee37aa05bccac0ee84d955d1e0a5dfe950222408/library_600x900_2x.jpg?t=1773057797",
+   "sexual": 0
+  }
  }
 }

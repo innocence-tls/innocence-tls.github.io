@@ -7,7 +7,7 @@ import Facts from '../components/Facts.astro';
 import Rating from '../components/Rating.astro';
 import Platforms from '../components/Platforms.astro';
 import Posts from '../components/Posts.astro';
-import { getReleases, year, site } from '../lib/releases';
+import { getReleases, year, site, extLink } from '../lib/releases';
 import { icons, brands } from '../lib/icons';
 import { tagStyle } from '../lib/tagcolor';
 
@@ -111,7 +111,7 @@ const topTags = [...tagCount].sort((a, b) => b[1] - a[1]).slice(0, 14).map(([t])
           </h2>
           <div class="up">
             {upcoming.map((r) => (
-              <a class="up-card" href={r.vndb ? `https://vndb.org/${r.vndb}` : undefined} target="_blank" rel="noopener" style={`--accent:${r.accent}`}>
+              <a class="up-card" href={extLink(r)?.url} target="_blank" rel="noopener" style={`--accent:${r.accent}`}>
                 <div class="up-img">
                   {(r.poster ?? r.banner) && <Image src={(r.poster ?? r.banner)!} alt={r.title} width={300} />}
                   <span class:list={['up-st', r.status]}>{r.status === 'wip' ? 'Переводится' : 'В планах'}</span>

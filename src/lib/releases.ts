@@ -10,6 +10,7 @@ import type { ImageMetadata } from 'astro';
 import vndbData from '../data/vndb.json';
 
 export type VndbInfo = {
+  source?: 'steam'; // нет = VNDB
   title: string;
   alttitle: string | null;
   released: string | null;
@@ -94,7 +95,8 @@ export async function getReleases(): Promise<Release[]> {
     const poster = pick('poster') ?? cover ?? vndbPosters[`/src/data/posters/${slug}.jpg`];
     const accentSrc = posterFile ?? imageFile;
     const accent = parsed.data.accent ?? (accentSrc ? await accentOf(accentSrc) : 'hsl(345 85% 62%)');
-    const info = parsed.data.vndb ? (vndbData as Record<string, VndbInfo>)[parsed.data.vndb] : undefined;
+    const key = parsed.data.vndb ?? (parsed.data.steam && `steam:${parsed.data.steam}`);
+    const info = key ? (vndbData as Record<string, VndbInfo>)[key] : undefined;
     cache.set(slug, { ...parsed.data, slug, banner, cover, poster, shots, accent, imageFile, posterFile, info });
   }
   return [...cache.values()].sort(byDate);
@@ -115,6 +117,10 @@ export const censorshipLabel: Record<string, string> = {
   mosaic: 'Мозаика',
   nosex: 'Без взрослых сцен',
 };
+
+// Внешняя страница игры: VNDB, а если её там нет, Steam
+export const extLink = (r: { vndb?: string; steam?: string }) =>
+  r.vndb ? { label: 'VNDB', url: `https://vndb.org/${r.vndb}` } : r.steam ? { label: 'Steam', url: `https://store.steampowered.com/app/${r.steam}/` } : undefined;
 
 export const year = (r: Release) => r.info?.released?.slice(0, 4);
 

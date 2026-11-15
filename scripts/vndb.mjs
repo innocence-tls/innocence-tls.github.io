@@ -14,7 +14,7 @@ const cache = fs.existsSync(OUT) ? JSON.parse(fs.readFileSync(OUT, 'utf8')) : {}
 const releases = fs.readdirSync(REL)
   .filter((d) => fs.existsSync(path.join(REL, d, 'release.yaml')))
   .map((d) => ({ slug: d, ...YAML.parse(fs.readFileSync(path.join(REL, d, 'release.yaml'), 'utf8')) }))
-  .filter((r) => r.vndb);
+  .filter((r) => r.vndb || r.steam);
 
 // Порты: свой VNDB-id, если порт не привязан к релизу (у привязанного данные берутся у релиза)
 const ports = fs.existsSync(PORTS)
@@ -24,7 +24,7 @@ const ports = fs.existsSync(PORTS)
       .filter((p) => p.vndb)
   : [];
 
-const ids = [...new Set([...releases, ...ports].map((r) => r.vndb))];
+const ids = [...new Set([...releases, ...ports].map((r) => r.vndb).filter(Boolean))];
 const fields = 'id,title,alttitle,released,rating,votecount,length_minutes,developers.name,image.url,image.sexual,image.violence';
 
 async function query(chunk) {
@@ -59,6 +59,49 @@ try {
   console.warn(`vndb: не удалось обновить (${e.message}), беру кеш`);
 }
 
+// Steam: для игр, которых нет на VNDB (поле steam в release.yaml). Ключ в кеше: steam:<номер>.
+// Рейтинга нет: отзывы Steam API отдаёт не везде.
+const steamKey = (id) => `steam:${id}`;
+async function steamApp(id) {
+  const res = await fetch(`https://store.steampowered.com/api/appdetails?appids=${id}&l=english&cc=us`);
+  if (!res.ok) throw new Error(`Steam ${res.status}`);
+  const d = (await res.json())[id];
+  if (!d?.success) throw new Error(`в Steam нет приложения ${id}`);
+  const a = d.data;
+  // вертикальная обложка из библиотеки (у новых игр путь с хешем, его отдаёт IStoreBrowseService)
+  let url = a.header_image;
+  try {
+    const q = encodeURIComponent(JSON.stringify({ ids: [{ appid: +id }], context: { language: 'english', country_code: 'US' }, data_request: { include_assets: true } }));
+    const it = (await (await fetch(`https://api.steampowered.com/IStoreBrowseService/GetItems/v1/?input_json=${q}`)).json()).response.store_items[0];
+    const file = it.assets?.library_capsule_2x || it.assets?.library_capsule;
+    if (file) url = 'https://shared.akamai.steamstatic.com/store_item_assets/' + it.assets.asset_url_format.replace('${FILENAME}', file);
+  } catch {}
+  const date = Date.parse(a.release_date?.date + ' UTC');
+  return {
+    source: 'steam',
+    title: a.name,
+    alttitle: null,
+    released: a.release_date?.coming_soon || !date ? null : new Date(date).toISOString().slice(0, 10),
+    rating: null,
+    votes: 0,
+    minutes: null,
+    developers: (a.developers ?? []).map((x) => x.trim()),
+    image: { url, sexual: 0 }, // картинки магазина Steam без откровенного, размывать не нужно
+  };
+}
+const steamIds = [...new Set(releases.map((r) => r.steam).filter(Boolean).map(String))];
+for (const id of steamIds) {
+  try {
+    cache[steamKey(id)] = await steamApp(id);
+  } catch (e) {
+    console.warn(`steam: ${id} не обновился (${e.message}), беру кеш`);
+  }
+}
+if (steamIds.length) {
+  fs.writeFileSync(OUT, JSON.stringify(cache, null, 1));
+  console.log(`steam: ${steamIds.length} игр обновлено`);
+}
+
 // Обложка с VNDB; откровенная (image.sexual >= 1) сразу сильно размывается, чтобы карточка не была пустой:
 // - релизу без своего баннера/обложки кладётся в его папку как cover.jpg;
 // - релизу с баннером, но без poster.*, идёт в src/data/posters/ (не в репо) для превью ссылок.
@@ -72,7 +115,7 @@ async function download(img) {
 for (const r of releases) {
   const dir = path.join(REL, r.slug);
   const files = fs.readdirSync(dir);
-  const img = cache[r.vndb]?.image;
+  const img = cache[r.vndb ?? steamKey(r.steam)]?.image;
   if (!img) continue;
   let out;
   if (!files.some((f) => /^(banner|cover)\.(jpe?g|png|webp)$/i.test(f))) out = path.join(dir, 'cover.jpg');

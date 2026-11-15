@@ -12,6 +12,8 @@ export const schema = z.object({
   subtitle: z.string().optional(),
   original: z.string(),
   vndb: z.string().regex(/^v\d+$/, 'vndb должен быть вида v12345').optional(),
+  // для игр, которых нет на VNDB: номер приложения в Steam (store.steampowered.com/app/<номер>/)
+  steam: z.coerce.string().regex(/^\d+$/, 'steam: номер приложения, например 2585830').optional(),
   status: z.enum(['released', 'wip', 'planned']),
   progress: z.number().min(0).max(100).optional(),
   date: z.coerce.date().optional(),

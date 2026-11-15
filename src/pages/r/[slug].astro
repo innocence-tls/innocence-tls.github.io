@@ -6,7 +6,7 @@ import Backdrop from '../../components/Backdrop.astro';
 import Facts from '../../components/Facts.astro';
 import Platforms from '../../components/Platforms.astro';
 import Posts from '../../components/Posts.astro';
-import { getReleases, censorshipLabel, type Release } from '../../lib/releases';
+import { getReleases, censorshipLabel, extLink, type Release } from '../../lib/releases';
 import { icons } from '../../lib/icons';
 import { tagStyle } from '../../lib/tagcolor';
 
@@ -18,6 +18,7 @@ const { r } = Astro.props as { r: Release };
 const base = import.meta.env.BASE_URL;
 const og = r.posterFile || r.imageFile ? `${base}og/${r.slug}.jpg` : undefined;
 const info = r.info;
+const ext = extLink(r);
 // Описание для превью ссылки: до ~200 символов, обрезка по слову
 const short = r.desc && (r.desc.length > 200 ? r.desc.slice(0, 200).replace(/[\s,.;:!?-]+\S*$/, '') + '...' : r.desc);
 
@@ -54,7 +55,7 @@ const note = r.note && esc(r.note).replace(/https?:\/\/\S+/g, (u) => `<a href="$
           <div class="cta">
             <a class="btn btn-accent" href="#download"><Fragment set:html={icons.download} /> Скачать</a>
             <Posts r={r} big />
-            {r.vndb && <a class="btn" href={`https://vndb.org/${r.vndb}`} target="_blank" rel="noopener">VNDB <Fragment set:html={icons.external} /></a>}
+            {ext && <a class="btn" href={ext.url} target="_blank" rel="noopener">{ext.label} <Fragment set:html={icons.external} /></a>}
           </div>
         </div>
       </div>
