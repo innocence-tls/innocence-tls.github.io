@@ -1053,7 +1053,7 @@
   "released": "2021-10-29",
   "rating": 77.5,
   "votes": 484,
-  "minutes": 1132,
+  "minutes": 1125,
   "developers": [
    "HARUKAZE"
   ],
@@ -2329,6 +2329,22 @@
    "sexual": 0.13,
    "url": "https://t.vndb.org/cv/98/86698.jpg",
    "violence": 0.07
+  }
+ },
+ "v21": {
+  "title": "Tenshi no Inai 12-gatsu",
+  "alttitle": "天使のいない12月",
+  "released": "2003-09-26",
+  "rating": 71.9,
+  "votes": 536,
+  "minutes": 786,
+  "developers": [
+   "Leaf"
+  ],
+  "image": {
+   "sexual": 0,
+   "url": "https://t.vndb.org/cv/43/111443.jpg",
+   "violence": 0
   }
  }
 }
