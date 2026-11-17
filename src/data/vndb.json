@@ -2346,5 +2346,21 @@
    "url": "https://t.vndb.org/cv/43/111443.jpg",
    "violence": 0
   }
+ },
+ "v5445": {
+  "title": "VenusBlood -EMPIRE-",
+  "alttitle": "ヴィーナスブラッド－エンパイア－",
+  "released": "2010-11-26",
+  "rating": 74.1,
+  "votes": 101,
+  "minutes": 2004,
+  "developers": [
+   "dualtail"
+  ],
+  "image": {
+   "sexual": 2,
+   "url": "https://t.vndb.org/cv/90/107890.jpg",
+   "violence": 0
+  }
  }
 }
