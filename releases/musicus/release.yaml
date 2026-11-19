@@ -1,4 +1,27 @@
-title: Мюзикус!
+title: МЬЮЗИКУС!
 original: MUSICUS!
 vndb: v22783
-status: planned
+status: released
+date: 2026-11-20
+length: 35-40 часов
+platforms: [pc]
+censorship: none
+tags: [романтика, триллер, драма, драма, уцуге, философия, ГГ парень]
+desc: >
+  Музыкальная визуальная новелла рассказывающая о поиске смысла жизни, взрослении и цене,
+  которую платят рок-музыканты за верность своему искусству. Главный герой всегда хотел
+  мечтал врачом, но воля случая затягивает его в небольшой рок-коллектив, где он и начинает
+  потихоньку втягиваться в безбашенную жизнь рокеров...
+
+  vndb
+note: |
+  Сделано по спецзаказу.
+  Сделано дляSteam версии игры: https://store.steampowered.com/app/1418180.
+  Русификатор уже включает в себя 18+ патч для полного контента игры.
+posts:
+  tg: https://t.me/innocence_translations/661
+downloads:
+  game:
+    - { host: tg, url: "https://t.me/innocence_files/126" }
+  patch:
+    - { host: tg, url: "https://t.me/innocence_files/127" }
