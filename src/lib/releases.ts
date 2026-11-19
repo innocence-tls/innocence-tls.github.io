@@ -83,6 +83,12 @@ export async function getReleases(): Promise<Release[]> {
       const msg = parsed.error.issues.map((i) => `  ${i.path.join('.')}: ${i.message}`).join('\n');
       throw new Error(`releases/${slug}/release.yaml:\n${msg}`);
     }
+    // Подзаголовок уже вписан в название через двоеточие: делим название, иначе он выведется дважды
+    const colon = parsed.data.title.indexOf(': ');
+    if (parsed.data.subtitle && colon > 0) {
+      parsed.data.subtitle = parsed.data.title.slice(colon + 2);
+      parsed.data.title = parsed.data.title.slice(0, colon);
+    }
     const own = Object.entries(images).filter(([k]) => slugOf(k) === slug);
     const pick = (name: string) => own.find(([k]) => new RegExp(`/${name}\\.\\w+$`).test(k))?.[1];
     const banner = pick('banner');
