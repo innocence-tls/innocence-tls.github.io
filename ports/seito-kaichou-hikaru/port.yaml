@@ -1,0 +1,14 @@
+
+release: seito-kaichou-hikaru
+date: 2026-11-19
+to: [android]
+from: pc
+note: |
+  Сделано по спецзаказу.
+posts:
+  tg: https://t.me/innocence_translations/656
+downloads:
+  game:
+    - { host: tg, url: "https://t.me/innocence_files/124" }
+  android:
+    - { host: tg, url: "https://t.me/innocence_files/125" }
