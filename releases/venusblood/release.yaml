@@ -1,5 +1,31 @@
 
 title: "ВенусБлад: Фронтир"
+subtitle: ФРОНТИР
 original: VenusBlood -FRONTIER-
 vndb: v9409
-status: planned
+status: released
+date: 2026-11-21
+length: 60+ часов
+platforms: [pc]
+censorship: none
+tags: [экшен, фэнтези, приключения, сюжет, ГГ парень, умныйГГ, антигерой]
+desc: >
+  Пошаговая стратегия о войне демонов с богинями. Наследники демонического трона вторгаются
+  на парящий материк за право стать следующим Владыкой Демонов. Трон получит тот, кто
+  добудет Сердце Иггдрасиля. Главный герой, лишённый родового оружия - сын казнённого
+  принца, ставит на кон всё, чтобы обойти родню, покорить всех богинь и получить заслуженную
+  власть...
+
+  vndb
+note: |
+  Сделано по спецзаказу.
+  Игра и серия огромная, потому сделана отдельная Вики-Энциклопедия: https://innocence-tls.github.io/venusblood-wikiс гайдами, прохождением, лором и информацией по игре, будет дополняться со временем.
+posts:
+  tg: https://t.me/innocence_translations/667
+  vk: https://vk.ru/innocence_translations?w=wall-233660350_379
+  boosty: https://boosty.to/innocence_translations/posts/bc9cf977-ae32-4f61-a35a-c5f7c29b833c
+downloads:
+  game:
+    - { host: tg, url: "https://t.me/innocence_files/129" }
+  patch:
+    - { host: tg, url: "https://t.me/innocence_files/130" }
