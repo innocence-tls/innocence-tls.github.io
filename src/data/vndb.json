@@ -2667,5 +2667,21 @@
    "url": "https://t.vndb.org/cv/72/87972.jpg",
    "violence": 0
   }
+ },
+ "v51909": {
+  "title": "VenusBlood -AfterDays- Episode:10 Shiro no Jotei wa Iyasaretai",
+  "alttitle": "VenusBlood -AfterDays- Episode:10 白の女帝は癒されたい",
+  "released": "2024-09-13",
+  "rating": 59.7,
+  "votes": 6,
+  "minutes": null,
+  "developers": [
+   "dualtail"
+  ],
+  "image": {
+   "sexual": 0,
+   "url": "https://t.vndb.org/cv/69/87969.jpg",
+   "violence": 0
+  }
  }
 }
