@@ -1,0 +1,16 @@
+
+title: Девушка в скорлупе
+original: Kara no Shoujo HD Remaster
+date: 2026-11-23
+to: [android]
+from: pc
+translation:
+  by: Pin201
+features: ["За основу взяли The Shell Part I: Inferno - официальное HD-переиздание игры", Перенесли перевод от Pin201, "Адаптировали русское меню, карту, улики и блокнот из оригинала под широкий экран HD-переиздания", Имена и названия теперь пишутся по системе Хепберна, Улучшена читаемость шрифта, Полная версия, Полная озвучка]
+note: |
+  Сделано по спецзаказу.
+posts:
+  tg: https://t.me/innocence_translations/679
+downloads:
+  android:
+    - { host: tg, url: "https://t.me/innocence_files/132" }
